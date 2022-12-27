@@ -1,0 +1,24 @@
+body {
+    color: #FFFFFF;
+    background-color: #FFFFFF;
+
+
+}
+
+.stButton>button {
+    color: #FFFFFF;
+    border-radius: 10%;
+    height: 3em;
+    width: 6em;
+    background: rgba(255, 15, 40, 0.57);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12.1px);
+    -webkit-backdrop-filter: blur(12.1px);
+    border: 1px solid rgba(255, 15, 40, 0.3);
+}
+
+.stTextInput>div>div>input {
+    color: #FFFFFF;
+
+}

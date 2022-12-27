@@ -154,7 +154,7 @@ if selected2 == 'Home':
         st.write("---")
         left_coloumn, right_coloumn = st.columns(2)
         with left_coloumn:
-            st.subheader("LEARNING The Journey Of The Life Time")
+            white("LEARNING The Journey Of The Life Time")
             white("STUDENTBAE")
             white(
                 "STUDENTBAE is a web-based application that helps students assist with their tasks and make their lives easier. in recent eras, the educational system evolved a lot and most organisations moved from pen and paper method to totally to online mode, So we help students to get their resources easily and quickly. We provide our users with a personalized search engine for studies, there students can get PDFs, Slides, Notes, Courses, Research  papers, Question Papers, and E-books.")

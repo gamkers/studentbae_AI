@@ -16,7 +16,7 @@ opacity: 0.8;
 </style>
 """
 def white(words):
-    st.markdown(f'<h1 style="color:#FFFFFF;font-size:8px;,font-family:sans-serif;">{words}</h1>', unsafe_allow_html=True)
+    st.markdown(f'<h1 style="color:#FFFFFF;font-size:18px;,font-family:sans-serif;">{words}</h1>', unsafe_allow_html=True)
 
 
 

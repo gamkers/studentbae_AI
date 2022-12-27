@@ -9,6 +9,7 @@ page_bg_img = f"""
 <style>
 [data-testid="stAppViewContainer"] > .main {{
 background-image: linear-gradient(to right, #460C68, #F56EB3);
+colour: white;
 opacity: 0.8;
 
 }}

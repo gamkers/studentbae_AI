@@ -8,16 +8,12 @@ st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
 page_bg_img = f"""
 <style>
 [data-testid="stAppViewContainer"] > .main {{
-background-image: linear-gradient(to right, #460C68, #F56EB3);
-colour: white;
+background-image: linear-gradient(to right, #EE5166, #F08EFC );
 opacity: 0.8;
 
 }}
 </style>
 """
-def white(words):
-    st.markdown(f'<h1 style="color:#FFFFFF;font-size:18px;,font-family:serif;;">{words}</h1>', unsafe_allow_html=True)
-
 
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
@@ -86,13 +82,13 @@ def torrent_download(search):
 
 
 
-# hide_menu_style = """
-#         <style>
-#         #MainMenu {visibility: hidden;}
-#         footer {visibility: hidden; }
-#         </style>
-#         """
-# st.markdown(hide_menu_style, unsafe_allow_html=True)
+hide_menu_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden; }
+        </style>
+        """
+st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 
 def display(data):
@@ -154,11 +150,11 @@ if selected2 == 'Home':
         st.write("---")
         left_coloumn, right_coloumn = st.columns(2)
         with left_coloumn:
-            white("LEARNING The Journey Of The Life Time")
-            white("STUDENTBAE")
-            white(
+            st.subheader("LEARNING The Journey Of The Life Time")
+            st.title("STUDENTBAE")
+            st.write(
                 "STUDENTBAE is a web-based application that helps students assist with their tasks and make their lives easier. in recent eras, the educational system evolved a lot and most organisations moved from pen and paper method to totally to online mode, So we help students to get their resources easily and quickly. We provide our users with a personalized search engine for studies, there students can get PDFs, Slides, Notes, Courses, Research  papers, Question Papers, and E-books.")
-            white("[DOWNLOAD NOW >](https://newsify.en.uptodown.com/android)")
+            st.write("[DOWNLOAD NOW >](https://newsify.en.uptodown.com/android)")
 
         with right_coloumn:
             st.image("hero.png")
@@ -170,9 +166,9 @@ if selected2 == 'Home':
             st.image("hero3.png")
 
         with right_coloumn:
-            white("WHY STUDENTBAE?")
+            st.header("WHY STUDENTBAE?")
             st.write("##")
-            white(
+            st.write(
                 """
                 There is a huge dataflow on the internet and it makes deficult to search notes or resources for students so we collect notes from all over the internet and categorised the resorces provide them to the users, we constantly try to update more features fix issues faced by students. The features listed belowr""")
 

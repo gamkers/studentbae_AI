@@ -8,7 +8,7 @@ st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
 page_bg_img = f"""
 <style>
 [data-testid="stAppViewContainer"] > .main {{
-background-image: linear-gradient(to right, #EE5166, #F08EFC );
+background-image: linear-gradient(to right, #810CA8, #E5B8F4 );
 opacity: 0.8;
 
 }}

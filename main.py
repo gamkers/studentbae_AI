@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import streamlit as st
 from gtts import gTTS
 from io import BytesIO
+st.set_page_config
 st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
 page_bg_img = f"""
 <style>

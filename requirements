@@ -1,0 +1,8 @@
+streamlit==1.8.1
+beautifulsoup4==4.11.1
+requests==2.27.1
+streamlit-lottie
+streamlit-option-menu
+gTTS
+requires.io
+google

@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import streamlit as st
 from gtts import gTTS
 from io import BytesIO
+import openai
 
 st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
 page_bg_img = f"""
@@ -19,6 +20,25 @@ opacity: 0.8;
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
+
+openai.api_key = "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"
+
+
+start_sequence = "\nAI:"
+restart_sequence = "\nHuman: "
+def ai(prompt):
+
+  response = openai.Completion.create(
+    model="text-davinci-003",
+    prompt=prompt,
+    temperature=0.9,
+    max_tokens=150,
+    top_p=1,
+    frequency_penalty=0,
+    presence_penalty=0.6,
+    stop=[" Human:", " AI:"]
+  )
+  return (response.choices[0].text)
 def speak(text):
     mp3_fp = BytesIO()
     tts = gTTS(text, lang='en')
@@ -129,8 +149,8 @@ def display(data):
         st.write("_______________________________________________________________________________")
 
 
-selected2 = option_menu(None, ["Home",'File Search'],
-                        icons=['house', 'files'],
+selected2 = option_menu(None, ["Home",'File Search',"AI Assitant"],
+                        icons=['house', 'files','robot'],
                         menu_icon="cast", default_index=0, orientation="horizontal")
 
 
@@ -231,3 +251,32 @@ elif selected2 == 'File Search':
         elif "E-BOOKS" in options:
             selected = f"{selected} BOOK"
             pdf(selected)
+
+
+elif selected2 == 'AI Assitant':
+    st.image("search1.png")
+    def local_css(file_name):
+        with open(file_name) as f:
+            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+
+    def remote_css(url):
+        st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
+
+
+    def icon(icon_name):
+        st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
+
+
+    local_css("style.css")
+    remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
+
+
+    form = st.form(key='my-form')
+
+    selected = form.text_input("", "")
+    submit = form.form_submit_button("SEARCH")
+
+
+    if submit:
+        st.write(ai(selected))

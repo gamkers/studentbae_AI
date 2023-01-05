@@ -108,7 +108,7 @@ def torrent_download(search):
 
 hide_menu_style = """
         <style>
-        MainMenu {visibility: hidden;}
+        #MainMenu {visibility: hidden;}
         footer {visibility: hidden; }
         </style>
         """

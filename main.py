@@ -26,6 +26,7 @@ openai.api_key = "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"
 
 start_sequence = "\nAI:"
 restart_sequence = "\nHuman: "
+
 def ai(prompt):
 
   response = openai.Completion.create(
@@ -38,7 +39,9 @@ def ai(prompt):
     presence_penalty=0.6,
     stop=[" Human:", " AI:"]
   )
-  return (response.choices[0].text)
+  st.markdown(response.choices[0].text)
+
+
 def speak(text):
     mp3_fp = BytesIO()
     tts = gTTS(text, lang='en')
@@ -279,4 +282,4 @@ elif selected2 == 'AI Assistant':
 
 
     if submit:
-        st.write(ai(selected))
+        ai(selected)

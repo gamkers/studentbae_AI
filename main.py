@@ -103,13 +103,13 @@ def torrent_download(search):
 
 
 
-hide_menu_style = """
-        <style>
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden; }
-        </style>
-        """
-st.markdown(hide_menu_style, unsafe_allow_html=True)
+# hide_menu_style = """
+#         <style>
+#         MainMenu {visibility: hidden;}
+#         footer {visibility: hidden; }
+#         </style>
+#         """
+# st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 
 def display(data):
@@ -149,7 +149,7 @@ def display(data):
         st.write("_______________________________________________________________________________")
 
 
-selected2 = option_menu(None, ["Home",'File Search',"AI Assitant"],
+selected2 = option_menu(None, ["Home",'File Search',"AI Assistant"],
                         icons=['house', 'files','robot'],
                         menu_icon="cast", default_index=0, orientation="horizontal")
 
@@ -253,7 +253,7 @@ elif selected2 == 'File Search':
             pdf(selected)
 
 
-elif selected2 == 'AI Assitant':
+elif selected2 == 'AI Assistant':
     st.image("search1.png")
     def local_css(file_name):
         with open(file_name) as f:

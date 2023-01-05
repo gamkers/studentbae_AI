@@ -281,7 +281,7 @@ elif selected2 == 'AI Assistant':
 
     submit = form.form_submit_button("SEARCH")
     
-    n = st.slider('number of lines', 0.0, 1,0, 0.1)
+    #n = st.slider('number of lines', 0.0, 1,0, 0.1)
     
     if submit:
-        ai(selected,n)
+        ai(selected,1.0)

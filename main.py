@@ -27,12 +27,12 @@ openai.api_key = st.secrets["api"]
 start_sequence = "\nAI:"
 restart_sequence = "\nHuman: "
 
-def ai(prompt):
+def ai(prompt,n):
 
   response = openai.Completion.create(
     model="text-davinci-003",
     prompt=prompt,
-    temperature=0.9,
+    temperature=n,
     max_tokens=150,
     top_p=1,
     frequency_penalty=0,
@@ -278,8 +278,11 @@ elif selected2 == 'AI Assistant':
     form = st.form(key='my-form')
 
     selected = form.text_input("", "")
+    n = st.slider('number of lines', 0.00, 1.00, 25)
     submit = form.form_submit_button("SEARCH")
+    
 
 
     if submit:
-        ai(selected)
+      
+        ai(selected,n)

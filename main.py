@@ -284,4 +284,4 @@ elif selected2 == 'AI Assistant':
     #n = st.slider('number of lines', 0.0, 1,0, 0.1)
     
     if submit:
-        ai(selected,3.0)
+        ai(selected,1.0)

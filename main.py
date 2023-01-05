@@ -21,7 +21,7 @@ opacity: 0.8;
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 
-openai.api_key = "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"
+openai.api_key = st.secrets["api"]
 
 
 start_sequence = "\nAI:"

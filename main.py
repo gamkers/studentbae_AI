@@ -278,11 +278,10 @@ elif selected2 == 'AI Assistant':
     form = st.form(key='my-form')
 
     selected = form.text_input("", "")
-    n = st.slider('number of lines', 0.00, 1.00, 25)
+
     submit = form.form_submit_button("SEARCH")
     
-
-
+    n = st.slider('number of lines', 0.00, 1.00, 25)
+    
     if submit:
-      
         ai(selected,n)

@@ -61,7 +61,9 @@ def pdf(s):
             k = j.split("/")
 
             st.header(k[-1])
-            st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)
+            submit = form.form_submit_button("SEARCH")
+            if submit:
+              st.components.v1.iframe(j, width=None, height=None, scrolling=False)
 
 
 def ppt(s):

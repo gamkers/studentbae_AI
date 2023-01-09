@@ -61,7 +61,7 @@ def pdf(s):
         if ".pdf" in j:
             k = j.split("/")
             st.header(k[-1])
-             links.append(j)
+            links.append(j)
               
     submit = form.form_submit_button("SEARCH")
     if submit:

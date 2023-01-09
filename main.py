@@ -56,14 +56,17 @@ def pdf(s):
         print("No module named 'google' found")
 
     query = f"{s} filetype:pdf"
+    links=[]
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
         if ".pdf" in j:
             k = j.split("/")
-
             st.header(k[-1])
-            submit = form.form_submit_button("SEARCH")
-            if submit:
-              st.components.v1.iframe(j, width=None, height=None, scrolling=False)
+             links.append(j)
+              
+    submit = form.form_submit_button("SEARCH")
+    if submit:
+      for j in links:
+        st.components.v1.iframe(j, width=None, height=None, scrolling=False)
 
 
 def ppt(s):
@@ -73,11 +76,13 @@ def ppt(s):
         print("No module named 'google' found")
 
     query = f"{s} filetype:ppt"
+    links=[]
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
         if ".ppt" in j:
             k = j.split("/")
 
             st.header(k[-1])
+            links.append(j)
             st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)
 
 

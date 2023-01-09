@@ -152,7 +152,7 @@ def display(data):
         st.write("_______________________________________________________________________________")
 
 
-selected2 = option_menu(None, ["Home",'File Search',"AI Assistant"],
+selected2 = option_menu(None, ["Home",'Search',"Assistant"],
                         icons=['house', 'files','robot'],
                         menu_icon="cast", default_index=0, orientation="horizontal")
 
@@ -199,7 +199,7 @@ if selected2 == 'Home':
 
 
 
-elif selected2 == 'File Search':
+elif selected2 == 'Search':
     st.image("search1.png")
     def local_css(file_name):
         with open(file_name) as f:
@@ -256,7 +256,7 @@ elif selected2 == 'File Search':
             pdf(selected)
 
 
-elif selected2 == 'AI Assistant':
+elif selected2 == 'Assistant':
     st.image("colab.png")
     def local_css(file_name):
         with open(file_name) as f:

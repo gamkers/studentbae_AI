@@ -56,15 +56,13 @@ def pdf(s):
         print("No module named 'google' found")
 
     query = f"{s} filetype:pdf"
-    links=[]
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
         if ".pdf" in j:
             k = j.split("/")
             st.header(k[-1])
-            links.append(j)
-            #st.components.v1.iframe(j)
-            if st.button('DOWNLOAD'):
-              st.components.v1.iframe(j)
+            st.components.v1.iframe(j)
+#             if st.button('DOWNLOAD'):
+#               st.components.v1.iframe(j)
 
 
 def ppt(s):
@@ -74,14 +72,14 @@ def ppt(s):
         print("No module named 'google' found")
 
     query = f"{s} filetype:ppt"
-    links=[]
+   
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
         if ".ppt" in j:
             k = j.split("/")
 
             st.header(k[-1])
-            links.append(j)
-            st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)
+            st.components.v1.iframe(j)
+            #st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)
 
 
 def torrent_download(search):

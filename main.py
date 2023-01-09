@@ -154,7 +154,7 @@ def display(data):
 
 selected2 = option_menu(None, ["Home",'Search',"Assistant"],
                         icons=['house', 'files','robot'],
-                        menu_icon="cast", default_index=0, orientation="vertical")
+                        menu_icon="cast", default_index=2, orientation="horizontal")
 
 
 def lottieurl(url):

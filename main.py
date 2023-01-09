@@ -62,12 +62,13 @@ def pdf(s):
             k = j.split("/")
             st.header(k[-1])
             links.append(j)
-            st.components.v1.iframe(j)
+            #st.components.v1.iframe(j)
               
     
     if st.button('DOWNLOAD'):
       for j in links:
-        st.components.v1.iframe(j, width=None, height=None, scrolling=False)
+        st.write(j)
+        st.components.v1.iframe(j)
 
 
 def ppt(s):

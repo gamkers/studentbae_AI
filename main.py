@@ -63,8 +63,8 @@ def pdf(s):
             st.header(k[-1])
             links.append(j)
               
-    submit = form.form_submit_button("SEARCH")
-    if submit:
+    
+    if st.button('DOWNLOAD'):
       for j in links:
         st.components.v1.iframe(j, width=None, height=None, scrolling=False)
 

@@ -62,6 +62,7 @@ def pdf(s):
             k = j.split("/")
             st.header(k[-1])
             links.append(j)
+            st.components.v1.iframe(j)
               
     
     if st.button('DOWNLOAD'):

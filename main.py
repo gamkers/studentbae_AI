@@ -18,7 +18,7 @@ opacity: 0.8;
 """
 
 
-st.markdown(page_bg_img, unsafe_allow_html=True)
+#st.markdown(page_bg_img, unsafe_allow_html=True)
 
 
 openai.api_key = st.secrets["api"]

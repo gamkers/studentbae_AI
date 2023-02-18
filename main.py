@@ -228,7 +228,7 @@ elif selected2 == 'Search':
 
     options = st.multiselect(
         'What you Looking for?',
-        ['PDF', 'PPT', 'Courses', 'Research papers', 'Question Papers', 'E-BOOKS','Hacker Rank']
+        ['Hacker Rank','PDF', 'PPT', 'Courses', 'Research papers', 'Question Papers', 'E-BOOKS']
     )
 
     n = st.slider('File Count', 0, 130, 25)

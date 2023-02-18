@@ -228,7 +228,7 @@ elif selected2 == 'Search':
 
     options = st.multiselect(
         'What you Looking for?',
-        ['PDF', 'PPT', 'Courses', 'Research papers', 'Question Papers', 'E-BOOKS']
+        ['PDF', 'PPT', 'Courses', 'Research papers', 'Question Papers', 'E-BOOKS','Hacker Rank']
     )
 
     n = st.slider('File Count', 0, 130, 25)
@@ -257,7 +257,10 @@ elif selected2 == 'Search':
         elif "E-BOOKS" in options:
             selected = f"{selected} BOOK"
             pdf(selected)
-
+        elif "Hacker Rank" in options:
+            selected = f"{selected} BOOK"
+            st.write(f"[DOWNLOAD NOW >](https://www.hackerrank.com/domains/{selected})")
+            
 
 elif selected2 == 'Assistant':
     st.image("colab.png")

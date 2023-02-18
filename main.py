@@ -258,7 +258,7 @@ elif selected2 == 'Search':
             selected = f"{selected} BOOK"
             pdf(selected)
         elif "Hacker Rank" in options:
-            selected = f"{selected} BOOK"
+            
             st.write(f"[DOWNLOAD NOW >](https://www.hackerrank.com/domains/{selected})")
             
 

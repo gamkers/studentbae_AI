@@ -228,7 +228,7 @@ elif selected2 == 'Search':
 
     options = st.multiselect(
         'What you Looking for?',
-        ['Hacker Rank','PDF', 'PPT', 'Courses', 'Research papers', 'Question Papers', 'E-BOOKS']
+        ['PDF', 'PPT', 'Courses', 'Research papers','Hacker Rank', 'Question Papers', 'E-BOOKS']
     )
 
     n = st.slider('File Count', 0, 130, 25)
@@ -259,7 +259,7 @@ elif selected2 == 'Search':
             pdf(selected)
         elif "Hacker Rank" in options:
             
-            st.write(f"[DOWNLOAD NOW >](https://www.hackerrank.com/domains/{selected})")
+            st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")
             
 
 elif selected2 == 'Assistant':

@@ -288,8 +288,8 @@ elif selected2 == 'Search':
         elif "Hacker Rank" in options:
             st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")
         elif "MCQ's" in options:
-            options1 = st.multiselect('What you Looking for?',['SQL'])
-            webscrap_mcq(options1.lower())
+            
+            webscrap_mcq(selected)
             
 
 elif selected2 == 'Assistant':

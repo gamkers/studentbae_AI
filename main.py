@@ -64,7 +64,35 @@ def pdf(s):
 #             if st.button('DOWNLOAD'):
 #                st.components.v1.iframe(j)
 
-
+def webscrap_mcq(command): 
+    links=[]
+    search = command
+    url = "https://www.sanfoundry.com/1000-mysql-database-questions-answers/"
+    r = requests.get(url)
+    data = BeautifulSoup(r.text, "html.parser")
+    for link in data.find_all('a'):
+        links.append((link.get('href')))
+    sql_mcq=[]
+    for text in links:
+        if command in str(text):
+            if 'http' in str(text):
+                url=text
+                r = requests.get(url)
+                data = BeautifulSoup(r.text, "html.parser")
+                temp = data.find("div", class_="entry-content").text
+                temp=temp.replace("advertisement","")
+                temp=temp.replace("Take MySQL Tests Now!","")
+                temp=temp.replace("AnswerAnswer","Answers")
+                temp=temp.replace("Subscribe Now: MySQL Newsletter | Important Subjects Newsletters","")
+                temp=temp.replace("Check this: Programming MCQs | Information Technology Books","")
+                temp=temp.replace("Note: Join free Sanfoundry classes at Telegram or Youtube","")
+                temp=temp.replace("Sanfoundry Certification Contest of the Month is Live. 100+ Subjects. Participate Now!","")
+                temp=temp.replace("Sanfoundry Global Education & Learning Series – MySQL Database.To practice all areas of MySQL Database, here is complete set of 1000+ Multiple Choice Questions and Answers.","")
+                clean=temp.split("«")
+                clean1=clean[0]
+                clean2=clean1.split("Take MySQL Practice Tests")
+                
+                st.markdown(clean2[0],unsafe_allow_html=True)
 def ppt(s):
     try:
         from googlesearch import search
@@ -228,7 +256,7 @@ elif selected2 == 'Search':
 
     options = st.multiselect(
         'What you Looking for?',
-        ['PDF', 'PPT', 'Courses', 'Research papers','Hacker Rank', 'Question Papers', 'E-BOOKS']
+        ['PDF', 'PPT', 'Courses', 'Research papers','Hacker Rank',"MCQ's",'Question Papers', 'E-BOOKS']
     )
 
     n = st.slider('File Count', 0, 130, 25)
@@ -258,8 +286,10 @@ elif selected2 == 'Search':
             selected = f"{selected} BOOK"
             pdf(selected)
         elif "Hacker Rank" in options:
-            
             st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")
+        elif "MCQ's" in options:
+            options1 = st.multiselect('What you Looking for?',['SQL'])
+            webscrap_mcq(options1.lower())
             
 
 elif selected2 == 'Assistant':

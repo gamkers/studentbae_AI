@@ -403,7 +403,7 @@ elif selected2 == 'Assistant':
     if submit:
         cnt=ai(selected,1.0)
         if "PDF" in options:
-          st.subheader(cnt)
+          st.markdown("hello")
           pdf(cnt)
         elif "PPT" in options:
             ppt(cnt)

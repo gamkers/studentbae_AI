@@ -367,6 +367,8 @@ elif selected2 == "Hacker Rank":
   display("Hacker Rank")
 elif selected2 == "MCQ's":
   display("MCQ's")
+  
+  
 elif selected2 == 'Assistant':
     st.image("colab.png")
     def local_css(file_name):
@@ -391,8 +393,39 @@ elif selected2 == 'Assistant':
     selected = form.text_input("", "")
 
     submit = form.form_submit_button("SEARCH")
+    options = st.multiselect(
+        'ASSIST WITH',
+        ['PDF', 'PPT', 'Courses', 'Research papers','Hacker Rank',"MCQ's",'Question Papers', 'E-BOOKS'])
     
     #n = st.slider('number of lines', 0.0, 1,0, 0.1)
     
     if submit:
         ai(selected,1.0)
+        if "PDF" in options:
+            pdf(selected)
+        elif "PPT" in options:
+            ppt(selected)
+        elif "Courses" in options:
+            st.write('''Fair Use Act Disclaimer
+         This site is for educational purposes only!!
+                            **FAIR USE**
+      Copyright Disclaimer under section 107 of the Copyright Act 1976, allowance 
+      is made for “fair use” for purposes such as criticism, comment, news reporting, teaching, 
+      scholarship, education and research.Fair use is a use permitted by copyright statute that might
+      otherwise be infringing. Non-profit, educational or personal use 
+      tips the balance in favor of fair use. ''')
+            torrent_download(selected)
+        elif "Research papers" in options:
+            selected = f"{selected} research papers"
+            pdf(selected)
+        elif "Question Papers" in options:
+            selected = f"{selected} Question Papers"
+            pdf(selected)
+        elif "E-BOOKS" in options:
+            selected = f"{selected} BOOK"
+            pdf(selected)
+        elif "Hacker Rank" in options:
+            st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")
+        elif "MCQ's" in options:
+            
+            webscrap_mcq(selected)

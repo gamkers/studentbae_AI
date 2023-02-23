@@ -39,8 +39,9 @@ def ai(prompt,n):
     presence_penalty=0.6,
     stop=[" Human:", " AI:"]
   )
-  st.markdown(response.choices[0].text,unsafe_allow_html=True)
-  return response.choices[0].text
+  data=response.choices[0:4].text
+  st.markdown(response.choices[0:5].text,unsafe_allow_html=True)
+  return data
 
 def speak(text):
     mp3_fp = BytesIO()

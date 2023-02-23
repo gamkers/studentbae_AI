@@ -56,7 +56,7 @@ def pdf(s):
     except ImportError:
         print("No module named 'google' found")
 
-    query = f"{s} filetype:pdf"
+    query = f"filetype:pdf {s}"
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
         if ".pdf" in j:
             k = j.split("/")
@@ -101,7 +101,7 @@ def ppt(s):
     except ImportError:
         print("No module named 'google' found")
 
-    query = f"{s} filetype:ppt"
+    query = f"filetype:ppt {s}"
    
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
         if ".ppt" in j:
@@ -402,7 +402,7 @@ elif selected2 == 'Assistant':
     
     if submit:
         cnt=ai(selected,1.0)
-        st.markdown(cnt)
+      
         if "PDF" in options:
           st.markdown(cnt)
           pdf(cnt)

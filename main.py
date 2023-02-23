@@ -395,16 +395,16 @@ elif selected2 == 'Assistant':
     submit = form.form_submit_button("SEARCH")
     options = st.multiselect(
         'ASSIST WITH',
-        ['PDF', 'PPT', 'Courses', 'Research papers','Hacker Rank',"MCQ's",'Question Papers', 'E-BOOKS'])
+        ['PDF', 'PPT', 'Research papers','Question Papers', 'E-BOOKS'])
     
     #n = st.slider('number of lines', 0.0, 1,0, 0.1)
     
     if submit:
         ai(selected,1.0)
         if "PDF" in options:
-            pdf(selected)
+            pdf(ai(selected,1.0))
         elif "PPT" in options:
-            ppt(selected)
+            ppt(ai(selected,1.0))
         elif "Courses" in options:
             st.write('''Fair Use Act Disclaimer
          This site is for educational purposes only!!
@@ -417,13 +417,13 @@ elif selected2 == 'Assistant':
             torrent_download(selected)
         elif "Research papers" in options:
             selected = f"{selected} research papers"
-            pdf(selected)
+            pdf(ai(selected,1.0))
         elif "Question Papers" in options:
             selected = f"{selected} Question Papers"
-            pdf(selected)
+            pdf(ai(selected,1.0))
         elif "E-BOOKS" in options:
             selected = f"{selected} BOOK"
-            pdf(selected)
+            pdf(ai(selected,1.0))
         elif "Hacker Rank" in options:
             st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")
         elif "MCQ's" in options:

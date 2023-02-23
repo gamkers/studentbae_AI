@@ -60,9 +60,10 @@ def pdf(s):
         if ".pdf" in j:
             k = j.split("/")
             st.header(k[-1])
-            st.components.v1.iframe(j)
+#             st.components.v1.iframe(j)
 #             if st.button('DOWNLOAD'):
 #                st.components.v1.iframe(j)
+            st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)
 
 def webscrap_mcq(command): 
     links=[]
@@ -106,8 +107,8 @@ def ppt(s):
             k = j.split("/")
 
             st.header(k[-1])
-            st.components.v1.iframe(j)
-            #st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)
+#             st.components.v1.iframe(j)
+            st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)
 
 
 def torrent_download(search):
@@ -185,7 +186,7 @@ st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 selected2 = option_menu(None, ["Home",'Search',"Assistant"],
                         icons=['house', 'files','robot'],
-                        menu_icon="cast", default_index=2, orientation="horizontal")
+                        menu_icon="cast", default_index=2, orientation="vertical")
 
 
 def lottieurl(url):

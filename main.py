@@ -402,7 +402,8 @@ elif selected2 == 'Assistant':
     if submit:
         cnt=ai(selected,1.0)
         if "PDF" in options:
-            pdf(cnt)
+          st.subheader(cnt)
+          pdf(cnt)
         elif "PPT" in options:
             ppt(cnt)
         elif "Courses" in options:
@@ -416,14 +417,14 @@ elif selected2 == 'Assistant':
       tips the balance in favor of fair use. ''')
             torrent_download(selected)
         elif "Research papers" in options:
-            selected = f"{selected} research papers"
-            pdf(cnt)
+            selected = f"{cnt} research papers"
+            pdf(selected)
         elif "Question Papers" in options:
-            selected = f"{selected} Question Papers"
-            pdf(cnt)
+            selected = f"{cnt} Question Papers"
+            pdf(selected)
         elif "E-BOOKS" in options:
-            selected = f"{selected} BOOK"
-            pdf(cnt)
+            selected = f"{cnt} BOOK"
+            pdf(selected)
         elif "Hacker Rank" in options:
             st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")
         elif "MCQ's" in options:

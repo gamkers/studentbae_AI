@@ -40,8 +40,7 @@ def ai(prompt,n):
     stop=[" Human:", " AI:"]
   )
   st.markdown(response.choices[0].text,unsafe_allow_html=True)
-  return response.choices[0].text,unsafe_allow_html=True
-
+  return response.choices[0].text
 
 def speak(text):
     mp3_fp = BytesIO()

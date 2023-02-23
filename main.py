@@ -152,31 +152,26 @@ def display(data):
   def local_css(file_name):
         with open(file_name) as f:
             st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
-
-    def remote_css(url):
+  def remote_css(url):
         st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
-
-
-    def icon(icon_name):
+  def icon(icon_name):
         st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
+      
+  local_css("style.css")
+  remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
 
-    local_css("style.css")
-    remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
+  form = st.form(key='my-form')
 
-
-    form = st.form(key='my-form')
-
-    selected = form.text_input("", "")
-    submit = form.form_submit_button("SEARCH")
-    if submit:
-        if "PDF" in data:
-            pdf(selected)
-        elif "PPT" in data:
-            ppt(selected)
-        elif "Courses" in data:
-            st.write('''Fair Use Act Disclaimer
+  selected = form.text_input("", "")
+  submit = form.form_submit_button("SEARCH")
+  if submit:
+    if "PDF" in data:
+      pdf(selected)
+    elif "PPT" in data:
+      ppt(selected)
+    elif "Courses" in data:
+      st.write('''Fair Use Act Disclaimer
          This site is for educational purposes only!!
                             **FAIR USE**
       Copyright Disclaimer under section 107 of the Copyright Act 1976, allowance 
@@ -184,21 +179,32 @@ def display(data):
       scholarship, education and research.Fair use is a use permitted by copyright statute that might
       otherwise be infringing. Non-profit, educational or personal use 
       tips the balance in favor of fair use. ''')
-            torrent_download(selected)
-        elif "Research papers" in data:
-            selected = f"{selected} research papers"
-            pdf(selected)
-        elif "Question Papers" in data:
-            selected = f"{selected} Question Papers"
-            pdf(selected)
-        elif "E-BOOKS" in data:
-            selected = f"{selected} BOOK"
-            pdf(selected)
-        elif "Hacker Rank" in data:
-            st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")
-        elif "MCQ's" in data:
-            
-            webscrap_mcq(selected)
+      torrent_download(selected)
+      
+                  
+
+    elif "Research papers" in data:
+      selected = f"{selected} research papers"
+      pdf(selected)
+    elif "Question Papers" in data:
+      selected = f"{selected} Question Papers"
+      pdf(selected)
+    elif "E-BOOKS" in data:
+      selected = f"{selected} BOOK"
+      pdf(selected)
+    elif "Hacker Rank" in data:
+      st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")
+    elif "MCQ's" in data:
+      webscrap_mcq(selected)
+
+
+    
+
+
+
+    
+
+    
   
     
 

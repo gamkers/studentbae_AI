@@ -39,8 +39,8 @@ def ai(prompt,n):
     presence_penalty=0.6,
     stop=[" Human:", " AI:"]
   )
-  data=response.choices[0:4].text
-  st.markdown(response.choices[0:5].text,unsafe_allow_html=True)
+  data=response.choices[0].text
+  st.markdown(response.choices[0].text,unsafe_allow_html=True)
   return data
 
 def speak(text):

@@ -185,8 +185,8 @@ st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 with st.sidebar:
   
-  selected2 = option_menu(None, ["Home",'Search',"Assistant"],
-                          icons=['house', 'files','robot'],
+  selected2 = option_menu(None, ["Home",'Search',"Assistant",'PDF', 'PPT', 'Courses', 'Research papers','Hacker Rank',"MCQ's",'Question Papers', 'E-BOOKS'],
+                          icons=['house', 'files','robot','NOTE',"COMPUTER"],
                           menu_icon="cast", default_index=2, orientation="vertical")
 
 

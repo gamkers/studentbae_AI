@@ -404,7 +404,6 @@ elif selected2 == 'Assistant':
         cnt=ai(selected,1.0)
       
         if "PDF" in options:
-          st.markdown(cnt)
           pdf(cnt)
         elif "PPT" in options:
             ppt(cnt)
@@ -419,13 +418,13 @@ elif selected2 == 'Assistant':
       tips the balance in favor of fair use. ''')
             torrent_download(selected)
         elif "Research papers" in options:
-            selected = f"{cnt} research papers"
+            selected = f"research papers {cnt}"
             pdf(selected)
         elif "Question Papers" in options:
-            selected = f"{cnt} Question Papers"
+            selected = f"Question Papers {cnt}"
             pdf(selected)
         elif "E-BOOKS" in options:
-            selected = f"{cnt} BOOK"
+            selected = f"BOOK {cnt}"
             pdf(selected)
         elif "Hacker Rank" in options:
             st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")

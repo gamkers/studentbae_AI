@@ -183,10 +183,11 @@ st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 #         st.write("_______________________________________________________________________________")
 
-
-selected2 = option_menu(None, ["Home",'Search',"Assistant"],
-                        icons=['house', 'files','robot'],
-                        menu_icon="cast", default_index=2, orientation="vertical")
+with st.sidebar:
+  
+  selected2 = option_menu(None, ["Home",'Search',"Assistant"],
+                          icons=['house', 'files','robot'],
+                          menu_icon="cast", default_index=2, orientation="vertical")
 
 
 def lottieurl(url):

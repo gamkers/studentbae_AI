@@ -40,6 +40,7 @@ def ai(prompt,n):
     stop=[" Human:", " AI:"]
   )
   st.markdown(response.choices[0].text,unsafe_allow_html=True)
+  return response.choices[0].text,unsafe_allow_html=True
 
 
 def speak(text):
@@ -400,11 +401,11 @@ elif selected2 == 'Assistant':
     #n = st.slider('number of lines', 0.0, 1,0, 0.1)
     
     if submit:
-        ai(selected,1.0)
+        cnt=ai(selected,1.0)
         if "PDF" in options:
-            pdf(ai(selected,1.0))
+            pdf(cnt)
         elif "PPT" in options:
-            ppt(ai(selected,1.0))
+            ppt(cnt)
         elif "Courses" in options:
             st.write('''Fair Use Act Disclaimer
          This site is for educational purposes only!!
@@ -417,13 +418,13 @@ elif selected2 == 'Assistant':
             torrent_download(selected)
         elif "Research papers" in options:
             selected = f"{selected} research papers"
-            pdf(ai(selected,1.0))
+            pdf(cnt)
         elif "Question Papers" in options:
             selected = f"{selected} Question Papers"
-            pdf(ai(selected,1.0))
+            pdf(cnt)
         elif "E-BOOKS" in options:
             selected = f"{selected} BOOK"
-            pdf(ai(selected,1.0))
+            pdf(cnt)
         elif "Hacker Rank" in options:
             st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")
         elif "MCQ's" in options:

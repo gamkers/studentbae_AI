@@ -147,8 +147,9 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 def display(data):
+  
   st.image("search1.png")
-    def local_css(file_name):
+  def local_css(file_name):
         with open(file_name) as f:
             st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
@@ -198,6 +199,8 @@ def display(data):
         elif "MCQ's" in data:
             
             webscrap_mcq(selected)
+  
+    
 
 # def display(data):
 #     voice = []

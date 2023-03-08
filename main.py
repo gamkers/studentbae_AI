@@ -248,7 +248,7 @@ def display(data):
 with st.sidebar:
   
   selected2 = option_menu(None, ["Home","Assistant",'Search','PDF', 'PPT', 'Courses', 'Research papers','Hacker Rank',"MCQ's",'Question Papers', 'E-BOOKS'],
-                          icons=['house', 'files','robot'],
+                          icons=['house','robot','files'],
                           menu_icon="cast", default_index=2, orientation="vertical")
 
 

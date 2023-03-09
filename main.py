@@ -5,6 +5,7 @@ import streamlit as st
 from gtts import gTTS
 from io import BytesIO
 import openai
+from youtubesearchpython import *
 
 st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
 page_bg_img = f"""
@@ -42,6 +43,11 @@ def ai(prompt,n):
   data=response.choices[0].text
   st.markdown(response.choices[0].text,unsafe_allow_html=True)
   return data
+
+def yt(vd)
+    customSearch = VideosSearch('python bootcamp',limit = 20)
+    for i in range(20):
+        st_player(customSearch.result()['result'][i]['link'])
 
 def speak(text):
     mp3_fp = BytesIO()
@@ -396,7 +402,7 @@ elif selected2 == 'Assistant':
     submit = form.form_submit_button("SEARCH")
     options = st.multiselect(
         'ASSIST WITH',
-        ['PDF', 'PPT', 'Research papers','Question Papers', 'E-BOOKS'])
+        ['PDF', 'PPT', 'Research papers','Question Papers', 'E-BOOKS','Videos'])
     
     #n = st.slider('number of lines', 0.0, 1,0, 0.1)
     
@@ -407,6 +413,8 @@ elif selected2 == 'Assistant':
           pdf(cnt)
         elif "PPT" in options:
             ppt(cnt)
+        elif "Videos" in options:
+            yt(cnt)
         elif "Courses" in options:
             st.write('''Fair Use Act Disclaimer
          This site is for educational purposes only!!

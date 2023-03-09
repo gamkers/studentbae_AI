@@ -42,7 +42,8 @@ def sql(t,q):
 #   st.markdown(response.choices[0].text,unsafe_allow_html=True)
   
 def ai(prompt,n):
-    response = openai.Completion.create(
+
+  response = openai.Completion.create(
     model="text-davinci-003",
     prompt=prompt,
     temperature=n,
@@ -51,10 +52,8 @@ def ai(prompt,n):
     frequency_penalty=0,
     presence_penalty=0.6,
     stop=[" Human:", " AI:"]
-    )
-    data=response.choices[0].text
-    st.markdown(response.choices[0].text,unsafe_allow_html=True)
-    return data
+  )
+  st.markdown(response.choices[0].text,unsafe_allow_html=True)
 
 def yt(vd):
     customSearch = VideosSearch(vd,limit = 20)

@@ -49,7 +49,7 @@ def sql(t,q):
 
   response = openai.Completion.create(
     model="text-davinci-003",
-    prompt=f"###{t}\n#\n### {q}\nSELECT",
+    prompt=f"###{t}\n#\n### {q}\n",
     temperature=1,
     max_tokens=2000,
     top_p=1,

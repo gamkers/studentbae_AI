@@ -385,10 +385,10 @@ elif selected2 == "SQL":
   remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
 
-  form = st.form(key='my-form')
+#   form = st.form(key='my-form')
   t = st.text_input("TABLE DETAILS", "")
   q = st.text_input("What you want?", "")
-  submit = form.form_submit_button("SEARCH")
+  submit = st.form_submit_button("SEARCH")
   if submit:
     sql(t,q)
  

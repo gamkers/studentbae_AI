@@ -27,7 +27,20 @@ openai.api_key = st.secrets["api"]
 
 start_sequence = "\nAI:"
 restart_sequence = "\nHuman: "
-
+def sql(t,q):
+    response = openai.Completion.create(
+    model="text-davinci-003",
+    prompt=f"### Postgres SQL tables, with their properties:\n#\n#{t}\n#\n###{q}\nSELECT",
+    temperature=n,
+    max_tokens=2000,
+    top_p=1,
+    frequency_penalty=0,
+    presence_penalty=0.6,
+    stop=[" Human:", " AI:"]
+  )
+  data=response.choices[0].text
+  st.markdown(response.choices[0].text,unsafe_allow_html=True)
+  return data
 def ai(prompt,n):
 
   response = openai.Completion.create(
@@ -253,7 +266,7 @@ def display(data):
 
 with st.sidebar:
   
-  selected2 = option_menu(None, ["Home","Assistant",'Search','PDF', 'PPT', 'Courses', 'Research papers',"MCQ's",'Question Papers', 'E-BOOKS'],
+  selected2 = option_menu(None, ["Home","Assistant",'Search','PDF', 'PPT', 'Courses', 'Research papers',"MCQ's",'Question Papers', 'E-BOOKS',"SQL"],
                           icons=['house','robot','files'],
                           menu_icon="cast", default_index=2, orientation="vertical")
 
@@ -374,6 +387,29 @@ elif selected2 == "Hacker Rank":
   display("Hacker Rank")
 elif selected2 == "MCQ's":
   display("MCQ's")
+elif selected2 == "SQL":
+  st.image("search1.png")
+  def local_css(file_name):
+        with open(file_name) as f:
+            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+  def remote_css(url):
+        st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
+  def icon(icon_name):
+        st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
+      
+  local_css("style.css")
+  remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
+
+
+  form = st.form(key='my-form')
+  st.write("TABLE DETAILS")
+  t = form.text_input("", "")
+  st.write("What you want?")
+  q = form.text_input("", "")
+  submit = form.form_submit_button("SEARCH")
+  if submit:
+    sql(t,q)
+ 
   
   
 elif selected2 == 'Assistant':

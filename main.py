@@ -47,7 +47,7 @@ def ai(prompt,n):
 def yt(vd):
     customSearch = VideosSearch('python bootcamp',limit = 20)
     for i in range(20):
-        st_player(customSearch.result()['result'][i]['link'])
+        st.video(customSearch.result()['result'][i]['link'])
 
 def speak(text):
     mp3_fp = BytesIO()

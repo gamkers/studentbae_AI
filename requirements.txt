@@ -7,3 +7,4 @@ gTTS
 requires.io
 google
 openai
+youtube-search-python

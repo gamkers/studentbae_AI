@@ -38,9 +38,9 @@ def sql(t,q):
     presence_penalty=0.6,
     stop=[" Human:", " AI:"]
   )
-  data=response.choices[0].text
+  
   st.markdown(response.choices[0].text,unsafe_allow_html=True)
-  return data
+  
 def ai(prompt,n):
 
   response = openai.Completion.create(

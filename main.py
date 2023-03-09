@@ -386,11 +386,8 @@ elif selected2 == "SQL":
 
 
   form = st.form(key='my-form')
-  st.write("TABLE DETAILS")
-  t = form.text_input("", "")
-  form2 = st.form(key='my-form')
-  st.write("What you want?")
-  q = form2.text_input("", "")
+  t = st.text_input("TABLE DETAILS", "")
+  q = st.text_input("What you want?", "")
   submit = form.form_submit_button("SEARCH")
   if submit:
     sql(t,q)

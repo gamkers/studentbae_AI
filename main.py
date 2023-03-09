@@ -44,7 +44,7 @@ def ai(prompt,n):
   st.markdown(response.choices[0].text,unsafe_allow_html=True)
   return data
 
-def yt(vd)
+def yt(vd):
     customSearch = VideosSearch('python bootcamp',limit = 20)
     for i in range(20):
         st_player(customSearch.result()['result'][i]['link'])

@@ -45,7 +45,7 @@ def ai(prompt,n):
   return data
 
 def yt(vd):
-    customSearch = VideosSearch('python bootcamp',limit = 20)
+    customSearch = VideosSearch(vd,limit = 20)
     for i in range(20):
         st.video(customSearch.result()['result'][i]['link'])
 

@@ -392,6 +392,8 @@ elif selected2 == "Hacker Rank":
   display("Hacker Rank")
 elif selected2 == "MCQ's":
   display("MCQ's")
+elif selected2 == 'E-BOOKS':
+  display('E-BOOKS')
 elif selected2 == "SQL":
   st.image("search1.png")
   def local_css(file_name):

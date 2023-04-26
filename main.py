@@ -83,7 +83,8 @@ def pdf(s):
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
         if ".pdf" in j:
             k = j.split("/")
-            st.header(k[-1])
+            title=ai(j+" Explain the title and content in short in this link",1)
+            st.header(title)
 #             st.components.v1.iframe(j)
 #             if st.button('DOWNLOAD'):
 #                st.components.v1.iframe(j)

@@ -83,8 +83,8 @@ def pdf(s):
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
         if ".pdf" in j:
             k = j.split("/")
-            title=ai(j+" Explain the title and content in short in this link",1)
-            st.header(title)
+            title=ai(j+" Explain the title and content in short in this link. the title should be in bold",1)
+          
 #             st.components.v1.iframe(j)
 #             if st.button('DOWNLOAD'):
 #                st.components.v1.iframe(j)

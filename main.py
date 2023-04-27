@@ -61,6 +61,17 @@ def sql(t,q):
   st.markdown(response.choices[0].text,unsafe_allow_html=True)
   return data
 
+def pearson(my_string):
+    query = my_string
+    sounds()
+    pattern = "(instagram|facebook|youtube|twitter|github|linkedin|scholar|hackerrank|tiktok|maps)+\.(com|edu|net|fandom)"
+    for i in search(query, tld="co.in", num=20, stop=15, pause=2):
+        if (re.search(pattern, i)):
+            title=ai(j+"tell about this person and belong to which website. the title should be in bold",1)
+            st.markdown(f'<a href="{j}">view more</a>', unsafe_allow_html=True)
+        else:
+            print("match not found")
+            
 def yt(vd):
     customSearch = VideosSearch(vd,limit = 20)
     for i in range(20):
@@ -271,7 +282,7 @@ def display(data):
 
 with st.sidebar:
   
-  selected2 = option_menu(None, ["Home","Assistant",'Search','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL"],
+  selected2 = option_menu(None, ["Home","Assistant",'Search','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT'],
                           icons=['house','robot','files'],
                           menu_icon="cast", default_index=2, orientation="vertical")
 
@@ -406,14 +417,29 @@ elif selected2 == "SQL":
       
   local_css("style.css")
   remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
-
-
 #   form = st.form(key='my-form')
   t = st.text_input("TABLE DETAILS", "")
   q = st.text_input("What you want?", "")
   submit = st.button("SEARCH")
   if submit:
     sql(t,q)
+elif selected2 == 'OSINT':
+  st.image("search1.png")
+  def local_css(file_name):
+        with open(file_name) as f:
+            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+  def remote_css(url):
+        st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
+  def icon(icon_name):
+        st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
+      
+  local_css("style.css")
+  remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
+#   form = st.form(key='my-form')
+  t = st.text_input("USERNAME", "")
+  submit = st.button("SEARCH")
+  if submit:
+    pearson(t)
  
   
   

@@ -62,14 +62,19 @@ def sql(t,q):
   return data
 
 def pearson(my_string):
-    query = my_string
-    pattern = "(instagram|facebook|youtube|twitter|github|linkedin|scholar|hackerrank|tiktok|maps)+\.(com|edu|net|fandom)"
-    for i in search(query, tld="co.in", num=20, stop=15, pause=2):
-        if (re.search(pattern, i)):
-            title=ai(j+"tell about this person and belong to which website. the title should be in bold",1)
-            st.markdown(f'<a href="{j}">view more</a>', unsafe_allow_html=True)
-        else:
-            print("match not found")
+  try:
+    from googlesearch import search
+    import re
+  except ImportError:
+    print("No module named 'google' found")
+  query = my_string
+  pattern = "(instagram|facebook|youtube|twitter|github|linkedin|scholar|hackerrank|tiktok|maps)+\.(com|edu|net|fandom)"
+  for i in search(query, tld="co.in", num=20, stop=15, pause=2):
+    if (re.search(pattern, i)):
+      title=ai(j+"tell about this person and belong to which website. the title should be in bold",1)
+      st.markdown(f'<a href="{j}">view more</a>', unsafe_allow_html=True)
+    else:
+      print("match not found")
             
 def yt(vd):
     customSearch = VideosSearch(vd,limit = 20)

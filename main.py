@@ -63,7 +63,6 @@ def sql(t,q):
 
 def pearson(my_string):
     query = my_string
-    sounds()
     pattern = "(instagram|facebook|youtube|twitter|github|linkedin|scholar|hackerrank|tiktok|maps)+\.(com|edu|net|fandom)"
     for i in search(query, tld="co.in", num=20, stop=15, pause=2):
         if (re.search(pattern, i)):

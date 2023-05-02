@@ -28,7 +28,7 @@ restart_sequence = "\nHuman: "
 def ai(prompt,n):
 
   response = openai.Completion.create(
-    model="text-ada-001",
+    model="text-davinci-003",
     prompt=prompt,
     temperature=n,
     max_tokens=2000,

@@ -595,11 +595,8 @@ elif selected2 == 'AdvanceGPT':
     remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
 
-    form = st.form(key='my-form')
-
-    selected = form.text_input("", "")
-
-    submit = st.button("Button 1", key="hi")
+    t = st.text_input("USERNAME", "")
+    submit = st.button("SEARCH")
 #     options = st.multiselect(
 #         'ASSIST WITH',
 #         ['PDF', 'PPT', 'Research papers','Question Papers', 'E-BOOKS','Videos'])

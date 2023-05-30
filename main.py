@@ -49,14 +49,14 @@ def pdfs(s,n):
             k = j.split("/")
             
             links.append(j)
-    print("SEARCHING FOR THE DOCUMENTS RELATED TO "+s)
+    st.markdown("SEARCHING FOR THE DOCUMENTS RELATED TO "+s)
     return links
 
 
 def pdftotxt(urls):
     texts=""
     for url in urls:
-        print("PROCESSING: "+url)
+        st.markdown("PROCESSING: "+url)
         response = requests.get(url)
 
         # Create a file-like object from the response content
@@ -67,7 +67,7 @@ def pdftotxt(urls):
 
         # Access the document information
         num_pages = len(pdf_reader.pages)
-        print("Number of pages:", num_pages)
+        st.markdown("Number of pages:", num_pages)
 
         # Perform further operations with the PDF document as needed
         # For example, extract text from each page
@@ -75,21 +75,21 @@ def pdftotxt(urls):
         for page in pdf_reader.pages:
             texts += page.extract_text()
             
-    print("DATA EXTRACTION DONE")
+    st.markdown("DATA EXTRACTION DONE")
     return texts
 
         # Print the extracted text
     
 def chunks(texts):
-    print("DATA TRANFORMATION STARTED")
-    print("TRANFORMING DATA INTO CHUNKS")
+    st.markdown("DATA TRANFORMATION STARTED")
+    st.markdown("TRANFORMING DATA INTO CHUNKS")
     text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
     length_function = len,)
     texts = text_splitter.split_text(texts)
     embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
     docsearch = FAISS.from_texts(texts, embeddings)
     chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
-    print("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
+    st.markdown("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
 
 def ai(prompt,n):
 

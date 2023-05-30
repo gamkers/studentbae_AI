@@ -607,18 +607,17 @@ elif selected2 == 'AdvanceGPT':
         urls = pdfs(selected, 1)
         texts = pdftotxt(urls)
         chunks(texts)
-        st.write("Type your questions here")
-        selected1 = st.text_input("Widget 2", key="widget2")
-        submit1 = st.button("Button 2", key="hello")
+    st.write("Type your questions here")
+    selected1 = st.text_input("Widget 2", key="widget2")
+    submit1 = st.button("Button 2", key="hello")
+    if submit1:
+        query = selected1
+        docs = docsearch.similarity_search(query)
 
-        if submit1:
-            st.write("Type your questions here")
-            query = selected1
-            docs = docsearch.similarity_search(query)
-
-            st.write(chain.run(input_documents=docs, question="TITLE of the paper"))
-            st.write(chain.run(input_documents=docs, question=query))
-            st.write("FOR REFERENCE:", *urls)
+        st.write(chain.run(input_documents=docs, question="TITLE of the paper"))
+        st.write(chain.run(input_documents=docs, question=query))
+        st.write("FOR REFERENCE:", *urls)
+        
 
 
 

@@ -87,10 +87,8 @@ def chunks(texts):
     length_function = len,)
     texts = text_splitter.split_text(texts)
     embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
-    docsearchs = FAISS.from_texts(texts, embeddings)
-    chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
-    st.markdown("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
-    return docsearchs
+
+  
 
 def ai(prompt,n):
 
@@ -608,7 +606,10 @@ elif selected2 == 'AdvanceGPT':
         urls = pdfs(selected, 1)
         texts = pdftotxt(urls)
         chunks(texts)
-    st.write("Type your questions here")
+        docsearchs = FAISS.from_texts(texts, embeddings)
+        chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
+        st.markdown("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
+        st.write("Type your questions here")
     selected1 = st.text_input("Widget 2", key="widget2")
     submit1 = st.button("Button 2", key="hello")
     if submit1:

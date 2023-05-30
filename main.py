@@ -88,7 +88,7 @@ def chunks(texts):
     texts = text_splitter.split_text(texts)
     embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
     docsearch = FAISS.from_texts(texts, embeddings)
-    chain = load_qa_chain(OpenAI(), chain_type="stuff")
+    chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
     print("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
 
 def ai(prompt,n):

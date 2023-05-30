@@ -6,6 +6,16 @@ from gtts import gTTS
 from io import BytesIO
 import openai
 from youtubesearchpython import *
+import io
+import requests
+import PyPDF2
+from PyPDF2 import PdfReader
+from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain.text_splitter import CharacterTextSplitter
+from langchain.vectorstores import ElasticVectorSearch, Pinecone, Weaviate, FAISS
+from langchain.chains.question_answering import load_qa_chain
+from langchain.llms import OpenAI
+
 
 st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
 page_bg_img = f"""
@@ -24,6 +34,61 @@ opacity: 0.8;
 openai.api_key = st.secrets["api"]
 start_sequence = "\nAI:"
 restart_sequence = "\nHuman: "
+
+def pdfs(s,n):
+    links=[]
+    try:
+        from googlesearch import search
+    except ImportError:
+        print("No module named 'google' found")
+
+    query = f"{s} filetype:pdf"
+    for j in search(query, tld="co.in", num=n, stop=n, pause=2):
+        if ".pdf" in j:
+            k = j.split("/")
+            
+            links.append(j)
+    print("SEARCHING FOR THE DOCUMENTS RELATED TO "+s)
+    return links
+
+
+def pdftotxt(urls):
+    texts=""
+    for url in urls:
+        print("PROCESSING: "+url)
+        response = requests.get(url)
+
+        # Create a file-like object from the response content
+        pdf_file = io.BytesIO(response.content)
+
+        # Use PyPDF2 to load and work with the PDF document
+        pdf_reader = PyPDF2.PdfReader(pdf_file)
+
+        # Access the document information
+        num_pages = len(pdf_reader.pages)
+        print("Number of pages:", num_pages)
+
+        # Perform further operations with the PDF document as needed
+        # For example, extract text from each page
+
+        for page in pdf_reader.pages:
+            texts += page.extract_text()
+            
+    print("DATA EXTRACTION DONE")
+    return texts
+
+        # Print the extracted text
+    
+def chunks(texts):
+    print("DATA TRANFORMATION STARTED")
+    print("TRANFORMING DATA INTO CHUNKS")
+    text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
+    length_function = len,)
+    texts = text_splitter.split_text(texts)
+    embeddings = OpenAIEmbeddings()
+    docsearch = FAISS.from_texts(texts, embeddings)
+    chain = load_qa_chain(OpenAI(), chain_type="stuff")
+    print("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
 
 def ai(prompt,n):
 
@@ -286,7 +351,7 @@ def display(data):
 
 with st.sidebar:
   
-  selected2 = option_menu(None, ["Home","Assistant",'Search','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT'],
+  selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT'],
                           icons=['house','robot','files'],
                           menu_icon="cast", default_index=2, orientation="vertical")
 
@@ -510,3 +575,49 @@ elif selected2 == 'Assistant':
         elif "MCQ's" in options:
             
             webscrap_mcq(selected)
+elif selected2 == 'AdvanceGPT':
+    st.image("colab.png")
+    def local_css(file_name):
+        with open(file_name) as f:
+            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+
+    def remote_css(url):
+        st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
+
+
+    def icon(icon_name):
+        st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
+
+
+    local_css("style.css")
+    remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
+
+
+    form = st.form(key='my-form')
+
+    selected = form.text_input("", "")
+
+    submit = form.form_submit_button("SEARCH")
+#     options = st.multiselect(
+#         'ASSIST WITH',
+#         ['PDF', 'PPT', 'Research papers','Question Papers', 'E-BOOKS','Videos'])
+    
+    n = st.slider('number of documents', 1, 1,10, 1)
+    if submit:
+      urls=pdf(selected,1)
+      texts=pdftotxt(urls)
+      chunks(texts)
+      st.write("Type your questions here")
+      selected1 = form.text_input("", "")
+      submit1 = form.form_submit_button("SEARCH")
+      if submit1:
+        st.write("Type your questions here")
+        query = selected1 
+        docs = docsearch.similarity_search(query)
+        print(chain.run(input_documents=docs, question="TITLE of the paper"))
+        print(chain.run(input_documents=docs, question=query))
+        print("FOR REFERNCE:",*urls)
+      
+        
+          

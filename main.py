@@ -87,7 +87,7 @@ def chunks(texts):
     length_function = len,)
     texts = text_splitter.split_text(texts)
     embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
-    docsearch = FAISS.from_texts(texts, embeddings)
+    docsearchs = FAISS.from_texts(texts, embeddings)
     chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
     st.markdown("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
 
@@ -612,7 +612,7 @@ elif selected2 == 'AdvanceGPT':
     submit1 = st.button("Button 2", key="hello")
     if submit1:
         query = selected1
-        docs = docsearch.similarity_search(query)
+        docs = docsearchs.similarity_search(query)
 
         st.write(chain.run(input_documents=docs, question="TITLE of the paper"))
         st.write(chain.run(input_documents=docs, question=query))

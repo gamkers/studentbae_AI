@@ -611,7 +611,7 @@ elif selected2 == 'AdvanceGPT':
       chunks(texts)
       st.write("Type your questions here")
       selected1=st.text_input("Widget 2", key="widget2")
-      submit1 = form.form_submit_button("SEARCH")
+      submit1 = st.button("Button 2", key="hello")
       if submit1:
         st.write("Type your questions here")
         query = selected1 

@@ -8,7 +8,3 @@ requires.io
 google
 openai
 youtube-search-python
-PyPDF2
-io
-langchain
-os

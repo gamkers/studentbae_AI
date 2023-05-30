@@ -595,7 +595,7 @@ elif selected2 == 'AdvanceGPT':
     remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
 
-    t = st.text_input("USERNAME", "")
+    selected = st.text_input("Document Searcher", "")
     submit = st.button("SEARCH")
 #     options = st.multiselect(
 #         'ASSIST WITH',

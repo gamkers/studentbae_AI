@@ -11,3 +11,4 @@ youtube-search-python
 langchain
 PyPDF2
 tiktoken
+faiss-cpu

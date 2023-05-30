@@ -10,4 +10,3 @@ openai
 youtube-search-python
 langchain
 PyPDF2
-io

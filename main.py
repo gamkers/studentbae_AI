@@ -86,7 +86,7 @@ def chunks(texts):
     text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
     length_function = len,)
     texts = text_splitter.split_text(texts)
-    embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
+    
 
   
 
@@ -606,6 +606,7 @@ elif selected2 == 'AdvanceGPT':
         urls = pdfs(selected, 1)
         texts = pdftotxt(urls)
         chunks(texts)
+        embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
         docsearchs = FAISS.from_texts(texts, embeddings)
         chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
         st.markdown("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")

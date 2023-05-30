@@ -81,6 +81,7 @@ def pdftotxt(urls):
         # Print the extracted text
     
 def chunks(texts):
+    
     st.markdown("DATA TRANFORMATION STARTED")
     st.markdown("TRANFORMING DATA INTO CHUNKS")
     text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
@@ -580,45 +581,45 @@ elif selected2 == 'Assistant':
         elif "MCQ's" in options:
             
             webscrap_mcq(selected)
-elif selected2 == 'AdvanceGPT':
-    st.image("colab.png")
-    def local_css(file_name):
-        with open(file_name) as f:
-            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+# elif selected2 == 'AdvanceGPT':
+#     st.image("colab.png")
+#     def local_css(file_name):
+#         with open(file_name) as f:
+#             st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 
-    def remote_css(url):
-        st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
+#     def remote_css(url):
+#         st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
 
 
-    def icon(icon_name):
-        st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
+#     def icon(icon_name):
+#         st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
 
 
-    local_css("style.css")
-    remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
+#     local_css("style.css")
+#     remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
 
-    selected = st.text_input("Document Searcher", "")
-    submit = st.button("SEARCH")
-#     options = st.multiselect(
-#         'ASSIST WITH',
-#         ['PDF', 'PPT', 'Research papers','Question Papers', 'E-BOOKS','Videos'])
+#     selected = st.text_input("Document Searcher", "")
+#     submit = st.button("SEARCH")
+# #     options = st.multiselect(
+# #         'ASSIST WITH',
+# #         ['PDF', 'PPT', 'Research papers','Question Papers', 'E-BOOKS','Videos'])
     
-    n = st.slider('number of documents', 1, 1,10, 1)
+#     n = st.slider('number of documents', 1, 1,10, 1)
 
-    if submit:
-        urls = pdfs(selected, 1)
-        texts = pdftotxt(urls)
+#     if submit:
+#         urls = pdfs(selected, 1)
+#         texts = pdftotxt(urls)
 
-    selected1 = st.text_input("Widget 2", key="widget2")
-    submit1 = st.button("Button 2", key="hello")
-    if submit1:
-        query = selected1
-        docs = docsearchs.similarity_search(query)
-        st.write(chain.run(input_documents=docs, question="TITLE of the paper"))
-        st.write(chain.run(input_documents=docs, question=query))
-        st.write("FOR REFERENCE:", *urls)
+#     selected1 = st.text_input("Widget 2", key="widget2")
+#     submit1 = st.button("Button 2", key="hello")
+#     if submit1:
+#         query = selected1
+#         docs = docsearchs.similarity_search(query)
+#         st.write(chain.run(input_documents=docs, question="TITLE of the paper"))
+#         st.write(chain.run(input_documents=docs, question=query))
+#         st.write("FOR REFERENCE:", *urls)
         
 
 

@@ -610,7 +610,7 @@ elif selected2 == 'AdvanceGPT':
       texts=pdftotxt(urls)
       chunks(texts)
       st.write("Type your questions here")
-      selected1 = form.text_input("", "")
+      selected1=st.text_input("Widget 2", key="widget2")
       submit1 = form.form_submit_button("SEARCH")
       if submit1:
         st.write("Type your questions here")

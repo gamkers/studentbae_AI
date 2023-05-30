@@ -86,6 +86,11 @@ def chunks(texts):
     text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
     length_function = len,)
     texts = text_splitter.split_text(texts)
+    embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
+    docsearchs = FAISS.from_texts(texts, embeddings)
+    chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
+    st.markdown("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
+    st.write("Type your questions here")
     
 
   
@@ -605,16 +610,7 @@ elif selected2 == 'AdvanceGPT':
     if submit:
         urls = pdfs(selected, 1)
         texts = pdftotxt(urls)
-        st.markdown("DATA TRANFORMATION STARTED")
-        st.markdown("TRANFORMING DATA INTO CHUNKS")
-        text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
-        length_function = len,)
-        texts = text_splitter.split_text(texts)
-        embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
-        docsearchs = FAISS.from_texts(texts, embeddings)
-        chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
-        st.markdown("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
-        st.write("Type your questions here")
+
     selected1 = st.text_input("Widget 2", key="widget2")
     submit1 = st.button("Button 2", key="hello")
     if submit1:

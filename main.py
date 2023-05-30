@@ -605,20 +605,23 @@ elif selected2 == 'AdvanceGPT':
 #         ['PDF', 'PPT', 'Research papers','Question Papers', 'E-BOOKS','Videos'])
     
     n = st.slider('number of documents', 1, 1,10, 1)
+
     if submit:
-      urls=pdfs(selected,1)
-      texts=pdftotxt(urls)
-      chunks(texts)
-      st.write("Type your questions here")
-      selected1=st.text_input("Widget 2", key="widget2")
-      submit1 = st.button("Button 2", key="hello")
-      if submit1:
+        urls = pdfs(selected, 1)
+        texts = pdftotxt(urls)
+        chunks(texts)
         st.write("Type your questions here")
-        query = selected1 
-        docs = docsearch.similarity_search(query)
-        print(chain.run(input_documents=docs, question="TITLE of the paper"))
-        print(chain.run(input_documents=docs, question=query))
-        print("FOR REFERNCE:",*urls)
-      
-        
-          
+        selected1 = st.text_input("Widget 2", key="widget2")
+        submit1 = st.button("Button 2", key="hello")
+
+        if submit1:
+            st.write("Type your questions here")
+            query = selected1
+            docs = docsearch.similarity_search(query)
+
+            st.write(chain.run(input_documents=docs, question="TITLE of the paper"))
+            st.write(chain.run(input_documents=docs, question=query))
+            st.write("FOR REFERENCE:", *urls)
+
+
+

@@ -15,6 +15,7 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import ElasticVectorSearch, Pinecone, Weaviate, FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
+from langchain.embeddings.openai import OpenAIEmbeddings
 
 
 st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')

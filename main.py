@@ -599,7 +599,7 @@ elif selected2 == 'AdvanceGPT':
 
     selected = form.text_input("", "")
 
-    submit = form.form_submit_button("SEARCH")
+    submit = st.button("Button 1", key="hi")
 #     options = st.multiselect(
 #         'ASSIST WITH',
 #         ['PDF', 'PPT', 'Research papers','Question Papers', 'E-BOOKS','Videos'])

@@ -36,62 +36,62 @@ openai.api_key = st.secrets["api"]
 start_sequence = "\nAI:"
 restart_sequence = "\nHuman: "
 
-def pdfs(s,n):
-    links=[]
-    try:
-        from googlesearch import search
-    except ImportError:
-        print("No module named 'google' found")
+# def pdfs(s,n):
+#     links=[]
+#     try:
+#         from googlesearch import search
+#     except ImportError:
+#         print("No module named 'google' found")
 
-    query = f"{s} filetype:pdf"
-    for j in search(query, tld="co.in", num=n, stop=n, pause=2):
-        if ".pdf" in j:
-            k = j.split("/")
+#     query = f"{s} filetype:pdf"
+#     for j in search(query, tld="co.in", num=n, stop=n, pause=2):
+#         if ".pdf" in j:
+#             k = j.split("/")
             
-            links.append(j)
-    st.markdown("SEARCHING FOR THE DOCUMENTS RELATED TO "+s)
-    return links
+#             links.append(j)
+#     st.markdown("SEARCHING FOR THE DOCUMENTS RELATED TO "+s)
+#     return links
 
 
-def pdftotxt(urls):
-    texts=""
-    for url in urls:
-        st.markdown("PROCESSING: "+url)
-        response = requests.get(url)
+# def pdftotxt(urls):
+#     texts=""
+#     for url in urls:
+#         st.markdown("PROCESSING: "+url)
+#         response = requests.get(url)
 
-        # Create a file-like object from the response content
-        pdf_file = io.BytesIO(response.content)
+#         # Create a file-like object from the response content
+#         pdf_file = io.BytesIO(response.content)
 
-        # Use PyPDF2 to load and work with the PDF document
-        pdf_reader = PyPDF2.PdfReader(pdf_file)
+#         # Use PyPDF2 to load and work with the PDF document
+#         pdf_reader = PyPDF2.PdfReader(pdf_file)
 
-        # Access the document information
-        num_pages = len(pdf_reader.pages)
-        st.markdown("Number of pages:", num_pages)
+#         # Access the document information
+#         num_pages = len(pdf_reader.pages)
+#         st.markdown("Number of pages:", num_pages)
 
-        # Perform further operations with the PDF document as needed
-        # For example, extract text from each page
+#         # Perform further operations with the PDF document as needed
+#         # For example, extract text from each page
 
-        for page in pdf_reader.pages:
-            texts += page.extract_text()
+#         for page in pdf_reader.pages:
+#             texts += page.extract_text()
             
-    st.markdown("DATA EXTRACTION DONE")
-    return texts
+#     st.markdown("DATA EXTRACTION DONE")
+#     return texts
 
-        # Print the extracted text
+#         # Print the extracted text
     
-def chunks(texts):
+# def chunks(texts):
     
-    st.markdown("DATA TRANFORMATION STARTED")
-    st.markdown("TRANFORMING DATA INTO CHUNKS")
-    text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
-    length_function = len,)
-    texts = text_splitter.split_text(texts)
-    embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
-    docsearchs = FAISS.from_texts(texts, embeddings)
-    chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
-    st.markdown("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
-    st.write("Type your questions here")
+#     st.markdown("DATA TRANFORMATION STARTED")
+#     st.markdown("TRANFORMING DATA INTO CHUNKS")
+#     text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
+#     length_function = len,)
+#     texts = text_splitter.split_text(texts)
+#     embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
+#     docsearchs = FAISS.from_texts(texts, embeddings)
+#     chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
+#     st.markdown("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
+#     st.write("Type your questions here")
     
 
   

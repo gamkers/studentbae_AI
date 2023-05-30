@@ -90,7 +90,7 @@ def chunks(texts):
     docsearchs = FAISS.from_texts(texts, embeddings)
     chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
     st.markdown("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
-    return docsearch
+    return docsearchs
 
 def ai(prompt,n):
 

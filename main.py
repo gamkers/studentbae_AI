@@ -619,6 +619,7 @@ elif selected2 == 'AdvanceGPT':
         chunks(texts)
         selected1 = st.text_input("Widget 2", key="widget2")
         submit1 = st.button("Button 2", key="hello")
+        answers(selected1)
         if submit1:
             answers(selected1)
             

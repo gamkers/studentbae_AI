@@ -649,7 +649,7 @@ elif selected2 == "DOCSGPT":
 
         # To read file as string:
         string_data = stringio.read()
-        st.write(string_data)
+        st.write(string_data[1:100])
 
 
 

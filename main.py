@@ -643,9 +643,24 @@ elif selected2 == "DOCSGPT":
         # Process the uploaded PDF file
         # You can save it, read its content, or perform any other necessary operations
         # For example, if you want to read the content using PyPDF2:
-        pdf_reader = PdfReader(uploaded_file)
-        num_pages = len(pdf_reader.pages)
-
+        reader = PdfReader(uploaded_file)
+        num_pages = len(pdf_reader.pages)   
+        raw_text = ''
+        for i, page in enumerate(reader.pages):
+            text = page.extract_text()
+            if text:
+                raw_text += text
+                
+        text_splitter = CharacterTextSplitter(        
+        separator = "\n",
+        chunk_size = 1000,
+        chunk_overlap  = 200,
+        length_function = len,
+        )
+        texts = text_splitter.split_text(raw_text)
+        embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
+        docsearchs = FAISS.from_texts(texts, embeddings)
+        chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
         st.write(f"Number of pages: {num_pages}")
         form = st.form(key='my-form')
 
@@ -653,8 +668,10 @@ elif selected2 == "DOCSGPT":
 
         submit = form.form_submit_button("SEARCH")
         if submit:
-            chunks(pdf_reader,selected)
-        
+            query = selected
+            docs = docsearch.similarity_search(query)
+            chain.run(input_documents=docs, question=query)
+            
     
 
 

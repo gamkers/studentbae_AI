@@ -613,7 +613,7 @@ elif selected2 == 'AdvanceGPT':
     n = st.slider('number of documents', 1, 1, 10, 1)
 
     if submit:
-        urls = pdfs(selected, 1)
+        urls = pdfs(selected, n)
         texts = pdftotxt(urls)
         chunks(texts,selected1)
         

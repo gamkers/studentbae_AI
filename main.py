@@ -670,7 +670,7 @@ elif selected2 == "DOCSGPT":
         if submit:
             query = selected
             docs = docsearchs.similarity_search(query)
-            chain.run(input_documents=docs, question=query)
+            st.write(chain.run(input_documents=docs, question=query))
             
     
 

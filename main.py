@@ -638,7 +638,7 @@ elif selected2 == "DOCSGPT":
     from PyPDF2 import PdfReader
 
     uploaded_file = st.file_uploader("Upload PDF", type="pdf")
-
+    pdf_readed = '' 
     if uploaded_file is not None:
         # Process the uploaded PDF file
         # You can save it, read its content, or perform any other necessary operations
@@ -647,6 +647,15 @@ elif selected2 == "DOCSGPT":
         num_pages = len(pdf_reader.pages)
 
         st.write(f"Number of pages: {num_pages}")
+        form = st.form(key='my-form')
+
+        selected = form.text_input("TYPE YOUR QUESTION", "")
+
+        submit = form.form_submit_button("SEARCH")
+        if submit:
+            chunks(pdf_reader,selected)
+        
+    
 
 
             

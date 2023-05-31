@@ -94,7 +94,7 @@ def chunks(texts):
     st.write("Type your questions here")
     selected1 = st.text_input("Widget 2", key="widget2")
     submit1 = st.button("Button 2", key="hello")
-    if submit1 and submit:
+    if submit1:
         query=selected1
         docs = docsearchs.similarity_search(query)
         st.write(chain.run(input_documents=docs, question="TITLE of the paper"))

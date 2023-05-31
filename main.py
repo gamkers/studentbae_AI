@@ -635,21 +635,18 @@ elif selected2 == "DOCSGPT":
     local_css("style.css")
     remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
     
-    from io import StringIO
+    uploaded_file = st.file_uploader("Upload PDF", type="pdf")
 
-    uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
-        # To read file as bytes:
-        bytes_data = uploaded_file.getvalue()
-        st.write(bytes_data)
+        # Process the uploaded PDF file
+        # You can save it, read its content, or perform any other necessary operations
+        # For example, if you want to read the content using PyPDF2:
+        import PyPDF2
 
-        # To convert to a string based IO:
-        stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-        st.write(stringio)
+        pdf_reader = PyPDF2.PdfFileReader(uploaded_file)
+        num_pages = pdf_reader.numPages
 
-        # To read file as string:
-        string_data = stringio.read()
-        st.write(string_data[1:100])
+        st.write(f"Number of pages: {num_pages}")
 
 
 

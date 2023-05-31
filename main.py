@@ -617,7 +617,7 @@ elif selected2 == 'AdvanceGPT':
         texts = pdftotxt(urls)
         chunks(texts,selected1)
  
-elif selected2 == 'AdvanceGPT':
+elif selected2 == "DOCSGPT":
     st.image("colab.png")
     def local_css(file_name):
         with open(file_name) as f:

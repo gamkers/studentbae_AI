@@ -669,7 +669,7 @@ elif selected2 == "DOCSGPT":
         submit = form.form_submit_button("SEARCH")
         if submit:
             query = selected
-            docs = docsearch.similarity_search(query)
+            docs = docsearchs.similarity_search(query)
             chain.run(input_documents=docs, question=query)
             
     

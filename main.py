@@ -67,7 +67,7 @@ def pdftotxt(urls):
 
         # Access the document information
         num_pages = len(pdf_reader.pages)
-        st.markdown("Number of pages:", num_pages)
+  
 
         # Perform further operations with the PDF document as needed
         # For example, extract text from each page

@@ -620,9 +620,6 @@ elif selected2 == 'AdvanceGPT':
         texts = pdftotxt(urls)
         chunks(texts)
 
-    
-        answers(selected1)
-
             
 
     

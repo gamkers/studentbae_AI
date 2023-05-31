@@ -635,19 +635,18 @@ elif selected2 == "DOCSGPT":
     local_css("style.css")
     remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
     
+    from PyPDF2 import PdfReader
+
     uploaded_file = st.file_uploader("Upload PDF", type="pdf")
 
     if uploaded_file is not None:
         # Process the uploaded PDF file
         # You can save it, read its content, or perform any other necessary operations
         # For example, if you want to read the content using PyPDF2:
-        import PyPDF2
-
-        pdf_reader = PyPDF2.PdfFileReader(uploaded_file)
-        num_pages = pdf_reader.numPages
+        pdf_reader = PdfReader(uploaded_file)
+        num_pages = len(pdf_reader.pages)
 
         st.write(f"Number of pages: {num_pages}")
-
 
 
             

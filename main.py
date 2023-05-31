@@ -617,6 +617,17 @@ elif selected2 == 'AdvanceGPT':
         texts = pdftotxt(urls)
         chunks(texts,selected1)
         
+    selected1 = form.text_input("", "")
+    submit1 = form.form_submit_button("SEARCH")
+
+    n = st.slider('File Count', 0, 130, 25)
+
+    if submit:
+        docs = docsearchs.similarity_search(selected1)
+        st.write(chain.run(input_documents=docs, question="TITLE of the paper"))
+        st.write(chain.run(input_documents=docs, question=query))
+        st.write("FOR REFERENCE:", *urls)
+        
 
 
             

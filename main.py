@@ -92,11 +92,14 @@ def chunks(texts):
     chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
     st.markdown("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
     st.write("Type your questions here")
-    query="what is ec2?"
-    docs = docsearchs.similarity_search(query)
-    st.write(chain.run(input_documents=docs, question="TITLE of the paper"))
-    st.write(chain.run(input_documents=docs, question=query))
-    st.write("FOR REFERENCE:", *urls)
+    selected1 = st.text_input("Widget 2", key="widget2")
+    submit1 = st.button("Button 2", key="hello")
+    if submit1 and submit:
+        query=selected1
+        docs = docsearchs.similarity_search(query)
+        st.write(chain.run(input_documents=docs, question="TITLE of the paper"))
+        st.write(chain.run(input_documents=docs, question=query))
+        st.write("FOR REFERENCE:", *urls)
 def answers(query):
     docs = docsearchs.similarity_search(query)
     st.write(chain.run(input_documents=docs, question="TITLE of the paper"))
@@ -617,10 +620,7 @@ elif selected2 == 'AdvanceGPT':
         texts = pdftotxt(urls)
         chunks(texts)
 
-    selected1 = st.text_input("Widget 2", key="widget2")
-    submit1 = st.button("Button 2", key="hello")
-
-    if submit1 and submit:
+    
         answers(selected1)
 
             

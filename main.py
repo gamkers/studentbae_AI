@@ -607,6 +607,7 @@ elif selected2 == 'AdvanceGPT':
     remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
     selected = st.text_input("Document Searcher", "")
+    selected1 = st.text_input("question", key="widget2")
     submit = st.button("SEARCH")
 
     n = st.slider('number of documents', 1, 1, 10, 1)
@@ -614,11 +615,9 @@ elif selected2 == 'AdvanceGPT':
     if submit:
         urls = pdfs(selected, 1)
         texts = pdftotxt(urls)
-        st.write("Type your questions here")
-        selected1 = st.text_input("Widget 2", key="widget2")
-        submit1 = st.button("Button 2", key="hello")
-        if submit1:
-            chunks(texts,q)
+        chunks(texts,selected1)
+        
+
 
             
 

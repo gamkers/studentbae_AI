@@ -94,7 +94,6 @@ def chunks(texts):
     st.write("Type your questions here")
     
 def answers(query):
-    query = selected1
     docs = docsearchs.similarity_search(query)
     st.write(chain.run(input_documents=docs, question="TITLE of the paper"))
     st.write(chain.run(input_documents=docs, question=query))

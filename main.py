@@ -644,7 +644,7 @@ elif selected2 == "DOCSGPT":
         # You can save it, read its content, or perform any other necessary operations
         # For example, if you want to read the content using PyPDF2:
         reader = PdfReader(uploaded_file)
-        num_pages = len(pdf_reader.pages)   
+     
         raw_text = ''
         for i, page in enumerate(reader.pages):
             text = page.extract_text()
@@ -661,7 +661,7 @@ elif selected2 == "DOCSGPT":
         embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
         docsearchs = FAISS.from_texts(texts, embeddings)
         chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
-        st.write(f"Number of pages: {num_pages}")
+        
         form = st.form(key='my-form')
 
         selected = form.text_input("TYPE YOUR QUESTION", "")

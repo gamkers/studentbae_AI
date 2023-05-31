@@ -92,7 +92,8 @@ def chunks(texts):
     chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
     st.markdown("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
     st.write("Type your questions here")
-    docs = docsearchs.similarity_search("what is ec2?")
+    query="what is ec2?"
+    docs = docsearchs.similarity_search(query)
     st.write(chain.run(input_documents=docs, question="TITLE of the paper"))
     st.write(chain.run(input_documents=docs, question=query))
     st.write("FOR REFERENCE:", *urls)

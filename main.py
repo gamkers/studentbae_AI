@@ -634,44 +634,62 @@ elif selected2 == "DOCSGPT":
 
     local_css("style.css")
     remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
-    
+  
     from PyPDF2 import PdfReader
+    options = st.multiselect(
+        'file type',
+        ['CSV', 'PDF'])
+    if "PDF" in options:
+        uploaded_file = st.file_uploader("Upload PDF", type="pdf")
+        pdf_readed = '' 
+        if uploaded_file is not None:
+            # Process the uploaded PDF file
+            # You can save it, read its content, or perform any other necessary operations
+            # For example, if you want to read the content using PyPDF2:
+            reader = PdfReader(uploaded_file)
 
-    uploaded_file = st.file_uploader("Upload PDF", type="pdf")
-    pdf_readed = '' 
-    if uploaded_file is not None:
-        # Process the uploaded PDF file
-        # You can save it, read its content, or perform any other necessary operations
-        # For example, if you want to read the content using PyPDF2:
-        reader = PdfReader(uploaded_file)
-     
-        raw_text = ''
-        for i, page in enumerate(reader.pages):
-            text = page.extract_text()
-            if text:
-                raw_text += text
-                
-        text_splitter = CharacterTextSplitter(        
-        separator = "\n",
-        chunk_size = 1000,
-        chunk_overlap  = 200,
-        length_function = len,
-        )
-        texts = text_splitter.split_text(raw_text)
+            raw_text = ''
+            for i, page in enumerate(reader.pages):
+                text = page.extract_text()
+                if text:
+                    raw_text += text
+
+            text_splitter = CharacterTextSplitter(        
+            separator = "\n",
+            chunk_size = 1000,
+            chunk_overlap  = 200,
+            length_function = len,
+            )
+            texts = text_splitter.split_text(raw_text)
+            embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
+            docsearchs = FAISS.from_texts(texts, embeddings)
+            chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
+
+    elif "CSV" in options:
+        uploaded_file = st.sidebar.file_uploader("upload", type="csv")
+        if uploaded_file :
+       #use tempfile because CSVLoader only accepts a file_path
+        with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+            tmp_file.write(uploaded_file.getvalue())
+            tmp_file_path = tmp_file.name
+
+        loader = CSVLoader(file_path=tmp_file_path, encoding="utf-8", csv_args={
+                    'delimiter': ','})
+        data = loader.load()
         embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
-        docsearchs = FAISS.from_texts(texts, embeddings)
+        docsearchs = FAISS.from_texts(data, embeddings)
         chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
+
         
-        form = st.form(key='my-form')
+    form = st.form(key='my-form')
 
-        selected = form.text_input("TYPE YOUR QUESTION", "")
+    selected = form.text_input("TYPE YOUR QUESTION", "")
+    submit = form.form_submit_button("SEARCH")
+    if submit:
+        query = selected
+        docs = docsearchs.similarity_search(query)
+        st.write(chain.run(input_documents=docs, question=query))
 
-        submit = form.form_submit_button("SEARCH")
-        if submit:
-            query = selected
-            docs = docsearchs.similarity_search(query)
-            st.write(chain.run(input_documents=docs, question=query))
-            
     
 
 

@@ -611,10 +611,12 @@ elif selected2 == 'AdvanceGPT':
     if submit:
         urls = pdfs(selected, 1)
         texts = pdftotxt(urls)
+        
 
     selected1 = st.text_input("Widget 2", key="widget2")
     submit1 = st.button("Button 2", key="hello")
     if submit1:
+        chunks(texts)
         query = selected1
         docs = docsearchs.similarity_search(query)
         st.write(chain.run(input_documents=docs, question="TITLE of the paper"))

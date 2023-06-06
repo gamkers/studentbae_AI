@@ -5,7 +5,6 @@ streamlit-lottie
 streamlit-option-menu
 gTTS
 requires.io
-google
 openai
 youtube-search-python
 langchain

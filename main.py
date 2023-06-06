@@ -95,10 +95,13 @@ def chunks(texts,q):
     docs = docsearchs.similarity_search(query)
     title=chain.run(input_documents=docs, question="TITLE of the paper")
     query=chain.run(input_documents=docs, question=query)
+    st.write(title)
+    st.write(query)
     st.write("FOR REFERENCE:", *urls)
-    data=f"{title},{query}"
-    audio_bytes=speak(data)
-    st.audio(audio_bytes, format='audio/ogg')
+#     data=f"{title},{query}"
+#     audio_bytes=speak(data)
+#     st.audio(audio_bytes, format='audio/ogg')
+    
 def answers(query):
     docs = docsearchs.similarity_search(query)
     st.write(chain.run(input_documents=docs, question="TITLE of the paper"))

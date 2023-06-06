@@ -93,9 +93,12 @@ def chunks(texts,q):
     st.markdown("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
     query=q
     docs = docsearchs.similarity_search(query)
-    st.write(chain.run(input_documents=docs, question="TITLE of the paper"))
-    st.write(chain.run(input_documents=docs, question=query))
+    title=chain.run(input_documents=docs, question="TITLE of the paper")
+    query=chain.run(input_documents=docs, question=query)
     st.write("FOR REFERENCE:", *urls)
+    data=f"{title},{query}"
+    audio_bytes=speak(data)
+    st.audio(audio_bytes, format='audio/ogg')
 def answers(query):
     docs = docsearchs.similarity_search(query)
     st.write(chain.run(input_documents=docs, question="TITLE of the paper"))

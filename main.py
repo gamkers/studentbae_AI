@@ -935,7 +935,7 @@ elif selected2 == "DOCSGPT":
         st.write(chain.run(input_documents=docs, question=query))
 
 elif selected2 == 'NESIFY':
-    newsify():
+    newsify()
     
 
 

@@ -44,9 +44,10 @@ def pdfs(s,n):
         print("No module named 'google' found")
 
     query = f"{s} filetype:pdf"
-    for j in search(query, tld="co.in", num=n, stop=n, pause=2):
+    for j in search(query, tld="co.in", num=1, stop=5, pause=2):
         if ".pdf" in j:
-            k = j.split("/")
+            st.markdown(f'<a href="{j}">DOWNLOAD</a>',unsafe_allow_html=True)
+            components.iframe(src=j, width=1285, height=1000, scrolling=True)
             
             links.append(j)
     st.markdown("SEARCHING FOR THE DOCUMENTS RELATED TO "+s)

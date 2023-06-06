@@ -12,3 +12,4 @@ langchain
 PyPDF2
 tiktoken
 faiss-cpu
+googlesearch-python

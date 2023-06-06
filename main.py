@@ -888,51 +888,51 @@ elif selected2 == 'NEWSIFY':
 
     if "Global" in options:
         data=webscrape_MainNews("world-news")
-        display(data)
+        displays(data)
 
     elif "LifeStyle" in options:
         data=webscrape_News("life-style",n)
-        display(data)
+        displays(data)
     elif "Sports" in options:
         data=webscrape_News("Sports",n)
-        display(data)
+        displays(data)
     elif "Political" in options:
         data=webscrape_News("politics",n)
-        display(data)
+        displays(data)
     elif "Crime" in options:
 
         data=webscrape_News("crime",n)
-        display(data)
+        displays(data)
     elif "Music" in options:
         data=webscrape_News("music",n)
-        display(data)
+        displays(data)
     elif "Technology" in options:
         data = webscrape_News("technology",n)
-        display(data)
+        displays(data)
 
     elif "Food" in options:
         data = webscrape_News("food",n)
-        display(data)
+        displays(data)
     elif "Business" in options:
         data = webscrape_News("business",n)
-        display(data)
+        displays(data)
     elif "Entertainment" in options:
         data = webscrape_News("entertainment",n)
-        display(data)
+        displays(data)
         
     elif "Latest" in options:
         data = webscrape_MainNews("latest")
-        display(data)
+        displays(data)
         
     elif "Indian" in options:
         data = webscrape_MainNews("indian")
-        display(data)
+        displays(data)
     elif "South Indian" in options:
         data = webscrape_MainNews("south")
-        display(data)
+        displays(data)
     elif "Science" in options:
         data = webscrape_MainNews("science")
-        display(data)
+        displays(data)
 
  
     

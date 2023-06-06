@@ -98,9 +98,9 @@ def chunks(texts,q):
     st.write(title)
     st.write(query)
     st.write("FOR REFERENCE:", *urls)
-#     data=f"{title},{query}"
-#     audio_bytes=speak(data)
-#     st.audio(audio_bytes, format='audio/ogg')
+    data=f"{title},{query}"
+    audio_bytes=speak(data)
+    st.audio(audio_bytes, format='audio/ogg')
     
 def answers(query):
     docs = docsearchs.similarity_search(query)

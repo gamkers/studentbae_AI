@@ -362,20 +362,8 @@ def display(data):
 
 #         st.write("_______________________________________________________________________________")
 
-with st.sidebar:
-  
-  selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
-                          icons=['house','robot','files'],
-                          menu_icon="cast", default_index=2, orientation="vertical")
 
-
-def lottieurl(url):
-    r = requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json()
 def newsify():
-    
     def webscrape_MainNews(type):
         info = ["HEAD LINES", "NEWS", "AUTHOR", "DATE", "COUNTRY", "CATEGORY"]
         Date = []
@@ -622,7 +610,17 @@ def newsify():
             data = webscrape_MainNews("science")
             display(data)
 
+with st.sidebar:
+  selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
+                          icons=['house','robot','files'],
+                          menu_icon="cast", default_index=2, orientation="vertical")
 
+
+def lottieurl(url):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
 
 lottie_coding = lottieurl("https://assets10.lottiefiles.com/packages/lf20_i9mtrven.json")
 lottie_coding2 = lottieurl("https://assets8.lottiefiles.com/packages/lf20_2LdLki.json")

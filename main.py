@@ -240,7 +240,7 @@ def ppt(s):
 
 
 def torrent_download(search):
-    url = f"https://1337x.cyou/srch?search={search}"
+    url = f"https://1377x.xyz/fullsearch?q={search}"
     r = requests.get(url)
     data = BeautifulSoup(r.text, "html.parser")
     links = data.find_all('a', style="font-family:tahoma;font-weight:bold;")

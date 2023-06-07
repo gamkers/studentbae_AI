@@ -8,7 +8,7 @@ import openai
 from youtubesearchpython import *
 import io
 import requests
-import pywebview
+import webview
 import PyPDF2
 from PyPDF2 import PdfReader
 from langchain.embeddings.openai import OpenAIEmbeddings

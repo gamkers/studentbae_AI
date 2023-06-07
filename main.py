@@ -186,9 +186,7 @@ def pdf(s):
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
         if ".pdf" in j:
             k = j.split("/")
-            st.markdown(f'[Open PDF]({j})', unsafe_allow_html=True)
-            if st.button("Open PDF"):
-                pywebview.create_window("PDF Viewer", url=j)
+            pywebview.create_window("PDF Viewer", url=j)
 
             #title=ai(j+" Explain the title and content in short in this link. the title should be in bold",1)
 #             st.components.v1.iframe(j)

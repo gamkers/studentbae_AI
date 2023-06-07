@@ -8,6 +8,7 @@ import openai
 from youtubesearchpython import *
 import io
 import requests
+import pywebview
 import PyPDF2
 from PyPDF2 import PdfReader
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -185,15 +186,12 @@ def pdf(s):
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
         if ".pdf" in j:
             k = j.split("/")
-#             images = convert_from_path(j)
-#             for i, image in enumerate(images):
-#                 st.image(image, caption=f"Page {i+1}", use_column_width=True)
+            st.markdown(f'[Open PDF]({j})', unsafe_allow_html=True)
+            if st.button("Open PDF"):
+                pywebview.create_window("PDF Viewer", url=j)
 
             #title=ai(j+" Explain the title and content in short in this link. the title should be in bold",1)
-            #st.markdown(f'<iframe src="{j}" width="800" height="600"></iframe>', unsafe_allow_html=True)
-            st.components.v1.iframe(j)
-#             if st.button('DOWNLOAD'):
-#                st.components.v1.iframe(j)
+#             st.components.v1.iframe(j)
             st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)
 
 def webscrap_mcq(command): 

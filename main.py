@@ -185,7 +185,7 @@ def pdf(s):
         if ".pdf" in j:
             k = j.split("/")
 #             title=ai(j+" Explain the title and content in short in this link. the title should be in bold",1)
-            st.markdown(f'<embed src="{j}" width="800" height="600" type="application/pdf">', unsafe_allow_html=True)
+#             st.markdown(f'<embed src="{j}" width="800" height="600" type="application/pdf">', unsafe_allow_html=True)
 #             st.components.v1.iframe(j)
 #             if st.button('DOWNLOAD'):
 #                st.components.v1.iframe(j)

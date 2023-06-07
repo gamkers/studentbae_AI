@@ -13,4 +13,6 @@ tiktoken
 faiss-cpu
 googlesearch-python
 google
-pywebview
+pdf2image
+Pillow
+matplotlib

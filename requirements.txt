@@ -13,3 +13,4 @@ tiktoken
 faiss-cpu
 googlesearch-python
 google
+pdf2image

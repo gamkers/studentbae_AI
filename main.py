@@ -186,7 +186,9 @@ def pdf(s):
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
         if ".pdf" in j:
             k = j.split("/")
-            st.write(k)
+            for i in k:
+                if ".pdf" in i:
+                    st.write(i)
             #title=ai(j+" Explain the title and content in short in this link. the title should be in bold",1)
 #             st.components.v1.iframe(j)
             st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)

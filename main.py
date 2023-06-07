@@ -16,6 +16,7 @@ from langchain.vectorstores import ElasticVectorSearch, Pinecone, Weaviate, FAIS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
+from pdf2image import convert_from_path
 
 
 st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
@@ -184,8 +185,12 @@ def pdf(s):
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
         if ".pdf" in j:
             k = j.split("/")
+            images = convert_from_path(j)
+            for i, image in enumerate(images):
+                st.image(image, caption=f"Page {i+1}", use_column_width=True)
+
             #title=ai(j+" Explain the title and content in short in this link. the title should be in bold",1)
-            st.markdown(f'<iframe src="{j}" width="800" height="600"></iframe>', unsafe_allow_html=True)
+            #st.markdown(f'<iframe src="{j}" width="800" height="600"></iframe>', unsafe_allow_html=True)
 #             st.components.v1.iframe(j)
 #             if st.button('DOWNLOAD'):
 #                st.components.v1.iframe(j)

@@ -17,7 +17,8 @@ from langchain.vectorstores import ElasticVectorSearch, Pinecone, Weaviate, FAIS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
-
+from pdf2image import convert_from_path
+from io import BytesIO
 
 
 st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
@@ -186,7 +187,14 @@ def pdf(s):
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
         if ".pdf" in j:
             k = j.split("/")
-            webview.create_window("PDF Viewer", url=j)
+            images = convert_from_path(j)
+            for i, image in enumerate(images):
+                # Convert PIL Image to bytes
+                img_bytes = BytesIO()
+                image.save(img_bytes, format='PNG')
+
+                # Display the image using Streamlit
+                st.image(img_bytes, caption=f"Page {i+1}", use_column_width=True)
 
             #title=ai(j+" Explain the title and content in short in this link. the title should be in bold",1)
 #             st.components.v1.iframe(j)

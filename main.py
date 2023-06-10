@@ -45,7 +45,7 @@ def pdfs(s,n):
         print("No module named 'google' found")
 
     query = f"{s} filetype:pdf"
-    for j in search(query, tld="co.in", num=1, stop=10, pause=2):
+    for j in search(query, tld="co.in", num=1, stop=1, pause=2):
         if ".pdf" in j:
             k = j.split("/")
             print(k[-1])
@@ -762,7 +762,7 @@ elif selected2 == 'AdvanceGPT':
     n = st.slider('number of documents', 1, 1, 10, 1)
 
     if submit:
-        urls = pdfs(selected, 2)
+        urls = pdfs(selected, 1)
         texts = pdftotxt(urls)
         chunks(texts,selected1)
  

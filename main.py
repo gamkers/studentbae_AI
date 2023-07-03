@@ -944,7 +944,7 @@ def logins(selected2):
                     data = webscrape_MainNews("science")
                     displays(data)
 
-        else:
+        except:
             st.error("Invalid username or password")
 
 def valid_credentials(username, password):

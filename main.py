@@ -513,11 +513,6 @@ def login(selected2):
         if valid_credentials(username, password):
             st.success("Login Successful")
             # TODO: Add code to redirect to the user's dashboard
-                        
-            with st.sidebar:
-              
-            
-            
             def lottieurl(url):
                 r = requests.get(url)
                 if r.status_code != 200:

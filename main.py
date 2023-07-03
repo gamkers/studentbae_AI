@@ -511,7 +511,7 @@ def login():
         # TODO: Add code to check username and password in the database
         if valid_credentials(username, password):
             st.success("Login Successful")
-            global login_Status=True
+            global login_Status = True
             return True
 
             

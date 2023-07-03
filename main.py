@@ -962,7 +962,7 @@ def main():
         
         
     if choice == "Login":
-        login()
+        login_status=login()
     elif choice == "Register":
         register()
 

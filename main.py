@@ -43,20 +43,9 @@ restart_sequence = "\nHuman: "
 from deta import Deta
 
 def db(link,vectors);
-
     deta = Deta(st.secrets["data_key"])
-    
-    # Create a new database "example-db"
-    # If you need a new database, just use another name.
     db = deta.Base("Vectors")
-    
-    # If the user clicked the submit button,
-    # write the data from the form to the database.
-    # You can store any data you want here. Just modify that dictionary below (the entries between the {}).
-    
     db.put({"link": link, "texts": vectors})
-
-
 
 def pdfs(s,n):
     links=[]

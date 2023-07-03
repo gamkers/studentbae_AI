@@ -498,7 +498,9 @@ def register():
     if st.button("Register"):
         # Check if passwords match
         if password == confirm_password:
-            # TODO: Add code to store username and password in the database
+            deta = Deta(st.secrets["data_key"])
+            db = deta.Base("USERS")
+            db.put({"username": username, "password": password})
             st.success("Registration Successful. Please log in.")
         else:
             st.error("Passwords do not match")
@@ -507,9 +509,6 @@ def login():
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     if st.button("Login"):
-        deta = Deta(st.secrets["data_key"])
-        db = deta.Base("USERS")
-        db.put({"username": username, "password": password})
         # TODO: Add code to check username and password in the database
         if valid_credentials(username, password):
             st.success("Login Successful")
@@ -946,9 +945,16 @@ def logins(selected2,login):
         st.error("Invalid username or password")
 
 def valid_credentials(username, password):
-    # TODO: Add code to validate username and password against the database
-    # Return True if the credentials are valid, False otherwise
-    return True
+    deta = Deta(st.secrets["data_key"])
+    db = deta.Base("USERS")
+    db_content = db.fetch().items
+
+    for item in db_content:
+        if item["username"] == username and item["password"] == password:
+            return True
+    
+    return False
+
 
 def main():
     st.header("User Authentication System")

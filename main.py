@@ -487,7 +487,6 @@ def displays(data):
         st.write("_______________________________________________________________________________")
 
 
-import re
 
 import re
 
@@ -512,13 +511,13 @@ def register():
                     st.write("6. Optionally, provide a name for your API key to help identify it later.")
                     st.write("7. Once the key is created, copy it.")
                     st.write("8. Come back to this registration page and paste the API key in the field below.")
-                    api_key = st.text_input("API Key")
+                    api_keys = st.text_input("API Key")
 
                     if st.button("Complete Registration"):
-                        if api_key:
-                            deta = Deta(st.secrets["data_key"])
+                        if api_keys:
+                            deta = Deta(st.secrets["data_key"])\
                             db = deta.Base("USERS")
-                            db.put({"username": username, "password": password, "api_key": api_key})
+                            db.put({"username": username, "password": password, "api_key": api_keys})
                             st.success("Registration Successful. Please log in.")
                         else:
                             st.error("Please provide the API key to complete the registration.")

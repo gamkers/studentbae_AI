@@ -13,4 +13,5 @@ tiktoken
 faiss-cpu
 googlesearch-python
 google
+deta
 

@@ -943,8 +943,8 @@ def logins(selected2):
                 elif "Science" in options:
                     data = webscrape_MainNews("science")
                     displays(data)
-        except:
-            st.error("Invalid username or password")
+    except:
+        st.error("Invalid username or password")
 
 def valid_credentials(username, password):
     # TODO: Add code to validate username and password against the database

@@ -489,6 +489,8 @@ def displays(data):
 
 import streamlit as st
 
+import re
+
 def register():
     st.title("User Registration")
     username = st.text_input("Username")
@@ -498,13 +500,43 @@ def register():
     if st.button("Register"):
         # Check if passwords match
         if password == confirm_password:
-            deta = Deta(st.secrets["data_key"])
-            db = deta.Base("USERS")
-            db.put({"username": username, "password": password})
-            st.success("Registration Successful. Please log in.")
-            
+            if is_username_available(username):
+                if is_strong_password(password):
+                    deta = Deta(st.secrets["data_key"])
+                    db = deta.Base("USERS")
+                    db.put({"username": username, "password": password})
+                    st.success("Registration Successful. Please log in.")
+                else:
+                    st.error("Password must contain at least 8 characters, including uppercase, lowercase, and special characters.")
+            else:
+                st.error("Username already exists. Please choose a different username.")
         else:
             st.error("Passwords do not match")
+
+def is_username_available(username):
+    deta = Deta(st.secrets["data_key"])
+    db = deta.Base("USERS")
+    db_content = db.fetch().items
+
+    for item in db_content:
+        if item["username"] == username:
+            return False
+    
+    return True
+
+def is_strong_password(password):
+    # Password must contain at least 8 characters, including uppercase, lowercase, and special characters
+    if len(password) < 8:
+        return False
+    if not re.search(r"[A-Z]", password):
+        return False
+    if not re.search(r"[a-z]", password):
+        return False
+    if not re.search(r"\W", password):
+        return False
+    
+    return True
+
 def login():
     st.title("User Login")
     username = st.text_input("Username")

@@ -502,6 +502,7 @@ def register():
             db = deta.Base("USERS")
             db.put({"username": username, "password": password})
             st.success("Registration Successful. Please log in.")
+            
         else:
             st.error("Passwords do not match")
 def login():
@@ -964,7 +965,7 @@ def main():
         selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
                                           icons=['house','robot','files'],
                                           menu_icon="cast", default_index=2, orientation="vertical")
-         
+    log=False    
     if choice == "Login":
         log=login()
     elif choice == "Register":

@@ -952,6 +952,7 @@ def main():
     selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
                                       icons=['house','robot','files'],
                                       menu_icon="cast", default_index=2, orientation="vertical")
+    with st.sidebar:
 
     if choice == "Login":
         login(selected2)

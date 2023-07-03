@@ -1,3 +1,4 @@
+
 from streamlit_option_menu import option_menu
 import requests
 from bs4 import BeautifulSoup
@@ -39,6 +40,24 @@ openai.api_key = st.secrets["api"]
 start_sequence = "\nAI:"
 restart_sequence = "\nHuman: "
 
+from deta import Deta
+
+def db(link,vectors);
+
+    deta = Deta(st.secrets["data_key"])
+    
+    # Create a new database "example-db"
+    # If you need a new database, just use another name.
+    db = deta.Base("Vectors")
+    
+    # If the user clicked the submit button,
+    # write the data from the form to the database.
+    # You can store any data you want here. Just modify that dictionary below (the entries between the {}).
+    
+    db.put({"link": link, "texts": vectors})
+
+
+
 def pdfs(s,n):
     links=[]
     try:
@@ -78,7 +97,9 @@ def pdftotxt(urls):
         # For example, extract text from each page
 
         for page in pdf_reader.pages:
-            texts += page.extract_text()
+            txt=page.extract_text()
+            texts += txt
+            db(url,txt)
             
     st.markdown("DATA EXTRACTION DONE")
     return texts

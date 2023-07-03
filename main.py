@@ -965,14 +965,15 @@ def main():
         selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
                                           icons=['house','robot','files'],
                                           menu_icon="cast", default_index=2, orientation="vertical")
+    if selected2:
+        logins(selected2,log)
+        
     log=False    
     if choice == "Login":
         log=login()
     elif choice == "Register":
         register()
-    if selected2:
-        logins(selected2,log)
-        
+    
    
 
 if __name__ == "__main__":

@@ -962,11 +962,11 @@ def main():
         
         
     if choice == "Login":
-        login_status=login()
+        login=login()
     elif choice == "Register":
         register()
     if selected2:
-        logins(selected2,login_status)
+        logins(selected2,login)
         
    
 

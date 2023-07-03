@@ -511,15 +511,13 @@ def login():
         # TODO: Add code to check username and password in the database
         if valid_credentials(username, password):
             st.success("Login Successful")
-            login_status=True
+            global login_Status=True
             return True
 
             
 def logins(selected2,login):
     try:
         if selected2 and login:
-            st.success("Login Successful")
-            # TODO: Add code to redirect to the user's dashboard
             def lottieurl(url):
                 r = requests.get(url)
                 if r.status_code != 200:
@@ -962,11 +960,11 @@ def main():
         
     login=False  
     if choice == "Login":
-        login=login()
+        login()
     elif choice == "Register":
         register()
     if selected2:
-        logins(selected2,login)
+        logins(selected2,login_Status)
         
    
 

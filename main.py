@@ -503,11 +503,21 @@ def register():
                 st.success("Password meets the strength criteria.")
             else:
                 st.error("Password must contain at least 8 characters, including uppercase, lowercase, and special characters.")
-
+    
+    st.subheader("API Key")
+    st.markdown("To complete the registration, please provide your API key.")
+    st.markdown("You can obtain an API key from OpenAI by following these steps:")
+    st.markdown("1. Go to the OpenAI website at [https://openai.com](https://openai.com).")
+    st.markdown("2. Sign in to your OpenAI account or create a new account if you don't have one.")
+    st.markdown("3. Once signed in, navigate to your account settings or dashboard.")
+    st.markdown("4. Look for the API Key section or API Key management.")
+    st.markdown("5. Generate a new API key for your application.")
+    st.markdown("6. Copy the generated API key.")
+    st.markdown("7. Return to this registration page.")
+    
     with st.form("api_key_form"):
-        st.info("To complete the registration, please provide your API key.")
         api_key = st.text_input("API Key")
-
+        
         if st.form_submit_button("Complete Registration"):
             if api_key:
                 if is_username_available(username):
@@ -543,7 +553,6 @@ def is_strong_password(password):
         return False
     
     return True
-
 
 
 def login():

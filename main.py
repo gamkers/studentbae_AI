@@ -511,7 +511,6 @@ def login():
         # TODO: Add code to check username and password in the database
         if valid_credentials(username, password):
             st.success("Login Successful")
-            login_Status = True
             return True
 
             
@@ -957,14 +956,13 @@ def main():
         selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
                                           icons=['house','robot','files'],
                                           menu_icon="cast", default_index=2, orientation="vertical")
-        
-    login=False  
+         
     if choice == "Login":
-        login()
+        log=login()
     elif choice == "Register":
         register()
     if selected2:
-        logins(selected2,login_Status)
+        logins(selected2,log)
         
    
 

@@ -489,11 +489,14 @@ def displays(data):
 
 import re
 
+import re
+
 def register():
     st.title("User Registration")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     confirm_password = st.text_input("Confirm Password", type="password")
+    api_key = ""
 
     if st.button("Register"):
         # Check if passwords match
@@ -513,7 +516,7 @@ def register():
 
                     if st.button("Complete Registration"):
                         if api_key:
-                            deta = Deta(api_key)
+                            deta = Deta(st.secrets["data_key"])
                             db = deta.Base("USERS")
                             db.put({"username": username, "password": password, "api_key": api_key})
                             st.success("Registration Successful. Please log in.")
@@ -551,6 +554,7 @@ def is_strong_password(password):
         return False
     
     return True
+
 
 def login():
     st.title("User Login")

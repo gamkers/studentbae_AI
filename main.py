@@ -20,7 +20,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 
-
+login_Status=False
 
 st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
 page_bg_img = f"""
@@ -502,8 +502,7 @@ def register():
             st.success("Registration Successful. Please log in.")
         else:
             st.error("Passwords do not match")
-
-def login(selected2):
+def login():
     st.title("User Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
@@ -511,6 +510,14 @@ def login(selected2):
     if st.button("Login"):
         # TODO: Add code to check username and password in the database
         if valid_credentials(username, password):
+            st.success("Login Successful")
+            login_status=True
+            return True
+
+            
+def logins(selected2):
+    try:
+        if login_status=True:
             st.success("Login Successful")
             # TODO: Add code to redirect to the user's dashboard
             def lottieurl(url):
@@ -956,12 +963,12 @@ def main():
         
         
     if choice == "Login":
-        login(selected2)
+        login()
     elif choice == "Register":
         register()
 
     if selected2:
-        login(selected2)
+        logins(selected2)
         
    
 

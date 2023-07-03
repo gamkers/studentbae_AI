@@ -960,7 +960,7 @@ def main():
                                           icons=['house','robot','files'],
                                           menu_icon="cast", default_index=2, orientation="vertical")
         
-        
+    login=False  
     if choice == "Login":
         login=login()
     elif choice == "Register":

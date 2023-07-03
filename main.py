@@ -506,8 +506,10 @@ def login():
     st.title("User Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
-
     if st.button("Login"):
+        deta = Deta(st.secrets["data_key"])
+        db = deta.Base("USERS")
+        db.put({"username": username, "password": password})
         # TODO: Add code to check username and password in the database
         if valid_credentials(username, password):
             st.success("Login Successful")

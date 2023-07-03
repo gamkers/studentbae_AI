@@ -542,10 +542,12 @@ def login():
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     if st.button("Login"):
-        # TODO: Add code to check username and password in the database
         if valid_credentials(username, password):
             st.success("Login Successful")
             return True
+        else:
+            st.error("Incorrect username or password. Please try again.")
+
 
             
 def logins(selected2,login):

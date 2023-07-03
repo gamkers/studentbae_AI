@@ -949,10 +949,11 @@ def main():
     st.header("User Authentication System")
     menu = ["Login", "Register"]
     choice = st.sidebar.selectbox("Menu", menu)
-    selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
-                                      icons=['house','robot','files'],
-                                      menu_icon="cast", default_index=2, orientation="vertical")
     with st.sidebar:
+        selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
+                                          icons=['house','robot','files'],
+                                          menu_icon="cast", default_index=2, orientation="vertical")
+        
 
     if choice == "Login":
         login(selected2)

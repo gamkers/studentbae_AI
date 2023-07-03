@@ -570,6 +570,10 @@ def login():
             
 def logins(selected2,login):
     try:
+        with st.sidebar:
+            selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
+                                              icons=['house','robot','files'],
+                                              menu_icon="cast", default_index=2, orientation="vertical")
         if selected2 and login:
             def lottieurl(url):
                 r = requests.get(url)
@@ -1012,12 +1016,7 @@ def valid_credentials(username, password):
 def main():
     st.header("User Authentication System")
     menu = ["Login", "Register"]
-    choice = st.sidebar.selectbox("Menu", menu)
-    with st.sidebar:
-        selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
-                                          icons=['house','robot','files'],
-                                          menu_icon="cast", default_index=2, orientation="vertical")
-    
+    choice = st.sidebar.selectbox("Menu", menu) 
     log=False   
     if choice == "Login":
         log=login()
@@ -1025,8 +1024,8 @@ def main():
         register()
 
    
-    if selected2:
-        logins(selected2,log)
+    if log:
+        logins()
     
    
 

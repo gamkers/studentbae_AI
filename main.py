@@ -344,45 +344,6 @@ def display(data):
     
 
     
-  
-    
-
-# def display(data):
-#     voice = []
-#     for i in range(5):
-#         data1 = data[i][1].split(":")
-#         voice.append(f"news number{str(i + 1)}," + data1[0] + '.')
-#     audio_bytes = speak('.'.join(map(str, voice)))
-#     st.audio(audio_bytes, format='audio/ogg')
-#     if submit:
-#         for i in data:
-#             for j in i:
-#                 if selected in j:
-#                     st.header(f' {i[0]}')
-
-#                     original_title = f'<p style="font-family:Times New Roman; font-size: 18px;">{i[1]}</p>'
-#                     st.markdown(original_title, unsafe_allow_html=True)
-
-#                     st.write(f'AUTHOR & DATE: {i[2]} | {i[3]}')
-#                     st.write("_______________________________________________________________________________")
-#                 break
-
-#     for i in range(n):
-#         data1 = data[i][0].split(";")
-#         st.header(f'{data1[0]}')
-#         with st.container():
-#             left_coloumn, right_coloumn = st.columns(2)
-#             with left_coloumn:
-#                 st.image(data[i][6], width=355)
-#             with right_coloumn:
-#                 st.write("                                                                                ")
-#                 st.write("                                                                                ")
-#                 original_title = f'<p style="font-family:Times New Roman;  font-size: 18px;">{data[i][1]}</p>'
-#                 st.markdown(original_title, unsafe_allow_html=True)
-#                 st.write(f'AUTHOR & DATE: {data[i][2]} | {data[i][3]}')
-
-#         st.write("_______________________________________________________________________________")
-
 
 
 def webscrape_MainNews(type):
@@ -542,7 +503,7 @@ def register():
         else:
             st.error("Passwords do not match")
 
-def login():
+def login(selected2):
     st.title("User Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
@@ -554,9 +515,7 @@ def login():
             # TODO: Add code to redirect to the user's dashboard
                         
             with st.sidebar:
-              selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
-                                      icons=['house','robot','files'],
-                                      menu_icon="cast", default_index=2, orientation="vertical")
+              
             
             
             def lottieurl(url):
@@ -995,9 +954,12 @@ def main():
     st.header("User Authentication System")
     menu = ["Login", "Register"]
     choice = st.sidebar.selectbox("Menu", menu)
+    selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
+                                      icons=['house','robot','files'],
+                                      menu_icon="cast", default_index=2, orientation="vertical")
 
     if choice == "Login":
-        login()
+        login(selected2)
     elif choice == "Register":
         register()
 

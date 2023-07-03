@@ -953,12 +953,14 @@ def main():
         selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
                                           icons=['house','robot','files'],
                                           menu_icon="cast", default_index=2, orientation="vertical")
-        login(selected2)
+        
         
     if choice == "Login":
         login(selected2)
     elif choice == "Register":
         register()
+        
+    login(selected2)
 
 if __name__ == "__main__":
     main()

@@ -487,9 +487,6 @@ def displays(data):
         st.write("_______________________________________________________________________________")
 
 
-
-import re
-
 import re
 
 def register():
@@ -522,16 +519,16 @@ def register():
         else:
             st.error("Passwords do not match")
 
-    if show_api_key_input:
-        api_key = st.text_input("API Key")
-        if st.button("Complete Registration"):
+        if show_api_key_input:
+            api_key = st.text_input("API Key")
             if api_key:
-                deta = Deta(st.secrets["data_key"])
-                db = deta.Base("USERS")
-                db.put({"username": username, "password": password, "api_key": api_key})
-                st.success("Registration Successful. Please log in.")
+                if st.button("Complete Registration"):
+                    deta = Deta(st.secrets["data_key"])
+                    db = deta.Base("USERS")
+                    db.put({"username": username, "password": password, "api_key": api_key})
+                    st.success("Registration Successful. Please log in.")
             else:
-                st.error("Please provide the API key to complete the registration.")
+                st.warning("Please provide the API key to complete the registration.")
 
 def is_username_available(username):
     deta = Deta(st.secrets["data_key"])

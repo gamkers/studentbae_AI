@@ -959,8 +959,8 @@ def main():
         login(selected2)
     elif choice == "Register":
         register()
-        
-    login(selected2)
+    else:
+        login(selected2)
 
 if __name__ == "__main__":
     main()

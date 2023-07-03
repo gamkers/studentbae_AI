@@ -515,7 +515,7 @@ def register():
 
                     if st.button("Complete Registration"):
                         if api_keys:
-                            deta = Deta(st.secrets["data_key"])\
+                            deta = Deta(st.secrets["data_key"])
                             db = deta.Base("USERS")
                             db.put({"username": username, "password": password, "api_key": api_keys})
                             st.success("Registration Successful. Please log in.")

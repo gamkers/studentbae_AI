@@ -515,9 +515,9 @@ def login():
             return True
 
             
-def logins(selected2):
+def logins(selected2,login):
     try:
-        if selected2:
+        if selected2 and login:
             st.success("Login Successful")
             # TODO: Add code to redirect to the user's dashboard
             def lottieurl(url):
@@ -965,9 +965,8 @@ def main():
         login_status=login()
     elif choice == "Register":
         register()
-
     if selected2:
-        logins(selected2)
+        logins(selected2,login_status)
         
    
 

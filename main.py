@@ -490,39 +490,27 @@ def displays(data):
 
 import re
 
+import re
+
 def register():
     st.title("User Registration")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     confirm_password = st.text_input("Confirm Password", type="password")
-    api_key = ""
+    api_key = st.text_input("API Key")
 
     if st.button("Register"):
         # Check if passwords match
         if password == confirm_password:
             if is_username_available(username):
                 if is_strong_password(password):
-                    st.info("To complete the registration, you need to create an API key from the OpenAI platform. Follow the steps below:")
-                    st.write("1. Go to the OpenAI platform at [https://platform.openai.com](https://platform.openai.com).")
-                    st.write("2. Sign in to your OpenAI account.")
-                    st.write("3. Once signed in, click on your account name in the top-right corner of the platform.")
-                    st.write("4. In the dropdown menu, select 'API Keys'.")
-                    st.write("5. On the API Keys page, click the 'New Key' button.")
-                    st.write("6. Optionally, provide a name for your API key to help identify it later.")
-                    st.write("7. Once the key is created, copy it.")
-                    st.write("8. Come back to this registration page and paste the API key in the field below.")
-                    api_keys = st.text_input("API Key")
-
-                    if st.button("Complete Registration"):
-                        if api_keys:
-                            deta = Deta(st.secrets["data_key"])
-                            db = deta.Base("USERS")
-                            db.put({"username": username, "password": password, "api_key": api_keys})
-                            st.success("Registration Successful. Please log in.")
-                        else:
-                            st.error("Please provide the API key to complete the registration.")
+                    if api_key:
+                        deta = Deta(st.secrets["data_key"])
+                        db = deta.Base("USERS")
+                        db.put({"username": username, "password": password, "api_key": api_key})
+                        st.success("Registration Successful. Please log in.")
                     else:
-                        st.warning("Please complete the registration by providing the API key.")
+                        st.error("Please provide the API key to complete the registration.")
                 else:
                     st.error("Password must contain at least 8 characters, including uppercase, lowercase, and special characters.")
             else:

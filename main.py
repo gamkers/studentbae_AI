@@ -600,7 +600,7 @@ def main():
                                               icons=['house','robot','files'],
                                               menu_icon="cast", default_index=2, orientation="vertical")
     try:
-        if True:
+        if log:
             def lottieurl(url):
                 r = requests.get(url)
                 if r.status_code != 200:

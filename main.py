@@ -592,6 +592,7 @@ def main():
         selected2 = option_menu(None, ["Login", "Register","Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"DOCSGPT",'NEWSIFY'],
                                                   icons=['house','robot','files'],
                                                  menu_icon="cast", default_index=2, orientation="vertical")
+    logs=False
     if selected2 == "Login":
         logs=login()
     

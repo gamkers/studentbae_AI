@@ -397,7 +397,11 @@ def webscrape_MainNews(type):
             images.append(link)
 
     data = [list(item) for item in list(zip(headlines, news, authors, Date, country, catogory,images))]
-
+    datas = [list(item) for item in zip(headlines, news, authors, Date, country, catogory, images)]
+    dict = [dict(zip(['headlines', 'news', 'authors', 'Date', 'country', 'category', 'images'], item)) for item in datas]
+    deta = Deta(st.secrets["data_key"])
+    db = deta.Base("NEWS")
+    db.put(dict)
     return data
 
 def webscrape_News(cat,n):
@@ -599,7 +603,7 @@ def main():
     elif selected2 == "Register":
         register()  
     try:
-        if logs:
+        if True:
             def lottieurl(url):
                 r = requests.get(url)
                 if r.status_code != 200:

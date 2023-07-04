@@ -503,7 +503,7 @@ def register():
         else:
             st.error("Passwords do not match")
 
-def login():
+def login(selected2):
     st.title("User Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")

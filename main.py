@@ -1025,7 +1025,9 @@ def main():
                     data = webscrape_MainNews("science")
                     displays(data)
    
-
+    except:
+        st.error("Login First.")
+        
 if __name__ == "__main__":
     main()
 

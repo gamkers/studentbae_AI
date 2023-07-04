@@ -513,11 +513,6 @@ def login():
         if valid_credentials(username, password):
             st.success("Login Successful")
             # TODO: Add code to redirect to the user's dashboard
-                        
-            with st.sidebar:
-              
-            
-            
             def lottieurl(url):
                 r = requests.get(url)
                 if r.status_code != 200:
@@ -953,10 +948,12 @@ def valid_credentials(username, password):
 def main():
     st.header("User Authentication System")
     menu = ["Login", "Register"]
+    
     choice = st.sidebar.selectbox("Menu", menu)
-    selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
-                                      icons=['house','robot','files'],
-                                      menu_icon="cast", default_index=2, orientation="vertical")
+    with st.sidebar:
+        selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
+                                          icons=['house','robot','files'],
+                                          menu_icon="cast", default_index=2, orientation="vertical")
 
     if choice == "Login":
         login(selected2)

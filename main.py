@@ -603,7 +603,7 @@ def main():
     elif selected2 == "Register":
         register()  
     try:
-        if log == 1:
+        if log == 0:
             def lottieurl(url):
                 r = requests.get(url)
                 if r.status_code != 200:

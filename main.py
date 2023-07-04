@@ -587,17 +587,17 @@ def valid_credentials(username, password):
 
 
 def main(): 
-    global log
+    logs=0
     with st.sidebar:
         selected2 = option_menu(None, ["Login", "Register","Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"DOCSGPT",'NEWSIFY'],
                                                   icons=['house','robot','files'],
                                                  menu_icon="cast", default_index=2, orientation="vertical")
     if selected2 == "Login":
-        login()
+        logs=login()
     elif selected2 == "Register":
         register()  
     try:
-        if log == 1:
+        if logs == 1:
             def lottieurl(url):
                 r = requests.get(url)
                 if r.status_code != 200:

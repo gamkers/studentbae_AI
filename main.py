@@ -555,7 +555,7 @@ def is_strong_password(password):
 
 
 def login():
-    global log
+    # global log
     st.title("User Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
@@ -587,7 +587,7 @@ def valid_credentials(username, password):
 
 
 def main(): 
-    global log
+    # global log
     with st.sidebar:
         selected2 = option_menu(None, ["Login", "Register","Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"DOCSGPT",'NEWSIFY'],
                                                   icons=['house','robot','files'],
@@ -598,7 +598,7 @@ def main():
     elif selected2 == "Register":
         register()  
     try:
-        if False:
+        if log==1:
             def lottieurl(url):
                 r = requests.get(url)
                 if r.status_code != 200:

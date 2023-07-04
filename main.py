@@ -542,7 +542,7 @@ def login():
             st.error("Incorrect username or password. Please try again.")
 
 
-
+import re
 def valid_credentials(username, password):
     deta = Deta(st.secrets["data_key"])
     db = deta.Base("USERS")

@@ -568,12 +568,38 @@ def login():
 
 
             
-def logins():
-    try:
-        with st.sidebar:
+# def logins():
+
+#     except:
+#         st.error("Invalid username or password")
+
+def valid_credentials(username, password):
+    deta = Deta(st.secrets["data_key"])
+    db = deta.Base("USERS")
+    db_content = db.fetch().items
+
+    for item in db_content:
+        if item["username"] == username and item["password"] == password:
+            return True
+    
+    return False
+
+
+def main():
+    st.header("User Authentication System")
+    menu = ["Login", "Register"]
+    choice = st.sidebar.selectbox("Menu", menu) 
+    log=False   
+    if choice == "Login":
+        log=login()
+    elif choice == "Register":
+        register()
+        
+    with st.sidebar:
             selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
                                               icons=['house','robot','files'],
                                               menu_icon="cast", default_index=2, orientation="vertical")
+    try:
         if True:
             def lottieurl(url):
                 r = requests.get(url)
@@ -998,32 +1024,6 @@ def logins():
                 elif "Science" in options:
                     data = webscrape_MainNews("science")
                     displays(data)
-    except:
-        st.error("Invalid username or password")
-
-def valid_credentials(username, password):
-    deta = Deta(st.secrets["data_key"])
-    db = deta.Base("USERS")
-    db_content = db.fetch().items
-
-    for item in db_content:
-        if item["username"] == username and item["password"] == password:
-            return True
-    
-    return False
-
-
-def main():
-    st.header("User Authentication System")
-    menu = ["Login", "Register"]
-    choice = st.sidebar.selectbox("Menu", menu) 
-    log=False   
-    if choice == "Login":
-        log=login()
-    elif choice == "Register":
-        register()
-
-   
     if log:
         logins()
     

@@ -20,7 +20,8 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 
-log=0
+
+
 st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
 page_bg_img = f"""
 <style>
@@ -397,10 +398,7 @@ def webscrape_MainNews(type):
             images.append(link)
 
     data = [list(item) for item in list(zip(headlines, news, authors, Date, country, catogory,images))]
-    # datas = [list(item) for item in zip(headlines, news, authors, Date, country, catogory, images)]
-    # dict = [dict(zip(['headlines', 'news', 'authors', 'Date', 'country', 'category', 'images'], item)) for item in datas]
-    # db = deta.Base("NEWS")
-    # db.put(dict)
+
     return data
 
 def webscrape_News(cat,n):
@@ -451,6 +449,7 @@ def webscrape_News(cat,n):
     return data
 
 
+
 def displays(data):
     voice = []
     for i in range(5):
@@ -488,126 +487,37 @@ def displays(data):
         st.write("_______________________________________________________________________________")
 
 
-
-
-
-
-
-import re
 import streamlit as st
 
 def register():
     st.title("User Registration")
-    
-    with st.form("registration_form"):
-        username = st.text_input("Username")
-        password = st.text_input("Password", type="password")
-        confirm_password = st.text_input("Confirm Password", type="password")
-        
-        # Validate password
-        if st.form_submit_button("Validate Password"):
-            if is_strong_password(password):
-                st.success("Password meets the strength criteria.")
-            else:
-                st.error("Password must contain at least 8 characters, including uppercase, lowercase, and special characters.")
-    
-    st.subheader("API Key")
-    st.markdown("To complete the registration, please provide your API key.")
-    st.markdown("You can obtain an API key from OpenAI by following these steps:")
-    st.markdown("1. Go to the OpenAI website at [https://openai.com](https://openai.com).")
-    st.markdown("2. Sign in to your OpenAI account or create a new account if you don't have one.")
-    st.markdown("3. Once signed in, navigate to your account settings or dashboard.")
-    st.markdown("4. Look for the API Key section or API Key management.")
-    st.markdown("5. Generate a new API key for your application.")
-    st.markdown("6. Copy the generated API key.")
-    st.markdown("7. Return to this registration page.")
-    
-    with st.form("api_key_form"):
-        api_key = st.text_input("API Key")
-        
-        if st.form_submit_button("Complete Registration"):
-            if api_key:
-                if is_username_available(username):
-                    deta = Deta(st.secrets["data_key"])
-                    db = deta.Base("USERS")
-                    db.put({"username": username, "password": password, "api_key": api_key})
-                    st.success("Registration Successful. Please log in.")
-                else:
-                    st.error("Username already exists. Please choose a different username.")
-            else:
-                st.warning("Please provide the API key to complete the registration.")
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+    confirm_password = st.text_input("Confirm Password", type="password")
 
-def is_username_available(username):
-    deta = Deta(st.secrets["data_key"])
-    db = deta.Base("USERS")
-    db_content = db.fetch().items
-
-    for item in db_content:
-        if item["username"] == username:
-            return False
-    
-    return True
-
-def is_strong_password(password):
-    # Password must contain at least 8 characters, including uppercase, lowercase, and special characters
-    if len(password) < 8:
-        return False
-    if not re.search(r"[A-Z]", password):
-        return False
-    if not re.search(r"[a-z]", password):
-        return False
-    if not re.search(r"\W", password):
-        return False
-    
-    return True
-
+    if st.button("Register"):
+        # Check if passwords match
+        if password == confirm_password:
+            # TODO: Add code to store username and password in the database
+            st.success("Registration Successful. Please log in.")
+        else:
+            st.error("Passwords do not match")
 
 def login():
-    # global log
     st.title("User Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
+
     if st.button("Login"):
+        # TODO: Add code to check username and password in the database
         if valid_credentials(username, password):
             st.success("Login Successful")
-            log=1
-            return True
-        else:
-            st.error("Incorrect username or password. Please try again.")
-
-
+            # TODO: Add code to redirect to the user's dashboard
+                        
+            with st.sidebar:
+              
             
-# def logins():
-
-#     except:
-#         st.error("Invalid username or password")
-
-def valid_credentials(username, password):
-    deta = Deta(st.secrets["data_key"])
-    db = deta.Base("USERS")
-    db_content = db.fetch().items
-
-    for item in db_content:
-        if item["username"] == username and item["password"] == password:
-            return True
-    
-    return False
-
-
-def main(): 
-    # global log
-    with st.sidebar:
-        selected2 = option_menu(None, ["Login", "Register","Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"DOCSGPT",'NEWSIFY'],
-                                                  icons=['house','robot','files'],
-                                                 menu_icon="cast", default_index=2, orientation="vertical")
-    logs=False
-    if selected2 == "Login":
-        logs=login()
-    
-    elif selected2 == "Register":
-        register()  
-    try:
-        if True:
+            
             def lottieurl(url):
                 r = requests.get(url)
                 if r.status_code != 200:
@@ -1031,10 +941,28 @@ def main():
                 elif "Science" in options:
                     data = webscrape_MainNews("science")
                     displays(data)
-   
-    except:
-        st.error("Login First.")
-        
+
+        else:
+            st.error("Invalid username or password")
+
+def valid_credentials(username, password):
+    # TODO: Add code to validate username and password against the database
+    # Return True if the credentials are valid, False otherwise
+    return True
+
+def main():
+    st.header("User Authentication System")
+    menu = ["Login", "Register"]
+    choice = st.sidebar.selectbox("Menu", menu)
+    selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
+                                      icons=['house','robot','files'],
+                                      menu_icon="cast", default_index=2, orientation="vertical")
+
+    if choice == "Login":
+        login(selected2)
+    elif choice == "Register":
+        register()
+
 if __name__ == "__main__":
     main()
 

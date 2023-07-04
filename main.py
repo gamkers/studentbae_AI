@@ -593,7 +593,8 @@ def main():
                                                   icons=['house','robot','files'],
                                                  menu_icon="cast", default_index=2, orientation="vertical")
     if selected2 == "Login":
-        logs=login()
+        login()
+        logs=1
     elif selected2 == "Register":
         register()  
     try:

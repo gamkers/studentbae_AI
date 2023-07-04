@@ -399,7 +399,6 @@ def webscrape_MainNews(type):
     data = [list(item) for item in list(zip(headlines, news, authors, Date, country, catogory,images))]
     datas = [list(item) for item in zip(headlines, news, authors, Date, country, catogory, images)]
     dict = [dict(zip(['headlines', 'news', 'authors', 'Date', 'country', 'category', 'images'], item)) for item in datas]
-    deta = Deta(st.secrets["data_key"])
     db = deta.Base("NEWS")
     db.put(dict)
     return data

@@ -584,17 +584,15 @@ def valid_credentials(username, password):
     
     return False
 
-
+log=False 
 def main():
     st.header("User Authentication System")
     menu = ["Login", "Register"]
     choice = st.sidebar.selectbox("Menu", menu) 
-    log=False   
     if choice == "Login":
         log=login()
     elif choice == "Register":
-        register()
-        
+        register()   
     try:
         if log:
             

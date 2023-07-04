@@ -42,7 +42,7 @@ restart_sequence = "\nHuman: "
 
 from deta import Deta
 
-def db(link,vectors);
+def db(link,vectors):
 
     deta = Deta(st.secrets["data_key"])
     db = deta.Base("Vectors")

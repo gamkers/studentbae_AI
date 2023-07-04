@@ -563,7 +563,7 @@ def login():
         if valid_credentials(username, password):
             st.success("Login Successful")
             log=1
-            return 1
+            return True
         else:
             st.error("Incorrect username or password. Please try again.")
 

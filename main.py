@@ -603,7 +603,6 @@ def main():
     elif selected2 == "Register":
         register()  
     try:
-        global log
         if log:
             def lottieurl(url):
                 r = requests.get(url)

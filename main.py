@@ -20,8 +20,7 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 
-login_Status=False
-
+log=0
 st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
 page_bg_img = f"""
 <style>
@@ -556,12 +555,14 @@ def is_strong_password(password):
 
 
 def login():
+    global log
     st.title("User Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     if st.button("Login"):
         if valid_credentials(username, password):
             st.success("Login Successful")
+            log=1
             return 1
         else:
             st.error("Incorrect username or password. Please try again.")
@@ -586,13 +587,13 @@ def valid_credentials(username, password):
 
 
 def main(): 
-    log=0 
+    global log
     with st.sidebar:
         selected2 = option_menu(None, ["Login", "Register","Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"DOCSGPT",'NEWSIFY'],
                                                   icons=['house','robot','files'],
                                                  menu_icon="cast", default_index=2, orientation="vertical")
     if selected2 == "Login":
-        log=login()
+        login()
     elif selected2 == "Register":
         register()  
     try:

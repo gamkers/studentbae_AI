@@ -451,7 +451,6 @@ def webscrape_News(cat,n):
     return data
 
 
-
 def displays(data):
     voice = []
     for i in range(5):
@@ -487,6 +486,12 @@ def displays(data):
                 st.write(f'AUTHOR & DATE: {data[i][2]} | {data[i][3]}')
 
         st.write("_______________________________________________________________________________")
+
+
+
+
+
+
 
 import re
 import streamlit as st

@@ -575,7 +575,7 @@ if selected2 == 'Login':
     login()
 elif selected2 == 'Register':
     register()
-elif selected2 == 'Home' and log:
+elif selected2 == 'Home':
     st.image("logofinal.png")
     with st.container():
         st.write("---")

@@ -562,7 +562,7 @@ def login():
     if st.button("Login"):
         if valid_credentials(username, password):
             st.success("Login Successful")
-            return True
+            return 1
         else:
             st.error("Incorrect username or password. Please try again.")
 
@@ -584,7 +584,7 @@ def valid_credentials(username, password):
     
     return False
 
-log=False 
+log=0 
 def main():
     # st.header("User Authentication System")
     # menu = ["Login", "Register"]
@@ -603,7 +603,7 @@ def main():
     elif selected2 == "Register":
         register()  
     try:
-        if log:
+        if log == 1:
             def lottieurl(url):
                 r = requests.get(url)
                 if r.status_code != 200:

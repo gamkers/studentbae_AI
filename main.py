@@ -529,14 +529,14 @@ def is_strong_password(password):
 
 
 def login():
-    # global log
+    global log
     st.title("User Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
     if st.button("Login"):
         if valid_credentials(username, password):
             st.success("Login Successful")
-            log=1
+            log=True
             return True
         else:
             st.error("Incorrect username or password. Please try again.")
@@ -575,7 +575,7 @@ if selected2 == 'Login':
     login()
 elif selected2 == 'Register':
     register()
-elif selected2 == 'Home':
+elif selected2 == 'Home' and log:
     st.image("logofinal.png")
     with st.container():
         st.write("---")

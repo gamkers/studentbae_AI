@@ -595,12 +595,13 @@ def main():
     elif choice == "Register":
         register()
         
-    with st.sidebar:
-            selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
-                                              icons=['house','robot','files'],
-                                              menu_icon="cast", default_index=2, orientation="vertical")
     try:
         if log:
+            
+            with st.sidebar:
+                selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"DOCSGPT",'NEWSIFY'],
+                                                  icons=['house','robot','files'],
+                                                  menu_icon="cast", default_index=2, orientation="vertical")
             def lottieurl(url):
                 r = requests.get(url)
                 if r.status_code != 200:

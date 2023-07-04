@@ -586,20 +586,23 @@ def valid_credentials(username, password):
 
 log=False 
 def main():
-    st.header("User Authentication System")
-    menu = ["Login", "Register"]
-    choice = st.sidebar.selectbox("Menu", menu) 
-    if choice == "Login":
+    # st.header("User Authentication System")
+    # menu = ["Login", "Register"]
+    # choice = st.sidebar.selectbox("Menu", menu) 
+    # if choice == "Login":
+    #     log=login()
+    # elif choice == "Register":
+    #     register()   
+    with st.sidebar:
+        selected2 = option_menu(None, ["Login", "Register","Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"DOCSGPT",'NEWSIFY'],
+                                                  icons=['house','robot','files'],
+                                                 menu_icon="cast", default_index=2, orientation="vertical")
+    if selected2 == "Login":
         log=login()
-    elif choice == "Register":
-        register()   
+    elif selected2 == "Register":
+        register()  
     try:
         if log:
-            
-            with st.sidebar:
-                selected2 = option_menu(None, ["Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"DOCSGPT",'NEWSIFY'],
-                                                  icons=['house','robot','files'],
-                                                  menu_icon="cast", default_index=2, orientation="vertical")
             def lottieurl(url):
                 r = requests.get(url)
                 if r.status_code != 200:

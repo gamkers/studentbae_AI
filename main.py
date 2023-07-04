@@ -593,12 +593,12 @@ def main():
                                                   icons=['house','robot','files'],
                                                  menu_icon="cast", default_index=2, orientation="vertical")
     if selected2 == "Login":
-        login()
+        logs=login()
     
     elif selected2 == "Register":
         register()  
     try:
-        if log==1:
+        if logs:
             def lottieurl(url):
                 r = requests.get(url)
                 if r.status_code != 200:

@@ -1024,9 +1024,6 @@ def main():
                 elif "Science" in options:
                     data = webscrape_MainNews("science")
                     displays(data)
-    if log:
-        logins()
-    
    
 
 if __name__ == "__main__":

@@ -504,7 +504,7 @@ def register():
     with st.form("api_key_form"):
         api_key = st.text_input("API Key")
         
-        if st.form_submit_button("Complete Registration"):
+        if st.form_submit_button("Register"):
             if api_key:
                 if is_username_available(username):
                     deta = Deta(st.secrets["data_key"])

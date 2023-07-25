@@ -26,12 +26,13 @@ st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
 page_bg_img = f"""
 <style>
 [data-testid="stAppViewContainer"] > .main {{
-background-image: linear-gradient(to right, #000000,#00ADB5 );
+background-image: linear-gradient(to right, #FF00FF, #00ADB5);
 opacity: 0.8;
 
 }}
 </style>
 """
+
 
 
 st.markdown(page_bg_img, unsafe_allow_html=True)

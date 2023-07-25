@@ -91,7 +91,7 @@ def pdftotxt(urls):
         for page in pdf_reader.pages:
             txt=page.extract_text()
             texts += txt
-            db(url,txt)
+            #db(url,txt)
             
     st.markdown("DATA EXTRACTION DONE")
     return texts

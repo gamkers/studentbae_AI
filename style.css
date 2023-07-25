@@ -10,12 +10,12 @@ body {
     border-radius: 10%;
     height: 3em;
     width: 6em;
-    background:	#FF00FF;
+    background:	#00ADB5;
     border-radius: 16px;
     box-shadow: 0 4px 30px #000000;
     backdrop-filter: blur(12.1px);
     -webkit-backdrop-filter: blur(12.1px);
-    border: 1px solid #00FFF5;
+    border: 1px solid #FF00FF;
 }
 
 .stTextInput>div>div>input {

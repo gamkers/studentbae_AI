@@ -32,7 +32,8 @@ opacity: 0.8;
 }}
 </style>
 """
-
+local_css("style.css")
+remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
 
 
 st.markdown(page_bg_img, unsafe_allow_html=True)

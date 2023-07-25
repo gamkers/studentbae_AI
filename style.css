@@ -1,4 +1,4 @@
-/* body {
+body {
     color: #FFFFFF;
     background-color: #FFFFFF;
 
@@ -23,32 +23,4 @@
 
 }
  */
-/* Body Background and Text Color */
-body {
-    color: #333333;
-    background-color: #F0F0F0; /* Light gray background color */
-}
-
-/* Button Background and Text Color */
-.stButton>button {
-    color: #FFFFFF;
-    border-radius: 10%;
-    height: 3em;
-    width: 6em;
-    background: #3498DB; /* A bright blue color for the button background */
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Slightly transparent shadow */
-    backdrop-filter: blur(12.1px);
-    -webkit-backdrop-filter: blur(12.1px);
-    border: 1px solid #3498DB; /* Match the border color to the button background */
-}
-
-/* Input Text Color */
-.stTextInput>div>div>input {
-    color: #333333; /* Dark text color */
-}
-
-.stApp {
-  background-image: linear-gradient(to bottom, #ff0000, #00ff00); /* Replace with your desired gradient colors */
-  background-size: cover;
-}
+/* Body Background and Text Color

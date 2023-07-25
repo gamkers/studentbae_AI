@@ -484,7 +484,7 @@ def register():
         confirm_password = st.text_input("Confirm Password", type="password")
         
         # Validate password
-        if st.form_submit_button("Validate Password"):
+        if st.form_submit_button("Validate"):
             if is_strong_password(password):
                 st.success("Password meets the strength criteria.")
             else:

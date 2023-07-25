@@ -47,3 +47,8 @@ body {
 .stTextInput>div>div>input {
     color: #333333; /* Dark text color */
 }
+
+.stApp {
+  background-image: url("data:image/png;base64,%s");
+  background-size: cover;
+}

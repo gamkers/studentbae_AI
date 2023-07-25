@@ -1,4 +1,4 @@
-body {
+/* body {
     color: #FFFFFF;
     background-color: #FFFFFF;
 
@@ -22,3 +22,25 @@ body {
     color: #FFFFFF;
 
 }
+ */
+body {
+    color: #333333;
+    background-color: #F8F8F8;
+}
+.stButton>button {
+    color: #FFFFFF;
+    border-radius: 10%;
+    height: 3em;
+    width: 6em;
+    background: #2ECC71; /* A green color for the button background */
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Slightly transparent shadow */
+    backdrop-filter: blur(12.1px);
+    -webkit-backdrop-filter: blur(12.1px);
+    border: 1px solid #2ECC71; /* Match the border color to the button background */
+}
+.stTextInput>div>div>input {
+    color: #333333; /* Dark text color */
+}
+
+

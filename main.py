@@ -570,7 +570,7 @@ def valid_credentials(username, password):
 
 with st.sidebar:
   selected2 = option_menu(None, ["Login","Register","Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
-                          icons=['person','person','house','robot','files','computer'],
+                          icons=['person', 'person_add', 'home', 'robot', 'search', 'auto_graph', 'picture_as_pdf', 'slideshow', 'menu_book', 'science', 'assignment', 'book_online', "code", 'public', "description", 'feed'],
                           menu_icon="cast", default_index=2, orientation="vertical")
 
 

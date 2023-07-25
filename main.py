@@ -30,6 +30,18 @@ background-image: linear-gradient(to right, #FF00FF, #00ADB5);
 opacity: 0.8;
 
 }}
+.stButton>button {{
+    color: #FFFFFF;
+    border-radius: 10%;
+    height: 3em;
+    width: 6em;
+    background:	#6528F7;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px #000000;
+    backdrop-filter: blur(12.1px);
+    -webkit-backdrop-filter: blur(12.1px);
+    border: 1px solid #FF00FF;
+})
 </style>
 """
 

@@ -570,7 +570,7 @@ def valid_credentials(username, password):
 
 with st.sidebar:
   selected2 = option_menu(None, ["Login","Register","Home","Assistant",'Search','AdvanceGPT','PDF', 'PPT', 'Courses', 'Research papers','Question Papers', 'E-BOOKS',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
-                          icons=['person-fill', 'person-plus-fill', 'house-fill', 'robot-fill', 'search', 'graph-up', 'file-pdf-fill', 'file-ppt-fill', 'book-half', 'journal-article', 'file-earmark-text-fill', 'book-fill', "code-slash", 'globe2', "file-earmark-richtext-fill", 'newspaper'],
+                          icons=['person-fill', 'person-plus-fill', 'house-fill', 'robot', 'search', 'graph-up', 'file-pdf-fill', 'file-ppt-fill', 'book-half', 'file-earmark-text-fill', 'file-earmark-text-fill', 'book-fill', "code-slash", 'globe2', "file-earmark-richtext-fill", 'newspaper'],
                           menu_icon="cast", default_index=2, orientation="vertical")
 
 

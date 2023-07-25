@@ -30,7 +30,7 @@ background-image: linear-gradient(to right, #FF00FF, #00ADB5);
 opacity: 0.8;
 
 }}
-.stButton>button {{
+.stButton>button {
     color: #FFFFFF;
     border-radius: 10%;
     height: 3em;
@@ -41,7 +41,7 @@ opacity: 0.8;
     backdrop-filter: blur(12.1px);
     -webkit-backdrop-filter: blur(12.1px);
     border: 1px solid #FF00FF;
-})
+}
 </style>
 """
 

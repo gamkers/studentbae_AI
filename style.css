@@ -49,6 +49,6 @@ body {
 }
 
 .stApp {
-  background-image: url("data:image/png;base64,%s");
+  background-image: linear-gradient(to bottom, #ff0000, #00ff00); /* Replace with your desired gradient colors */
   background-size: cover;
 }

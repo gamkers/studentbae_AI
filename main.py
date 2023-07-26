@@ -86,7 +86,8 @@ def pdfs(s,n):
 def pdftotxt(urls):
     texts=""
     for url in urls:
-        st.toast("PROCESSING: "+url)
+        time.sleep(.5)
+        st.write("PROCESSING: "+url)
         response = requests.get(url)
 
         # Create a file-like object from the response content
@@ -106,14 +107,16 @@ def pdftotxt(urls):
             txt=page.extract_text()
             texts += txt
             #db(url,txt)
-            
+    time.sleep(.5)      
     st.toast("DATA EXTRACTION DONE")
     return texts
 
         # Print the extracted text
     
 def chunks(texts,q):
+    time.sleep(.5)
     st.toast("DATA TRANFORMATION STARTED", icon='🎉')
+    time.sleep(.5)
     st.toast("TRANFORMING DATA INTO CHUNKS", icon='🎉')
     text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
     length_function = len,)
@@ -124,6 +127,7 @@ def chunks(texts,q):
     with st.spinner('Wait for it...'):
         time.sleep(5)
     st.success('Done!')
+    time.sleep(.5)
     st.toast("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE", icon='🎉')
     query=q
     docs = docsearchs.similarity_search(query)

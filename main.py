@@ -19,6 +19,7 @@ from langchain.vectorstores import ElasticVectorSearch, Pinecone, Weaviate, FAIS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
+import time
 
 log=False
 
@@ -85,7 +86,7 @@ def pdfs(s,n):
 def pdftotxt(urls):
     texts=""
     for url in urls:
-        st.markdown("PROCESSING: "+url)
+        st.toast("PROCESSING: "+url)
         response = requests.get(url)
 
         # Create a file-like object from the response content
@@ -106,15 +107,14 @@ def pdftotxt(urls):
             texts += txt
             #db(url,txt)
             
-    st.markdown("DATA EXTRACTION DONE")
+    st.toast("DATA EXTRACTION DONE")
     return texts
 
         # Print the extracted text
     
 def chunks(texts,q):
-    
-    st.toast("DATA TRANFORMATION STARTED🎉")
-    st.toast("TRANFORMING DATA INTO CHUNKS🎉")
+    st.toast("DATA TRANFORMATION STARTED", icon='🎉')
+    st.toast("TRANFORMING DATA INTO CHUNKS", icon='🎉')
     text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
     length_function = len,)
     texts = text_splitter.split_text(texts)
@@ -124,7 +124,7 @@ def chunks(texts,q):
     with st.spinner('Wait for it...'):
         time.sleep(5)
     st.success('Done!')
-    st.toast("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
+    st.toast("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE", icon='🎉')
     query=q
     docs = docsearchs.similarity_search(query)
     title=chain.run(input_documents=docs, question="TITLE of the paper")

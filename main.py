@@ -124,7 +124,7 @@ def chunks(texts,q):
     with st.spinner('Wait for it...'):
         time.sleep(5)
     st.success('Done!')
-    st.toast(DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
+    st.toast("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
     query=q
     docs = docsearchs.similarity_search(query)
     title=chain.run(input_documents=docs, question="TITLE of the paper")

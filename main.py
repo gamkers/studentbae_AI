@@ -113,15 +113,18 @@ def pdftotxt(urls):
     
 def chunks(texts,q):
     
-    st.markdown("DATA TRANFORMATION STARTED")
-    st.markdown("TRANFORMING DATA INTO CHUNKS")
+    st.toast("DATA TRANFORMATION STARTED🎉")
+    st.toast("TRANFORMING DATA INTO CHUNKS🎉")
     text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
     length_function = len,)
     texts = text_splitter.split_text(texts)
     embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
     docsearchs = FAISS.from_texts(texts, embeddings)
     chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
-    st.markdown("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
+    with st.spinner('Wait for it...'):
+        time.sleep(5)
+    st.success('Done!')
+    st.toast(DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
     query=q
     docs = docsearchs.similarity_search(query)
     title=chain.run(input_documents=docs, question="TITLE of the paper")

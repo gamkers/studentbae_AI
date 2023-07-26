@@ -86,7 +86,8 @@ def pdfs(s,n):
 def pdftotxt(urls):
     texts=""
     for url in urls:
-        time.sleep(.5)
+        
+        
         st.write("PROCESSING: "+url)
         response = requests.get(url)
 
@@ -108,16 +109,19 @@ def pdftotxt(urls):
             texts += txt
             #db(url,txt)
     time.sleep(.5)      
-    st.toast("DATA EXTRACTION DONE")
+    st.info("DATA EXTRACTION DONE")
     return texts
 
         # Print the extracted text
     
 def chunks(texts,q):
-    time.sleep(.5)
-    st.toast("DATA TRANFORMATION STARTED", icon='🎉')
-    time.sleep(.5)
-    st.toast("TRANFORMING DATA INTO CHUNKS", icon='🎉')
+
+    progress_text = "DATA TRANFORMATION STARTED"
+    my_bar = st.progress(0, text=progress_text)
+    for percent_complete in range(100):
+        time.sleep(0.1)
+        my_bar.progress(percent_complete + 1, text=progress_text)
+    st.info("TRANFORMING DATA INTO CHUNKS")
     text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
     length_function = len,)
     texts = text_splitter.split_text(texts)
@@ -128,7 +132,7 @@ def chunks(texts,q):
         time.sleep(5)
     st.success('Done!')
     time.sleep(.5)
-    st.toast("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE", icon='🎉')
+    st.info("DATA IS LOADED AS CHUNKS AND READY FOR ANALYTICS PURPOSE")
     query=q
     docs = docsearchs.similarity_search(query)
     title=chain.run(input_documents=docs, question="TITLE of the paper")

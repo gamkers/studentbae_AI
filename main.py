@@ -90,7 +90,7 @@ def pdftotxt(urls):
         
         st.write("PROCESSING: "+url)
         with st.spinner('Wait for it...'):
-        time.sleep(5)
+            time.sleep(5)
         st.success('Done!')
         response = requests.get(url)
 

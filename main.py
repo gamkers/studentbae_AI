@@ -241,8 +241,9 @@ def ppt(s):
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
         if ".ppt" in j:
             k = j.split("/")
-
-            st.write(j)
+            for i in k:
+                if ".pdf" in i:
+                    st.write(i)
 #             st.components.v1.iframe(j)
             st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)
 

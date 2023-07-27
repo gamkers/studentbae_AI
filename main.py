@@ -242,7 +242,7 @@ def ppt(s):
         if ".ppt" in j:
             k = j.split("/")
             for i in k:
-                if ".pdf" in i:
+                if ".ppt" in i:
                     st.write(i)
 #             st.components.v1.iframe(j)
             st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)

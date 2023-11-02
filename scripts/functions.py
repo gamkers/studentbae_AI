@@ -127,7 +127,7 @@ def chunks(texts,q):
 
 def ai(prompt,n):
   try:
-    updated_prompt = f"{prompt}\n\nFor example, consider the following scenario: \n\nImagine a world where AI and human interaction revolutionize the way we communicate. In this context, discuss the implications and potential challenges of AI-powered communication systems."
+    updated_prompt = f"act as a well experienced professor and explain {prompt} as explainig to your student think step by stemp and give real time examples and key points",
     response = openai.Completion.create(
       model="text-davinci-003",
       prompt=updated_prompt,

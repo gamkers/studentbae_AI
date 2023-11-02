@@ -129,20 +129,22 @@ def ai(prompt,n):
   try:
      
     response = openai.Completion.create(
-      model="text-davinci-003",
-      prompt=prompt,
+      model="text-curie-003"",
+      prompt=f"{prompt}\n\nFor example, consider the following scenario: \n\nImagine a world where AI and human interaction revolutionize the way we communicate. In this context, discuss the implications and potential challenges of AI-powered communication systems.",
       temperature=n,
-      max_tokens=2000,
+      max_tokens=150,
       top_p=1,
       frequency_penalty=0,
       presence_penalty=0.6,
-      stop=[" Human:", " AI:"]
+      stop=" Human:"
     )
     data = response.choices[0].text
     st.markdown(response.choices[0].text,unsafe_allow_html=True)
     return data
-  except:
-     st.error("Unable Connect To The Server")
+  except openai.OpenAIError as e:
+        # Handle specific OpenAI errors here
+        print(f"OpenAI Error: {e}")
+        return "Unable to connect to the server"
 
 
 openai.api_key = st.secrets["api"]

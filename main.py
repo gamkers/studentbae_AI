@@ -533,8 +533,8 @@ try:
         elif "Science" in options:
             data = webscrape_MainNews("science")
             displays(data)
-except:
-    st.error("An error occurred")
+except Exception as e:
+    st.error(f"An error occurred: {e}")
  
     
 

@@ -127,7 +127,7 @@ def chunks(texts,q):
 
 def ai(prompt,n):
   try:
-    updated_prompt = f"act as a well experienced professor and explain {prompt} as explainig to your student think step by stemp and give real time examples and key points",
+    updated_prompt = f"act as a well experienced professor and explain {prompt} as explainig to your student think step by step and give real time examples and key points but it should be below 150 words",
     response = openai.Completion.create(
       model="text-davinci-003",
       prompt=updated_prompt,

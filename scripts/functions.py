@@ -127,12 +127,12 @@ def chunks(texts,q):
 
 def ai(prompt,n):
   try:
-     
+    updated_prompt = f"{prompt}\n\nFor example, consider the following scenario: \n\nImagine a world where AI and human interaction revolutionize the way we communicate. In this context, discuss the implications and potential challenges of AI-powered communication systems."
     response = openai.Completion.create(
-      model="text-davinci-003",
-      prompt=prompt,
+      model="text-curie-003",
+      prompt=updated_prompt,
       temperature=n,
-      max_tokens=2000,
+      max_tokens=150,
       top_p=1,
       frequency_penalty=0,
       presence_penalty=0.6,

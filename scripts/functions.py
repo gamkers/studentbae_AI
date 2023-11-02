@@ -141,10 +141,8 @@ def ai(prompt,n):
     data = response.choices[0].text
     st.markdown(response.choices[0].text,unsafe_allow_html=True)
     return data
-  except openai.OpenAIError as e:
-        # Handle specific OpenAI errors here
-        print(f"OpenAI Error: {e}")
-        return "Unable to connect to the server"
+  except:
+      st.error("Unable to connect to the server") 
 
 
 openai.api_key = st.secrets["api"]

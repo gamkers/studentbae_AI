@@ -47,6 +47,32 @@ def palm_pdf(txt):
 
     return(completion.result)
 
+def palm(txt):
+    models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
+    model = models[0].name
+    print(model)
+    prompt = f"""
+    You are an expert at Teaching.
+
+    explain me about: {txt}
+
+    Explain with examples, as im a school student.
+    Give Points to note down.
+    also give some reference
+
+    Think about it step by step, and show your work.
+    """
+
+    completion = palm.generate_text(
+        model=model,
+        prompt=prompt,
+        temperature=0,
+        # The maximum length of the response
+        max_output_tokens=800,
+    )
+    st.markdown(completion.result,unsafe_allow_html=True)
+    return(completion.result)
+
 from deta import Deta
 
 def db(link,vectors):

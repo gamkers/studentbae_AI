@@ -68,7 +68,7 @@ def ai_palm(txt):
         prompt=prompt,
         temperature=0,
         # The maximum length of the response
-        max_output_tokens=800,
+        max_output_tokens=2000,
     )
     st.markdown(completion.result,unsafe_allow_html=True)
     return(completion.result)

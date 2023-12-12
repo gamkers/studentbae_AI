@@ -299,7 +299,7 @@ try:
         
         if submit:
             #cnt=ai(selected,1.0)
-            content=palm(selected)
+            content=ai_palm(selected)
             if "PDF" in options:
                 pdf(cnt)
             elif "PPT" in options:

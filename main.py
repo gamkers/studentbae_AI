@@ -298,8 +298,8 @@ try:
         #n = st.slider('number of lines', 0.0, 1,0, 0.1)
         
         if submit:
-            cnt=ai(selected,1.0)
-        
+            #cnt=ai(selected,1.0)
+            content=palm(selected)
             if "PDF" in options:
                 pdf(cnt)
             elif "PPT" in options:

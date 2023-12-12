@@ -264,7 +264,6 @@ def pdf(s):
                   if ".pdf" in i:
                       st.write(i)
                       palm_pdf(j)
-                      st.markdown(content)
               #title=ai(j+" Explain the title and content in short in this link. the title should be in bold",1)
   #             st.components.v1.iframe(j)
               st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)

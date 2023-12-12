@@ -299,6 +299,7 @@ try:
         
         if submit:
             #cnt=ai(selected,1.0)
+            cnt=selected
             content=ai_palm(selected)
             if "PDF" in options:
                 pdf(cnt)

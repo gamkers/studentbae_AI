@@ -20,7 +20,32 @@ from langchain.llms import OpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 import time
 from scripts.news import *
+import google.generativeai as palm
+palm.configure(api_key=st.secrets["palm_api"])
 
+def palm_pdf(txt):
+    models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
+    model = models[0].name
+    print(model)
+    prompt = f"""
+    You are an expert at Reading PDF from Links as summarize it.
+
+    Summarize the PDF and give some Keypoints.
+
+    This is the link :{txt}
+
+    Think about it step by step, and show your work.
+    """
+
+    completion = palm.generate_text(
+        model=model,
+        prompt=prompt,
+        temperature=0,
+        # The maximum length of the response
+        max_output_tokens=800,
+    )
+
+    return(completion.result)
 
 from deta import Deta
 
@@ -214,6 +239,8 @@ def pdf(s):
               for i in k:
                   if ".pdf" in i:
                       st.write(i)
+                      content = palm_pdf(j)
+                      st.markdown(content)
               #title=ai(j+" Explain the title and content in short in this link. the title should be in bold",1)
   #             st.components.v1.iframe(j)
               st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)

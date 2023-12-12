@@ -14,4 +14,6 @@ faiss-cpu
 googlesearch-python
 google
 deta
+google-generativeai
+palm
 

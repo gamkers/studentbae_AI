@@ -34,8 +34,6 @@ def palm_pdf(txt):
     Summarize the PDF and give some Keypoints.
 
     This is the link :{txt}
-
-    Think about it step by step, and show your work.
     """
 
     completion = palm.generate_text(
@@ -46,7 +44,6 @@ def palm_pdf(txt):
         max_output_tokens=800,
     )
     st.markdown(completion.result,unsafe_allow_html=True)
-    return(completion.result)
 
 def ai_palm(txt):
 

@@ -249,26 +249,30 @@ def speak(text):
     return mp3_fp
 
 
+
 def pdf(s):
     try:
-      try:
-          from googlesearch import search
-      except ImportError:
-          print("No module named 'google' found")
+        try:
+            from googlesearch import search
+        except ImportError:
+            print("No module named 'google' found")
 
-      query = f"filetype:pdf {s}"
-      for j in search(query, tld="co.in", num=10, stop=5, pause=2):
-          if ".pdf" in j:
-              k = j.split("/")
-              for i in k:
-                  if ".pdf" in i:
-                      st.write(i)
-                      palm_pdf(j)
-              #title=ai(j+" Explain the title and content in short in this link. the title should be in bold",1)
-  #             st.components.v1.iframe(j)
-              st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)
-    except:
-       st.error("PDF NOT Found")
+        query = f"filetype:pdf {s}"
+        for j in search(query, tld="co.in", num=10, stop=5, pause=2):
+            if ".pdf" in j:
+                k = j.split("/")
+                for i in k:
+                    if ".pdf" in i:
+                        st.write(i)
+                        # Assuming palm_pdf is a function you have defined elsewhere
+                        palm_pdf(j)
+                # Assuming you want to display a download link using Streamlit
+                st.markdown(f'<a href="{j}" download>DOWNLOAD</a>', unsafe_allow_html=True)
+    except Exception as e:
+        st.error(f"Error: {e}")
+        st.error("PDF NOT Found")
+
+
 def ppt(s):
     try:
         from googlesearch import search

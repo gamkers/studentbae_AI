@@ -24,6 +24,7 @@ import google.generativeai as palm
 palm.configure(api_key=st.secrets["palm_api"])
 
 def palm_pdf(txt):
+    
     models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
     model = models[0].name
     print(model)
@@ -44,7 +45,7 @@ def palm_pdf(txt):
         # The maximum length of the response
         max_output_tokens=800,
     )
-
+    st.markdown(completion.result,unsafe_allow_html=True)
     return(completion.result)
 
 def ai_palm(txt):
@@ -265,7 +266,7 @@ def pdf(s):
               for i in k:
                   if ".pdf" in i:
                       st.write(i)
-                      content = palm_pdf(j)
+                      palm_pdf(j)
                       st.markdown(content)
               #title=ai(j+" Explain the title and content in short in this link. the title should be in bold",1)
   #             st.components.v1.iframe(j)

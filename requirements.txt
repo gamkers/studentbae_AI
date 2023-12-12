@@ -15,5 +15,4 @@ googlesearch-python
 google
 deta
 google-generativeai
-palm
 

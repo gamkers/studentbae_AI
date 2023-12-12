@@ -265,7 +265,7 @@ def pdf(s):
                     if ".pdf" in i:
                         st.write(i)
                         # Assuming palm_pdf is a function you have defined elsewhere
-                        palm_pdf(j)
+                        #palm_pdf(j)
                 # Assuming you want to display a download link using Streamlit
                 st.markdown(f'<a href="{j}" download>DOWNLOAD</a>', unsafe_allow_html=True)
     except Exception as e:

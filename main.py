@@ -230,7 +230,7 @@ try:
         display("MCQ's")
     elif selected2 == 'E-BOOKS':
         display('E-BOOKS')
-    elif selected2 == "SQL":
+    elif selected2 == "Interview":
         st.image("images/search1.png")
         def local_css(file_name):
                 with open(file_name) as f:
@@ -243,11 +243,10 @@ try:
         local_css("style.css")
         remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
         #   form = st.form(key='my-form')
-        t = st.text_input("TABLE DETAILS", "")
-        q = st.text_input("What you want?", "")
+        t = st.text_input("Mention your job Role", "")
         submit = st.button("SEARCH")
         if submit:
-            sql(t,q)
+            ai_HR(t)
     elif selected2 == 'OSINT':
         st.image("images/search1.png")
         def local_css(file_name):

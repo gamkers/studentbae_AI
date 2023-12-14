@@ -80,7 +80,7 @@ def lottieurl(url):
 page_bg_img = f"""
 <style>
 [data-testid="stAppViewContainer"] > .main {{
-background-image: linear-gradient(to right, #333333, #333333);
+background-image: linear-gradient(to right, #008080, #008080);
 opacity: 0.8;
 
 }}

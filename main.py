@@ -108,15 +108,6 @@ start_sequence = "\nAI:"
 restart_sequence = "\nHuman: "
 
 
-hide_menu_style = """
-        <style>
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden; }
-        </style>
-        """
-st.markdown(hide_menu_style, unsafe_allow_html=True)
-
-
 lottie_coding = lottieurl("https://assets10.lottiefiles.com/packages/lf20_i9mtrven.json")
 lottie_coding2 = lottieurl("https://assets8.lottiefiles.com/packages/lf20_2LdLki.json")
 lottie_coding3 = lottieurl("https://assets8.lottiefiles.com/packages/lf20_oyi9a28g.json")

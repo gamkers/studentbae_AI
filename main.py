@@ -157,6 +157,16 @@ try:
 
 
     elif selected2 == 'Search':
+        styl = f"""
+        <style>
+            .stTextInput {{
+              position: fixed;
+              bottom: 3rem;
+            }}
+        </style>
+        """
+        st.markdown(styl, unsafe_allow_html=True)
+
         st.image("images/search1.png")
         def local_css(file_name):
             with open(file_name) as f:

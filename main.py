@@ -126,7 +126,7 @@ try:
                 st.title("STUDENTBAE")
                 st.write(
                     "STUDENTBAE is a web-based application that helps students assist with their tasks and make their lives easier. in recent eras, the educational system evolved a lot and most organisations moved from pen and paper method to totally to online mode, So we help students to get their resources easily and quickly. We provide our users with a personalized search engine for studies, there students can get PDFs, Slides, Notes, Courses, Research  papers, Question Papers, and E-books.")
-                st.write("[DOWNLOAD NOW >](https://newsify.en.uptodown.com/android)")
+                
 
             with right_coloumn:
                 st.image("images/hero.png")

@@ -80,17 +80,11 @@ def ai_HR(role):
     # You should be capable of generating 10 relevant interview questions with Short model answers Related to {role}. Additionally,
     # it should be able to suggest key points to include in a candidate's resume for this specific job role and some projects ideas for a collage students.
     # """
-    def ai_HR(role):
-    import google.generativeai as palm
-    palm.configure(api_key='AIzaSyBjHDPK5eh-AJzsHRxT3xicaCm1-I7Vujo')
-    models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
-    model = models[0].name
     prompt = f"""
 act as AI system that serves as an HR interviewer for the role of {role}. 
 You should be capable of generating 10 relevant interview questions with model answers Related to {role}. Additionally,
 it should be able to suggest key points to include in a candidate's resume for this specific job role and some projects ideas for a collage students.
 """
-
 
     completion = palm.generate_text(
         model=model,

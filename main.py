@@ -65,7 +65,7 @@ def answers(query):
 
 
 with st.sidebar:
-  selected2 = option_menu(None, ["Login","Register","Home",'Search',"Assistant",'AdvanceGPT',"SQL",'OSINT',"DOCSGPT",'NEWSIFY'],
+  selected2 = option_menu(None, ["Login","Register","Home",'Search',"Assistant",'AdvanceGPT',"Interview",'OSINT',"DOCSGPT",'NEWSIFY'],
                           icons=['person-fill', 'person-plus-fill', 'house-fill', 'search', 'robot', 'book-half', "code-slash", 'globe2', "file-earmark-richtext-fill", 'newspaper'],
                           menu_icon="cast", default_index=2, orientation="vertical")
 

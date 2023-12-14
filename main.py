@@ -160,7 +160,8 @@ try:
         styl = f"""
         <style>
             .stTextInput {{
-              position: fixed;
+            border-radius: 25px;
+            background: #73AD21;
             }}
         </style>
         """

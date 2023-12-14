@@ -81,10 +81,11 @@ def ai_HR(role):
     # it should be able to suggest key points to include in a candidate's resume for this specific job role and some projects ideas for a collage students.
     # """
     prompt = f"""
-act as AI system that serves as an HR interviewer for the role of {role}. 
-You should be capable of generating 10 relevant interview questions with model answers Related to {role}. Additionally,
-it should be able to suggest key points to include in a candidate's resume for this specific job role and some projects ideas for a collage students.
+    Develop an HR system for {role} interviews. Create 7 technical questions with short answers, 3 behavioral questions with answers, and 3 coding questions with solutions.
+
+    Also, suggest 5 key resume points for {role} and propose 3 project ideas showcasing a candidate's suitability: 
 """
+
 
     completion = palm.generate_text(
         model=model,

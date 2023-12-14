@@ -91,18 +91,7 @@ it should be able to suggest key points to include in a candidate's resume for t
         prompt=prompt,
         temperature=0.5,
         # The maximum length of the response
-        max_output_tokens=2800,
-    )
-
-    return(completion.result)
-
-
-    completion = palm.generate_text(
-        model=model,
-        prompt=prompt,
-        temperature=0.5,
-        # The maximum length of the response
-        max_output_tokens=2850,
+        max_output_tokens=3000,
     )
     st.markdown(completion.result,unsafe_allow_html=True)
     return(completion.result)

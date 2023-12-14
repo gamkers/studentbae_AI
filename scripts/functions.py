@@ -77,7 +77,7 @@ def ai_HR(role):
     model = models[0].name
     prompt = f"""
     act as AI system that serves as an HR interviewer for the role of {role}. 
-    You should be capable of generating 10 relevant interview questions with model answers Related to {role}. Additionally,
+    You should be capable of generating 10 relevant interview questions with Short model answers Related to {role}. Additionally,
     it should be able to suggest key points to include in a candidate's resume for this specific job role and some projects ideas for a collage students.
     """
 

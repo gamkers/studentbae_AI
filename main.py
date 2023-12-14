@@ -147,7 +147,7 @@ try:
 
 
 
-    elif selected2 == 'home':
+    elif selected2 == 'Home':
     
 
         st.image("images/search1.png")

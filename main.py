@@ -116,7 +116,7 @@ try:
         login()
     elif selected2 == 'Register':
         register()
-    elif selected2 == 'Home':
+    elif selected2 == 'Search':
         st.image("images/logofinal.png")
         with st.container():
             st.write("---")
@@ -147,7 +147,7 @@ try:
 
 
 
-    elif selected2 == 'Search':
+    elif selected2 == 'home':
     
 
         st.image("images/search1.png")

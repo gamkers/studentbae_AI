@@ -173,10 +173,8 @@ try:
 
         local_css("style.css")
         remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
-        st.write('''Discover a world of knowledge effortlessly with our advanced search feature! 
-        Effortlessly locate PDFs, PPTs, question papers, research papers, and ebooks using our intuitive search bar.
-        Unleash the power of precise and focused searches, streamlining your access to educational resources.
-        Simplify your learning journey – explore, discover, and excel with just a few clicks!''')
+        st.write(''Explore seamlessly with our advanced search! Find PDFs, PPTs, question papers, research papers, and ebooks effortlessly. 
+        Simplify your learning journey with precise searches – discover, learn, excel!!''')
 
         form = st.form(key='my-form')
 

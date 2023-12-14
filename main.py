@@ -161,7 +161,6 @@ try:
         <style>
             .stTextInput {{
               position: fixed;
-              bottom: 3rem;
             }}
         </style>
         """

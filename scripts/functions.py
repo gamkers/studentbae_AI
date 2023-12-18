@@ -118,7 +118,7 @@ def palm_conversation(context=""):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             with st.spinner('Processing...'):
-                # time.sleep(2)
+                time.sleep(2)
                 st.markdown(prompt)
 
         # Generate response from PaLM using ai_palm function

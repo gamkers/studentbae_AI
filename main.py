@@ -326,38 +326,38 @@ try:
     elif selected2 == 'AdvanceGPT':
         try:
             st.image("images/colab.png")
+            if st.session_state.log == True:
+                st.write("Login Successful")
+                def local_css(file_name):
+                with open(file_name) as f:
+                    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    
+    
+                def remote_css(url):
+                    st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
+        
+        
+                def icon(icon_name):
+                    st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
+        
+        
+                local_css("style.css")
+                remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
+        
+                selected = st.text_input("Document Searcher", "")
+                selected1 = st.text_input("question", key="widget2")
+                submit = st.button("SEARCH")
+        
+                n = st.slider('number of documents', 1, 1, 10, 1)
+        
+                if submit:
+                    urls = pdfs(selected, 1)
+                    texts = pdftotxt(urls)
+                    chunks(texts,selected1)
+            else:
+                st.write("Login Failes")
         except:
-            st.write("This Feature Required Login")
-        if st.session_state.log == True:
-            st.write("Login Successful")
-        else:
-            st.write("Login Failes")
-        def local_css(file_name):
-            with open(file_name) as f:
-                st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
-
-        def remote_css(url):
-            st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
-
-
-        def icon(icon_name):
-            st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
-
-
-        local_css("style.css")
-        remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
-
-        selected = st.text_input("Document Searcher", "")
-        selected1 = st.text_input("question", key="widget2")
-        submit = st.button("SEARCH")
-
-        n = st.slider('number of documents', 1, 1, 10, 1)
-
-        if submit:
-            urls = pdfs(selected, 1)
-            texts = pdftotxt(urls)
-            chunks(texts,selected1)
+            st.write("This Feature Required Login")   
     
     elif selected2 == "DOCSGPT":
         st.image("images/colab.png")

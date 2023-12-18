@@ -20,7 +20,7 @@ from scripts.login import *
 st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
 from scripts.functions  import *
 
-st.session_state.log = False
+
 def displays(data):
     voice = []
     for i in range(5):

@@ -319,7 +319,7 @@ def pearson(my_string):
           social_media_name = re.search(pattern, i)
           title = f"<b>{social_media_name}</b> website name"
           st.markdown(f'<p style="font-size: larger;">"Title"+{title}</p>', unsafe_allow_html=True)
-          st.markdown(f'<a href="{i}">View more</a>', unsafe_allow_html=True)
+          st.markdown(f'<a href="{i}">View-more</a>', unsafe_allow_html=True)
       else:
         print("match not found")
   except:

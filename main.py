@@ -360,9 +360,9 @@ try:
                 If you don't have an account yet, you can easily create one by tapping [Sign Up] below.""")
         except Exception as e:
             st.header("🔒 Login Required")
-            st.write("""🔒 To access AdvanceGPT, please log in to your account. 
+            st.write("""To access AdvanceGPT, please log in to your account. 
                 Logging in allows you to unlock additional benefits and personalized experiences. 
-                If you don't have an account yet, you can easily create one by tapping [Sign Up] below.""")
+                If you don't have an account yet, you can easily create one by tapping Register.""")
 
     
     elif selected2 == "DOCSGPT":

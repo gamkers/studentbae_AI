@@ -266,7 +266,7 @@ try:
     
     elif selected2 == 'Assistant':
 
-        st.image("images/colab.png")
+        #st.image("images/colab.png")
         # Header for the application
         st.header("Welcome to AI Tutor – Your Personalized Learning Companion!")
         

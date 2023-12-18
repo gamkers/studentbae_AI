@@ -327,7 +327,6 @@ try:
         try:
             st.image("images/colab.png")
             if st.session_state.log == True:
-                st.write("Login Successful")
                 def local_css(file_name):
                     with open(file_name) as f:
                         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -355,7 +354,10 @@ try:
                     texts = pdftotxt(urls)
                     chunks(texts,selected1)
             else:
-                st.write("Login Failes")
+                st.header("🔒 Login Required")
+                st.write("""🔒 To access AdvanceGPT, please log in to your account. 
+                Logging in allows you to unlock additional benefits and personalized experiences. 
+                If you don't have an account yet, you can easily create one by tapping [Sign Up] below.""")
         except Exception as e:
             st.error(f"An error occurred: {e}") 
     

@@ -366,75 +366,87 @@ try:
 
     
     elif selected2 == "DOCSGPT":
-        st.image("images/colab.png")
-        def local_css(file_name):
-            with open(file_name) as f:
-                st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
-
-        def remote_css(url):
-            st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
-
-
-        def icon(icon_name):
-            st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
-
-
-        local_css("style.css")
-        remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
-    
-        from PyPDF2 import PdfReader
-        options = st.multiselect(
-            'file type',
-            ['CSV', 'PDF'])
-        if "PDF" in options:
-            uploaded_file = st.file_uploader("Upload PDF", type="pdf")
-            pdf_readed = '' 
-            if uploaded_file is not None:
-                # Process the uploaded PDF file
-                # You can save it, read its content, or perform any other necessary operations
-                # For example, if you want to read the content using PyPDF2:
-                reader = PdfReader(uploaded_file)
-
-                raw_text = ''
-                for i, page in enumerate(reader.pages):
-                    text = page.extract_text()
-                    if text:
-                        raw_text += text
-
-                text_splitter = CharacterTextSplitter(        
-                separator = "\n",
-                chunk_size = 1000,
-                chunk_overlap  = 200,
-                length_function = len,
-                )
-                texts = text_splitter.split_text(raw_text)
-                embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
-                docsearchs = FAISS.from_texts(texts, embeddings)
-                chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
-
-        elif "CSV" in options:
-            import pandas as pd
-            uploaded_file = st.file_uploader("Upload PDF", type="csv")
-            if uploaded_file is not None:
-                # Read the CSV file into a pandas DataFrame
-                df = pd.read_csv(uploaded_file)
-                # Convert DataFrame to text
-                text = df.to_string(index=False)
-                data = text
-                embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
-                docsearchs = FAISS.from_texts(data, embeddings)
-                chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
-
+         try:
+            st.image("images/colab.png")
+            if st.session_state.log == True:
+                def local_css(file_name):
+                    with open(file_name) as f:
+                        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+        
+        
+                def remote_css(url):
+                    st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
+        
+        
+                def icon(icon_name):
+                    st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
+        
+        
+                local_css("style.css")
+                remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
             
-        form = st.form(key='my-form')
-
-        selected = form.text_input("TYPE YOUR QUESTION", "")
-        submit = form.form_submit_button("SEARCH")
-        if submit:
-            query = selected
-            docs = docsearchs.similarity_search(query)
-            st.write(chain.run(input_documents=docs, question=query))
+                from PyPDF2 import PdfReader
+                options = st.multiselect(
+                    'file type',
+                    ['CSV', 'PDF'])
+                if "PDF" in options:
+                    uploaded_file = st.file_uploader("Upload PDF", type="pdf")
+                    pdf_readed = '' 
+                    if uploaded_file is not None:
+                        # Process the uploaded PDF file
+                        # You can save it, read its content, or perform any other necessary operations
+                        # For example, if you want to read the content using PyPDF2:
+                        reader = PdfReader(uploaded_file)
+        
+                        raw_text = ''
+                        for i, page in enumerate(reader.pages):
+                            text = page.extract_text()
+                            if text:
+                                raw_text += text
+        
+                        text_splitter = CharacterTextSplitter(        
+                        separator = "\n",
+                        chunk_size = 1000,
+                        chunk_overlap  = 200,
+                        length_function = len,
+                        )
+                        texts = text_splitter.split_text(raw_text)
+                        embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
+                        docsearchs = FAISS.from_texts(texts, embeddings)
+                        chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
+        
+                elif "CSV" in options:
+                    import pandas as pd
+                    uploaded_file = st.file_uploader("Upload PDF", type="csv")
+                    if uploaded_file is not None:
+                        # Read the CSV file into a pandas DataFrame
+                        df = pd.read_csv(uploaded_file)
+                        # Convert DataFrame to text
+                        text = df.to_string(index=False)
+                        data = text
+                        embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["api"])
+                        docsearchs = FAISS.from_texts(data, embeddings)
+                        chain = load_qa_chain(OpenAI(openai_api_key=st.secrets["api"]), chain_type="stuff")
+        
+                    
+                form = st.form(key='my-form')
+        
+                selected = form.text_input("TYPE YOUR QUESTION", "")
+                submit = form.form_submit_button("SEARCH")
+                if submit:
+                    query = selected
+                    docs = docsearchs.similarity_search(query)
+                    st.write(chain.run(input_documents=docs, question=query))
+             else:
+                st.header("🔒 Login Required")
+                st.write("""🔒 To access AdvanceGPT, please log in to your account. 
+                Logging in allows you to unlock additional benefits and personalized experiences. 
+                If you don't have an account yet, you can easily create one by tapping [Sign Up] below.""")
+        except Exception as e:
+            st.header("🔒 Login Required")
+            st.write("""To access AdvanceGPT, please log in to your account. 
+                Logging in allows you to unlock additional benefits and personalized experiences. 
+                If you don't have an account yet, you can easily create one by tapping Register.""")
 
     elif selected2 == 'NEWSIFY':
         

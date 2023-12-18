@@ -68,7 +68,7 @@ def is_strong_password(password):
 
 @st.cache(hash_funcs={_thread.RLock: lambda lock: id(lock)})
 def login():
-    global log
+
     st.title("User Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
@@ -77,7 +77,6 @@ def login():
         if a is not None:  # Check if 'a' is not None (i.e., valid credentials)
             st.success("Login Successful")
             st.session_state.log = True
-            return a  # Return the API key when the login is successful
         else:
             st.error("Incorrect username or password. Please try again.")
 

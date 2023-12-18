@@ -20,7 +20,7 @@ from scripts.login import *
 st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
 from scripts.functions  import *
 
-
+log = False
 def displays(data):
     voice = []
     for i in range(5):
@@ -325,6 +325,10 @@ try:
             
     elif selected2 == 'AdvanceGPT':
         st.image("images/colab.png")
+        if log == True:
+            st.write("Login Successful")
+        else:
+            st.write("Login Failes")
         def local_css(file_name):
             with open(file_name) as f:
                 st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)

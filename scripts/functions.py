@@ -78,10 +78,10 @@ def ai_chat(txt, context=""):
     prompt = f"""
     **Previous Conversation:**
     {context}
-
+    Act as a Professor 
     **User:** {txt}
 
-    **Teacher:**
+    **as Professor:**
 
     (Provide explanation here...)
     """

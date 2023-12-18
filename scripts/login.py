@@ -1,6 +1,7 @@
 
 import streamlit as st
 from deta import Deta
+st.session_state.log = False
 def register():
     st.title("User Registration")
     

@@ -111,7 +111,7 @@ def palm_conversation(context=""):
             st.markdown(prompt)
 
         # Generate response from PaLM using ai_palm function
-        full_response = chat(prompt)
+        full_response = ai_chat(prompt)
 
         # Update context and show assistant message
         st.session_state["pal_context"] += "\n" + full_response

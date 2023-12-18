@@ -356,8 +356,8 @@ try:
                     chunks(texts,selected1)
             else:
                 st.write("Login Failes")
-        except:
-            st.write("This Feature Required Login")   
+        except Exception as e:
+            st.error(f"An error occurred: {e}") 
     
     elif selected2 == "DOCSGPT":
         st.image("images/colab.png")

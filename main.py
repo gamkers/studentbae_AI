@@ -281,17 +281,7 @@ try:
                  
         st.write("🛠️ **Choose Your Learning Style**\n"
                  "AI Tutor isn't just about answers; it's about personalized learning. Tailor your learning experience by choosing the type of assistance you prefer:")
-                 
-        st.write("- 🎥 Videos: Visual learners, we've got you covered!\n"
-                 "- 📚 PDFs and Ebooks: Dive deep into written materials.\n"
-                 "- 📊 PPTs: For those who learn through presentations.\n"
-                 "- 📖 Research Papers: Explore in-depth insights.\n"
-                 "- 📝 Question Papers: Practice makes perfect!")
-        
-        # Paragraph on a world of knowledge at your fingertips
-        st.write("🌐 **A World of Knowledge at Your Fingertips**\n"
-                 "Whether you're preparing for exams, seeking clarification, or just curious, AI Tutor connects you to a vast repository of educational resources. "
-                 "Enhance your understanding with ease!")
+
         
         # Call to action
         st.write("Ready to embark on a smarter learning journey? Explore the power of AI Tutor now!")

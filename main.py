@@ -65,8 +65,8 @@ def answers(query):
 
 
 with st.sidebar:
-  selected2 = option_menu(None, ["Login","Register","Home","Assistant",'AdvanceGPT',"Interview",'OSINT',"DOCSGPT",'NEWSIFY','About'],
-                          icons=['person-fill', 'person-plus-fill', 'house-fill', 'robot', 'book-half', "code-slash", 'globe2', "file-earmark-richtext-fill", 'newspaper','person-fill'],
+  selected2 = option_menu(None, ["Login","Register","Home","Tutor.AI",'Expert.AI',"Intervue.BOT",'Detect.AI','StudentB-AI',"Docu Search",'TeleFeed','About'],
+                          icons=['person-fill', 'person-plus-fill', 'house-fill', 'robot', 'book-half', "code-slash", 'globe2','robot', "file-earmark-richtext-fill", 'newspaper','person-fill'],
                           menu_icon="cast", default_index=2, orientation="vertical")
 
 
@@ -209,26 +209,8 @@ try:
             elif "E-BOOKS" in options:
                 selected = f"{selected} BOOK"
                 pdf(selected)
-            elif "Hacker Rank" in options:
-                st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")
-        
-    elif selected2 == "PDF":
-        display("PDF")
-    elif selected2 == "PPT":
-        display("PPT")
-    elif selected2 == "Courses":
-        display("Courses")
-    elif selected2 == "Research papers":
-        display("Research papers")
-    elif selected2 == "Question Papers":
-        display("Question Papers")
-    elif selected2 == "Hacker Rank":
-        display("Hacker Rank")
-    elif selected2 == "MCQ's":
-        display("MCQ's")
-    elif selected2 == 'E-BOOKS':
-        display('E-BOOKS')
-    elif selected2 == "Interview":
+     
+    elif selected2 == "Intervue.BOT":
         st.image("images/search1.png")
         def local_css(file_name):
                 with open(file_name) as f:
@@ -245,28 +227,32 @@ try:
         submit = st.button("SEARCH")
         if submit:
             ai_HR(t)
-    elif selected2 == 'OSINT':
+    elif selected2 == 'StudentB-AI':
         # Run the conversation function
         palm_conversation()
-        # st.image("images/search1.png")
-        # def local_css(file_name):
-        #         with open(file_name) as f:
-        #             st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-        # def remote_css(url):
-        #         st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
-        # def icon(icon_name):
-        #         st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
+
+
+    elif selected2 == 'Detect.AI':
+
+        st.image("images/search1.png")
+        def local_css(file_name):
+                with open(file_name) as f:
+                    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+        def remote_css(url):
+                st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
+        def icon(icon_name):
+                st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
             
-        # local_css("style.css")
-        # remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
-        # #   form = st.form(key='my-form')
-        # t = st.text_input("USERNAME", "")
-        # submit = st.button("SEARCH")
-        # if submit:
-        #     pearson(t)
+        local_css("style.css")
+        remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
+        #   form = st.form(key='my-form')
+        t = st.text_input("USERNAME", "")
+        submit = st.button("SEARCH")
+        if submit:
+            pearson(t)
         
     
-    elif selected2 == 'Assistant':
+    elif selected2 == 'Tutor.AI':
 
         #st.image("images/colab.png")
         # Header for the application
@@ -344,7 +330,7 @@ try:
             elif "Hacker Rank" in options:
                 st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")
             
-    elif selected2 == 'AdvanceGPT':
+    elif selected2 == 'Expert.AI':
         try:
             st.image("images/colab.png")
             if st.session_state.log == True:
@@ -386,7 +372,7 @@ try:
                 If you don't have an account yet, you can easily create one by tapping Register.""")
 
     
-    elif selected2 == "DOCSGPT":
+    elif selected2 == "Docu Search":
         try:
             st.image("images/colab.png")
             if st.session_state.log == True:
@@ -469,7 +455,7 @@ try:
                 Logging in allows you to unlock additional benefits and personalized experiences. 
                 If you don't have an account yet, you can easily create one by tapping Register.""")
 
-    elif selected2 == 'NEWSIFY':
+    elif selected2 == 'TeleFeed':
         
         st.image("images/colab.png")
         def local_css(file_name):

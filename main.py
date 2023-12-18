@@ -81,6 +81,7 @@ page_bg_img = """
 <style>
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
+header {visibility: hidden;}
 [data-testid="stAppViewContainer"] > .main {{
 background-image: linear-gradient(to right, #000000, #000000);
 opacity: 0.8;

@@ -262,7 +262,41 @@ try:
         
     
     elif selected2 == 'Assistant':
+
         st.image("images/colab.png")
+        # Header for the application
+        st.header("Welcome to AI Tutor – Your Personalized Learning Companion!")
+        
+        # Subheader for the AI Tutor feature
+        st.subheader("🚀 Introducing AI Tutor: Your Smart Study Partner")
+        
+        # Paragraph introducing AI Tutor
+        st.write("Are you ready to take your learning experience to the next level? We're excited to introduce our innovative feature – AI Tutor! "
+                 "Designed to be your go-to study companion, AI Tutor is here to assist you in your academic journey.")
+        
+        # Bullet points for AI Tutor features
+        st.write("🔍 **Ask Any Question, Anytime**\n"
+                 "Have a burning question or struggling with a concept? Simply ask AI Tutor, and watch the magic happen! "
+                 "Our advanced AI is equipped to provide accurate and detailed answers across a wide range of subjects.")
+                 
+        st.write("🛠️ **Choose Your Learning Style**\n"
+                 "AI Tutor isn't just about answers; it's about personalized learning. Tailor your learning experience by choosing the type of assistance you prefer:")
+                 
+        st.write("- 🎥 Videos: Visual learners, we've got you covered!\n"
+                 "- 📚 PDFs and Ebooks: Dive deep into written materials.\n"
+                 "- 📊 PPTs: For those who learn through presentations.\n"
+                 "- 📖 Research Papers: Explore in-depth insights.\n"
+                 "- 📝 Question Papers: Practice makes perfect!")
+        
+        # Paragraph on a world of knowledge at your fingertips
+        st.write("🌐 **A World of Knowledge at Your Fingertips**\n"
+                 "Whether you're preparing for exams, seeking clarification, or just curious, AI Tutor connects you to a vast repository of educational resources. "
+                 "Enhance your understanding with ease!")
+        
+        # Call to action
+        st.write("Ready to embark on a smarter learning journey? Explore the power of AI Tutor now!")
+
+        
         def local_css(file_name):
             with open(file_name) as f:
                 st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)

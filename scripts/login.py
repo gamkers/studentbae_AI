@@ -73,7 +73,6 @@ def is_strong_password(password):
 
 @st.cache
 def login():
-    global log
     st.title("User Login")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")

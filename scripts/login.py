@@ -66,7 +66,7 @@ def is_strong_password(password):
     
     return True
 
-@st.cache(hash_funcs={_thread.RLock: lambda lock: id(lock)})
+
 def login():
 
     st.title("User Login")

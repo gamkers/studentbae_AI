@@ -70,6 +70,37 @@ def ai_palm(txt):
     )
     st.markdown(completion.result,unsafe_allow_html=True)
     return(completion.result)
+
+def palm_conversation(context=""):
+
+    # Initialize session state if needed
+    if "pal_context" not in st.session_state:
+        st.session_state["pal_context"] = ""
+
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+
+    # Title and prompt input
+    st.title("PaLM-powered Learning")
+    prompt = st.chat_input("What would you like to learn about?")
+
+    # Update session state and display user message
+    if prompt:
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        with st.chat_message("user"):
+            st.markdown(prompt)
+
+        # Generate response from PaLM using ai_palm function
+        full_response = ai_palm(prompt)
+
+        # Update context and show assistant message
+        st.session_state["pal_context"] += "\n" + full_response
+        with st.chat_message("assistant"):
+            st.markdown(full_response)
+        st.session_state.messages.append({"role": "assistant", "content": full_response})
+
+
+
 def ai_HR(role):
     import google.generativeai as palm
     palm.configure(api_key='AIzaSyBjHDPK5eh-AJzsHRxT3xicaCm1-I7Vujo')

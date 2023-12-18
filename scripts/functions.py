@@ -71,7 +71,7 @@ def ai_palm(txt):
     st.markdown(completion.result,unsafe_allow_html=True)
     return(completion.result)
 
-def ai_chat(txt, context-""):
+def ai_chat(txt, context=""):
 
     models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
     model = models[0].name

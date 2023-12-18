@@ -229,7 +229,6 @@ try:
             ai_HR(t)
     elif selected2 == 'StudentGPT':
         # Run the conversation function
-        form.write("Hello")
         palm_conversation()
 
 

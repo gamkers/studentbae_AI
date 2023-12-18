@@ -324,7 +324,10 @@ try:
                 st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")
             
     elif selected2 == 'AdvanceGPT':
-        st.image("images/colab.png")
+        try:
+            st.image("images/colab.png")
+        except:
+            st.write("This Feature Required Login")
         if st.session_state.log == True:
             st.write("Login Successful")
         else:

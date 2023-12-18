@@ -66,7 +66,7 @@ def is_strong_password(password):
     
     return True
 
-
+@st.cache
 def login():
     global log
     st.title("User Login")

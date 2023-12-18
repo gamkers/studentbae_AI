@@ -366,7 +366,7 @@ try:
 
     
     elif selected2 == "DOCSGPT":
-         try:
+        try:
             st.image("images/colab.png")
             if st.session_state.log == True:
                 def local_css(file_name):

@@ -77,8 +77,10 @@ def lottieurl(url):
     return r.json() 
 
 
-page_bg_img = f"""
+page_bg_img = """
 <style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
 [data-testid="stAppViewContainer"] > .main {{
 background-image: linear-gradient(to right, #000000, #000000);
 opacity: 0.8;

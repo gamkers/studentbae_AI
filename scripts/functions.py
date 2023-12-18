@@ -103,10 +103,15 @@ def palm_conversation(context=""):
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
+        
 
     # Title and prompt input
-    st.title("PaLM-powered Learning")
+    st.title("StudenBae-AI")
     prompt = st.chat_input("What would you like to learn about?")
+
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])    
 
     # Update session state and display user message
     if prompt:

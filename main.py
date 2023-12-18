@@ -223,7 +223,7 @@ try:
         local_css("style.css")
         remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
         #   form = st.form(key='my-form')
-        t = st.chat_input("Mention your job Role", "")
+        t = st.chat_input("")
         submit = st.button("SEARCH")
         if submit:
             ai_HR(t)

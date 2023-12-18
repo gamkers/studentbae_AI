@@ -316,10 +316,10 @@ def pearson(my_string):
     pattern = "(instagram|facebook|youtube|twitter|github|linkedin|scholar|hackerrank|tiktok|maps)+\.(com|edu|net|fandom)"
     for i in search(query, tld="co.in", num=20, stop=15, pause=2):
       if (re.search(pattern, i)):
-          social_media_name = re.search(pattern, i)
+          social_media_name = re.search(pattern, i).group(1)
           title = f"<b>{social_media_name}</b> website name"
           st.markdown(f'<p style="font-size: larger;">{title}</p>', unsafe_allow_html=True)
-          st.markdown(f'<a href="{i}">View more</a>', unsafe_allow_html=True)
+          st.markdown(f'<a href="{i}">View-more</a>', unsafe_allow_html=True)
       else:
         print("match not found")
   except:

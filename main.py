@@ -65,7 +65,7 @@ def answers(query):
 
 
 with st.sidebar:
-  selected2 = option_menu(None, ["Login","Register","Home","Tutor.AI",'Expert.AI',"Intervue.BOT",'Detect.AI','StudentB-AI',"Docu Search",'TeleFeed','About'],
+  selected2 = option_menu(None, ["Login","Register","Home","Tutor.AI",'Expert.AI',"Interview.AI",'Detect.AI','StudentGPT',"Docu Search",'TeleFeed','About'],
                           icons=['person-fill', 'person-plus-fill', 'house-fill', 'robot', 'book-half', "code-slash", 'globe2','robot', "file-earmark-richtext-fill", 'newspaper','person-fill'],
                           menu_icon="cast", default_index=2, orientation="vertical")
 
@@ -210,7 +210,7 @@ try:
                 selected = f"{selected} BOOK"
                 pdf(selected)
      
-    elif selected2 == "Intervue.BOT":
+    elif selected2 == "Interview.AI":
         st.image("images/search1.png")
         def local_css(file_name):
                 with open(file_name) as f:
@@ -227,7 +227,7 @@ try:
         submit = st.button("SEARCH")
         if submit:
             ai_HR(t)
-    elif selected2 == 'StudentB-AI':
+    elif selected2 == 'StudentGPT':
         # Run the conversation function
         palm_conversation()
 

@@ -81,7 +81,7 @@ def ai_chat(txt, context=""):
     Act as a Professor 
     **User:** {txt}
 
-    **as Professor:**
+    **as Professor explain it like im a student with points to note down and reference:**
 
     (Provide explanation here...)
     """

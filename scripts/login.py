@@ -66,7 +66,7 @@ def is_strong_password(password):
     
     return True
 
-@st.cache
+
 def login():
     global log
     st.title("User Login")
@@ -76,7 +76,7 @@ def login():
         a = valid_credentials(username, password)  # Assign the result to 'a'
         if a is not None:  # Check if 'a' is not None (i.e., valid credentials)
             st.success("Login Successful")
-            log = True
+            st.session_state.log = True
             return a  # Return the API key when the login is successful
         else:
             st.error("Incorrect username or password. Please try again.")

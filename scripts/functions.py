@@ -128,14 +128,6 @@ def palm_conversation(context=""):
             st.markdown(full_response)
         st.session_state.messages.append({"role": "assistant", "content": full_response})
         
-    with st.container():
-        st.markdown("---")
-        st.markdown("**Previous Conversation:**")
-        for message in st.session_state["messages"]:
-            if message["role"] == "user":
-                st.markdown(f"**You:** {message['content']}")
-            else:
-                st.markdown(f"**Assistant:** {message['content']}")
 
 # Run the conversation function
 palm_conversation()

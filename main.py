@@ -267,9 +267,6 @@ try:
         # Header for the application
         st.header("Welcome to AI Tutor – Your Personalized Learning Companion!")
         
-        # Subheader for the AI Tutor feature
-        st.subheader("🚀 Introducing AI Tutor: Your Smart Study Partner")
-        
         # Paragraph introducing AI Tutor
         st.write("Are you ready to take your learning experience to the next level? We're excited to introduce our innovative feature – AI Tutor! "
                  "Designed to be your go-to study companion, AI Tutor is here to assist you in your academic journey.")

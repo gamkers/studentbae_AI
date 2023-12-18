@@ -281,11 +281,6 @@ try:
                  
         st.write("🛠️ **Choose Your Learning Style**\n"
                  "AI Tutor isn't just about answers; it's about personalized learning. Tailor your learning experience by choosing the type of assistance you prefer:")
-
-        
-        # Call to action
-        st.write("Ready to embark on a smarter learning journey? Explore the power of AI Tutor now!")
-
         
         def local_css(file_name):
             with open(file_name) as f:

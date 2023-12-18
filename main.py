@@ -290,11 +290,11 @@ try:
         form = st.form(key='my-form')
 
         selected = form.text_input("", "")
-
-        submit = form.form_submit_button("SEARCH")
         options = st.multiselect(
             'ASSIST WITH',
             ['PDF', 'PPT', 'Research papers','Question Papers', 'E-BOOKS','Videos'])
+        submit = form.form_submit_button("SEARCH")
+        
         
         #n = st.slider('number of lines', 0.0, 1,0, 0.1)
         

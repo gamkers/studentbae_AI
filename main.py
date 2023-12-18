@@ -437,7 +437,7 @@ try:
                     query = selected
                     docs = docsearchs.similarity_search(query)
                     st.write(chain.run(input_documents=docs, question=query))
-             else:
+            else:
                 st.header("🔒 Login Required")
                 st.write("""🔒 To access AdvanceGPT, please log in to your account. 
                 Logging in allows you to unlock additional benefits and personalized experiences. 

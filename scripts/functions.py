@@ -71,6 +71,26 @@ def ai_palm(txt):
     st.markdown(completion.result,unsafe_allow_html=True)
     return(completion.result)
 
+def ai_chat(txt):
+
+    models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
+    model = models[0].name
+    prompt = f"""
+    You are an expert at Teaching.
+
+    explain me about: {txt}
+    """
+
+    completion = palm.generate_text(
+        model=model,
+        prompt=prompt,
+        temperature=0,
+        # The maximum length of the response
+        max_output_tokens=800,
+    )
+    st.markdown(completion.result,unsafe_allow_html=True)
+    return(completion.result)
+
 def palm_conversation(context=""):
 
     # Initialize session state if needed
@@ -91,7 +111,7 @@ def palm_conversation(context=""):
             st.markdown(prompt)
 
         # Generate response from PaLM using ai_palm function
-        full_response = ai_palm(prompt)
+        full_response = chat(prompt)
 
         # Update context and show assistant message
         st.session_state["pal_context"] += "\n" + full_response

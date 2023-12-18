@@ -83,7 +83,7 @@ page_bg_img = """
 footer {visibility: hidden;}
 header {visibility: hidden;}
 [data-testid="stAppViewContainer"] > .main {{
-background-image: linear-gradient(to right, #000000, #000000);
+background-image: linear-gradient(to right, #000000,#3c3c50);
 opacity: 0.8;
 
 }}

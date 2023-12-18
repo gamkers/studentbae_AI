@@ -20,7 +20,7 @@ from scripts.login import *
 st.set_page_config(page_title="STUDENTBAE", page_icon=":tada:", layout='wide')
 from scripts.functions  import *
 
-log = False
+st.session_state.log = False
 def displays(data):
     voice = []
     for i in range(5):
@@ -325,7 +325,7 @@ try:
             
     elif selected2 == 'AdvanceGPT':
         st.image("images/colab.png")
-        if log == True:
+        if st.session_state.log == True:
             st.write("Login Successful")
         else:
             st.write("Login Failes")

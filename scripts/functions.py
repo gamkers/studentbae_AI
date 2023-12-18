@@ -130,7 +130,7 @@ def palm_conversation(context=""):
         
 
 # Run the conversation function
-palm_conversation()
+
 
 
 def ai_HR(role):

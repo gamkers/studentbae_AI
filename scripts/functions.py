@@ -71,14 +71,19 @@ def ai_palm(txt):
     st.markdown(completion.result,unsafe_allow_html=True)
     return(completion.result)
 
-def ai_chat(txt):
+def ai_chat(txt, context-""):
 
     models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
     model = models[0].name
     prompt = f"""
-    You are an expert at Teaching.
+    **Previous Conversation:**
+    {context}
 
-    explain me about: {txt}
+    **User:** {txt}
+
+    **Teacher:**
+
+    (Provide explanation here...)
     """
 
     completion = palm.generate_text(
@@ -110,14 +115,16 @@ def palm_conversation(context=""):
             st.markdown(prompt)
 
         # Generate response from PaLM using ai_palm function
-        full_response = ai_chat(prompt)
+        full_response = ai_chat(prompt, context=st.session_state["pal_context"])
 
         # Update context and show assistant message
-        st.session_state["pal_context"] += "\n" + full_response
+        st.session_state["pal_context"] += "\n" + prompt + "\n" + full_response
         with st.chat_message("assistant"):
             st.markdown(full_response)
         st.session_state.messages.append({"role": "assistant", "content": full_response})
 
+# Run the conversation function
+palm_conversation()
 
 
 def ai_HR(role):

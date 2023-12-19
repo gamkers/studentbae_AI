@@ -176,13 +176,13 @@ try:
         form = st.form(key='my-form')
 
         selected = form.text_input("What are you Looking for?","")
-        submit = form.form_submit_button("SEARCH")
+        
 
         options = st.multiselect(
             'What you Looking for?',
             ['PDF', 'PPT', 'Courses', 'Research papers','Hacker Rank',"MCQ's",'Question Papers', 'E-BOOKS']
         )
-
+        submit = form.form_submit_button("SEARCH")
         #n = st.slider('File Count', 0, 130, 25)
 
         if submit:

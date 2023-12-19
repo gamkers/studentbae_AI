@@ -15,4 +15,5 @@ googlesearch-python
 google
 deta
 google-generativeai
+easyocr
 

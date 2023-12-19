@@ -178,7 +178,7 @@ try:
         selected = form.text_input("What are you Looking for?","")
         
 
-        options = st.multiselect(
+        options = form.multiselect(
             'What you Looking for?',
             ['PDF', 'PPT', 'Courses', 'Research papers','Hacker Rank',"MCQ's",'Question Papers', 'E-BOOKS']
         )

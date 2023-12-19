@@ -95,15 +95,13 @@ def ai_chat(txt, context=""):
     )
     return(completion.result)
 
-st.session_state["data"] = "empty"
 
 def palm_conversation(context=""):
     st.title("StudentGPT")
     st.markdown("##Your AI Teacher - You can clear your doubts here")
     st.markdown("")
     image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])
-    st.session_state["data"] = "empty"
-    if image is not None and st.session_state["data"] == "empty":
+    if image is not None and st.session_state["data"] == " ":
         input_image = Image.open(image)
         st.image(input_image)
         with st.spinner("🤖 AI is at Work! "):
@@ -134,6 +132,8 @@ def palm_conversation(context=""):
     else:
         st.write("Upload an Image")
     # Initialize session state if needed
+    if "data" not in st.session_state:
+        st.session_state["data"] = " "
     if "pal_context" not in st.session_state:
         st.session_state["pal_context"] = ""
     if "messages" not in st.session_state:

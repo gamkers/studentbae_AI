@@ -100,8 +100,8 @@ def palm_conversation(context=""):
     st.markdown("##Your AI Teacher - You can clear your doubts here")
     st.markdown("")
     image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])
-
-    if image is not None and "data" not in st.session_state :
+    st.session_state["data"] = "empty"
+    if image is not None and st.session_state["data"] == "empty":
         input_image = Image.open(image)
         st.image(input_image)
 

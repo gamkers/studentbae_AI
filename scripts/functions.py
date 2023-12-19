@@ -157,8 +157,12 @@ def palm_conversation(context=""):
                 time.sleep(1)
                 st.markdown(prompt)
 
+        if "data" not in st.session_state:
+            data = ""
+        else:
+            data = st.session_state["data"]
         # Generate response from PaLM using ai_palm function
-        full_response = ai_chat(prompt, str(st.session_state["data"] +" "+ st.session_state["pal_context"]))
+        full_response = ai_chat(prompt, data +" "+ st.session_state["pal_context"]))
 
         # Update context and show assistant message
         st.session_state["pal_context"] += "\n" + prompt + "\n" + full_response

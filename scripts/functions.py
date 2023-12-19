@@ -106,7 +106,7 @@ def palm_conversation(context=""):
         
 
     # Title and prompt input
-    st.title("StudenBae-AI")
+    #st.title("StudenBae-AI")
     prompt = st.chat_input("What would you like to learn about?")
 
     for message in st.session_state.messages:
@@ -118,11 +118,11 @@ def palm_conversation(context=""):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             with st.spinner('Processing...'):
-                time.sleep(2)
+                time.sleep(1)
                 st.markdown(prompt)
 
         # Generate response from PaLM using ai_palm function
-        full_response = ai_chat(prompt, context=st.session_state["pal_context"])
+        full_response = ai_chat(prompt, context+st.session_state["pal_context"])
 
         # Update context and show assistant message
         st.session_state["pal_context"] += "\n" + prompt + "\n" + full_response
@@ -197,6 +197,7 @@ def imgtotxt():
             result_text = extract_text_from_image(input_image)
             st.write(result_text)
             st.balloons()
+            palm_conversation(result_text)
     else:
         st.write("Upload an Image")
 

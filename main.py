@@ -183,7 +183,7 @@ try:
             ['PDF', 'PPT', 'Courses', 'Research papers','Hacker Rank',"MCQ's",'Question Papers', 'E-BOOKS']
         )
 
-        n = st.slider('File Count', 0, 130, 25)
+        #n = st.slider('File Count', 0, 130, 25)
 
         if submit:
             if "PDF" in options:

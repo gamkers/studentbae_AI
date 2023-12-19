@@ -197,7 +197,27 @@ def imgtotxt():
             result_text = extract_text_from_image(input_image)
             st.write(result_text)
             st.balloons()
-            palm_conversation("".join(result_text))
+            text = (" ".join(result_text))
+            models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
+            model = models[0].name
+            prompt = f"""
+            **Questions:**
+            {text}
+            Act as a Professor 
+            **as Professor Answer to the Questions:**
+        
+            (Provide explanation here...)
+            """
+        
+            completion = palm.generate_text(
+                model=model,
+                prompt=prompt,
+                temperature=0,
+                # The maximum length of the response
+                max_output_tokens=800,
+            )
+            st.markdown(completion.result)
+            return(completion.result)
     else:
         st.write("Upload an Image")
 

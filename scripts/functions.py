@@ -148,9 +148,8 @@ def palm_conversation(context=""):
     # Update session state and display user message
     if prompt:
         st.session_state.messages.append({"role": "user", "content": prompt})
-        with st.chat_message("user"):
-            with st.spinner('Processing...'):
-                time.sleep(1)
+        with st.spinner('Processing...'):
+            with st.chat_message("user"):
                 st.markdown(prompt)
         # Generate response from PaLM using ai_palm function
         full_response = ai_chat(prompt, str(st.session_state["data"] +" "+ st.session_state["pal_context"]))

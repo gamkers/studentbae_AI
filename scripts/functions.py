@@ -99,7 +99,7 @@ def palm_conversation(context=""):
     st.title("StudentGPT")
     st.markdown("##Your AI Teacher - You can clear your doubts here")
     st.markdown("")
-    data= " "
+    st.session_state["data"]= " "
     image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])
 
     if image is not None:
@@ -129,9 +129,8 @@ def palm_conversation(context=""):
                 # The maximum length of the response
                 max_output_tokens=800,
             )
-            
-            data=completion.result
-            st.markdown(data)
+            st.session_state["data"] = completion.result
+            st.markdown(st.session_state["data"])
     else:
         st.write("Upload an Image")
 
@@ -161,7 +160,7 @@ def palm_conversation(context=""):
                 st.markdown(prompt)
 
         # Generate response from PaLM using ai_palm function
-        full_response = ai_chat(prompt, data +" "+ st.session_state["pal_context"])
+        full_response = ai_chat(prompt, str(st.session_state["data"] +" "+ st.session_state["pal_context"]))
 
         # Update context and show assistant message
         st.session_state["pal_context"] += "\n" + prompt + "\n" + full_response

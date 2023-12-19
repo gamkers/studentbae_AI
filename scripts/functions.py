@@ -95,15 +95,17 @@ def ai_chat(txt, context=""):
     )
     return(completion.result)
 
+st.session_state["data"] = "empty"
+
 def palm_conversation(context=""):
     st.title("StudentGPT")
     st.markdown("##Your AI Teacher - You can clear your doubts here")
     st.markdown("")
     image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])
-    if image is not None:
+    st.session_state["data"] = "empty"
+    if image is not None and st.session_state["data"] == "empty":
         input_image = Image.open(image)
         st.image(input_image)
-
         with st.spinner("🤖 AI is at Work! "):
             result_text = extract_text_from_image(input_image)
             st.write(result_text)
@@ -131,24 +133,18 @@ def palm_conversation(context=""):
             st.markdown(st.session_state["data"])
     else:
         st.write("Upload an Image")
-
-
     # Initialize session state if needed
     if "pal_context" not in st.session_state:
         st.session_state["pal_context"] = ""
-
     if "messages" not in st.session_state:
         st.session_state.messages = []
         
-   
     # Title and prompt input
     #st.title("StudenBae-AI")
     prompt = st.chat_input("What would you like to learn about?")
-
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])    
-
     # Update session state and display user message
     if prompt:
         st.session_state.messages.append({"role": "user", "content": prompt})
@@ -156,18 +152,14 @@ def palm_conversation(context=""):
             with st.spinner('Processing...'):
                 time.sleep(1)
                 st.markdown(prompt)
-
-
         # Generate response from PaLM using ai_palm function
-        full_response = ai_chat(prompt, st.session_state["pal_context"]))
-
+        full_response = ai_chat(prompt, str(st.session_state["data"] +" "+ st.session_state["pal_context"]))
         # Update context and show assistant message
         st.session_state["pal_context"] += "\n" + prompt + "\n" + full_response
         with st.chat_message("assistant"):
             st.markdown(full_response)
         st.session_state.messages.append({"role": "assistant", "content": full_response})
         
-
 # Run the conversation function
 
 

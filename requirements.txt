@@ -17,5 +17,5 @@ deta
 google-generativeai
 easyocr
 numpy
-PIL
+Pillow
 

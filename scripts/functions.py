@@ -100,7 +100,7 @@ def palm_conversation(context=""):
     st.markdown("##Your AI Teacher - You can clear your doubts here")
     st.markdown("")
     image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])
-    if image is not None and  "data" not in st.session_state:
+    if image is not None:
         input_image = Image.open(image)
         st.image(input_image)
 
@@ -159,7 +159,7 @@ def palm_conversation(context=""):
 
 
         # Generate response from PaLM using ai_palm function
-        full_response = ai_chat(prompt, st.session_state["data"] +" "+ st.session_state["pal_context"]))
+        full_response = ai_chat(prompt, st.session_state["pal_context"]))
 
         # Update context and show assistant message
         st.session_state["pal_context"] += "\n" + prompt + "\n" + full_response

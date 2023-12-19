@@ -163,6 +163,47 @@ def ai_HR(role):
     return(completion.result)
 
 
+
+import easyocr as ocr
+import streamlit as st
+from PIL import Image
+import numpy as np
+
+@st.cache
+def load_model():
+    reader = ocr.Reader(['en'], model_storage_directory='.')
+    return reader
+
+def extract_text_from_image(image):
+    reader = load_model()
+    result = reader.readtext(np.array(image))
+    result_text = [text[1] for text in result]
+    return result_text
+
+def main():
+    # Title and subtitle
+    st.title("Easy OCR - Extract Text from Images")
+    st.markdown("## Optical Character Recognition - Using `easyocr`, `streamlit`")
+    st.markdown("")
+
+    # Image uploader
+    image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])
+
+    if image is not None:
+        input_image = Image.open(image)
+        st.image(input_image)
+
+        with st.spinner("🤖 AI is at Work! "):
+            result_text = extract_text_from_image(input_image)
+            st.write(result_text)
+            st.balloons()
+    else:
+        st.write("Upload an Image")
+
+
+
+
+
 from deta import Deta
 
 def db(link,vectors):

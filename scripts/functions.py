@@ -134,6 +134,8 @@ def palm_conversation(context=""):
             )
             st.session_state["data"] = completion.result
             st.markdown(st.session_state["data"])
+            audio_bytes = speak(st.session_state["data"])
+            st.audio(audio_bytes, format='audio/ogg')
     else:
         st.write("Upload an Image")
     # Initialize session state if needed

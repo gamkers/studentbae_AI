@@ -180,7 +180,7 @@ def extract_text_from_image(image):
     result_text = [text[1] for text in result]
     return result_text
 
-def main():
+def imgtotxt():
     # Title and subtitle
     st.title("Easy OCR - Extract Text from Images")
     st.markdown("## Optical Character Recognition - Using `easyocr`, `streamlit`")

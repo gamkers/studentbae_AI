@@ -229,10 +229,10 @@ try:
             ai_HR(t)
     elif selected2 == 'StudentGPT':
         # Run the conversation function
-        #palm_conversation()
-        txt = imgtotxt()
-        st.write("Any Questions?")
-        palm_conversation(txt)
+        palm_conversation()
+        # txt = imgtotxt()
+        # st.write("Any Questions?")
+        # palm_conversation(txt)
 
     elif selected2 == 'Detect.AI':
 

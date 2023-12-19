@@ -96,6 +96,42 @@ def ai_chat(txt, context=""):
     return(completion.result)
 
 def palm_conversation(context=""):
+    data= " "
+    image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])
+
+    if image is not None:
+        input_image = Image.open(image)
+        st.image(input_image)
+
+        with st.spinner("🤖 AI is at Work! "):
+            result_text = extract_text_from_image(input_image)
+            st.write(result_text)
+            st.balloons()
+            text = (" ".join(result_text))
+            models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
+            model = models[0].name
+            prompt = f"""
+            **Questions:**
+            {text}
+            Act as a Professor 
+            **as Professor Answer to the Questions:**
+        
+            (Provide explanation here...)
+            """
+        
+            completion = palm.generate_text(
+                model=model,
+                prompt=prompt,
+                temperature=0,
+                # The maximum length of the response
+                max_output_tokens=800,
+            )
+            
+            data=completion.result
+            st.markdown(data)
+    else:
+        st.write("Upload an Image")
+
 
     # Initialize session state if needed
     if "pal_context" not in st.session_state:
@@ -122,7 +158,7 @@ def palm_conversation(context=""):
                 st.markdown(prompt)
 
         # Generate response from PaLM using ai_palm function
-        full_response = ai_chat(prompt, context+st.session_state["pal_context"])
+        full_response = ai_chat(prompt, data +" "+ st.session_state["pal_context"])
 
         # Update context and show assistant message
         st.session_state["pal_context"] += "\n" + prompt + "\n" + full_response
@@ -182,9 +218,9 @@ def extract_text_from_image(image):
 
 def imgtotxt():
     # Title and subtitle
-    st.title("Easy OCR - Extract Text from Images")
-    st.markdown("## Optical Character Recognition - Using `easyocr`, `streamlit`")
-    st.markdown("")
+    # st.title("Easy OCR - Extract Text from Images")
+    # st.markdown("## Optical Character Recognition - Using `easyocr`, `streamlit`")
+    # st.markdown("")
 
     # Image uploader
     image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])

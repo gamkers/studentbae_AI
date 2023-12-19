@@ -98,7 +98,7 @@ def ai_chat(txt, context=""):
 
 def palm_conversation(context=""):
     st.title("StudentGPT")
-    st.markdown("##Your AI Teacher - You can clear your doubts here")
+    st.markdown("## Your AI Teacher - You can clear your doubts here")
     st.markdown("")
     image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])
     submit = st.button("New Chat")

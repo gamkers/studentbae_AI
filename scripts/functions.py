@@ -197,7 +197,7 @@ def imgtotxt():
             result_text = extract_text_from_image(input_image)
             st.write(result_text)
             st.balloons()
-            palm_conversation(result_text)
+            palm_conversation("".join(result_text))
     else:
         st.write("Upload an Image")
 

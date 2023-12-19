@@ -103,7 +103,7 @@ def palm_conversation(context=""):
     image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])
     submit = st.button("Clear Chat")
     if submit:
-        st.session_state["data"] == " "
+        st.session_state["data"] = " "
     if image is not None and st.session_state["data"] == " ":
         input_image = Image.open(image)
         st.image(input_image)

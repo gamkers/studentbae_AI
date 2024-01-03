@@ -102,7 +102,7 @@ def palm_conversation(context=""):
     with col1:
         st.title("StudentGPT")
         st.markdown("## Your AI Teacher - You can clear your doubts here")
-        st.markdown("")  # Add more text or elements as needed
+        st.markdown("Ask me anything! I'm here to help you with your studies, from explaining complex concepts to providing personalized examples. Stuck on a problem with diagrams or figures? No worries! Simply upload an image of your question, and I'll analyze it and do my best to provide the answer.")
     
     with col2:
         st.image("images/hero1.png", use_column_width=True)

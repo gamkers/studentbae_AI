@@ -1,4 +1,3 @@
-
 from streamlit_option_menu import option_menu
 import requests
 import streamlit as st
@@ -231,7 +230,26 @@ try:
                 pdf(selected)
      
     elif selected2 == "Interview.AI":
-        st.image("images/search1.png")
+        col1, col2 = st.columns([3, 2])
+
+        with col1:
+            # Header and introductory text
+            st.header("Interview.AI: Your Personalized Interview Prep Coach!")
+            st.write(
+                "Launch your dream career with Interview.AI, your ultimate interview preparation sidekick!\n"
+                "Tired of interview jitters and struggling to articulate your skills? We've got you covered. Interview.AI is here to empower you with the confidence and knowledge you need to ace any interview."
+            )
+        
+            # Feature list with explanation
+            st.write(" **Target Your Preparation:**")
+            st.write("* **Job Role and Company:** Tell us about your dream job and target company, and Interview.AI tailor-makes your preparation journey.")
+            st.write("* **Technical & Behavioral Analysis:** Our AI engine scans the job description and identifies relevant technical and behavioral skills they're looking for.")
+            st.write("* **Personalized Study Guide:** Get a curated list of learning resources, practice questions, and interview tips specific to your target role.")
+        
+        with col2:
+            # Show image on the right side
+            st.image("images/hero9.png", use_column_width=True)
+   
         def local_css(file_name):
                 with open(file_name) as f:
                     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)

@@ -256,22 +256,31 @@ try:
     
     elif selected2 == 'Tutor.AI':
 
-        #st.image("images/colab.png")
-        # Header for the application
-        st.header("Welcome to AI Tutor – Your Personalized Learning Companion!")
+        col1, col2 = st.columns([3, 2])
+
+        with col1:
+            # Header and introductory text
+            st.header("Welcome to AI Tutor – Your Personalized Learning Companion!")
+            st.write(
+                "Are you ready to take your learning experience to the next level? We're excited to introduce our innovative feature – AI Tutor! "
+                "Designed to be your go-to study companion, AI Tutor is here to assist you in your academic journey. "
+            )
         
-        # Paragraph introducing AI Tutor
-        st.write("Are you ready to take your learning experience to the next level? We're excited to introduce our innovative feature – AI Tutor! "
-                 "Designed to be your go-to study companion, AI Tutor is here to assist you in your academic journey.")
-        
-        # Bullet points for AI Tutor features
-        st.write("🔍 **Ask Any Question, Anytime**\n"
-                 "Have a burning question or struggling with a concept? Simply ask AI Tutor, and watch the magic happen! "
-                 "Our advanced AI is equipped to provide accurate and detailed answers across a wide range of subjects.")
-                 
-        st.write("🛠️ **Choose Your Learning Style**\n"
+            # Bullet points with explanation text
+            st.write(" **Ask Any Question, Anytime**")
+            st.write(
+                "Have a burning question or struggling with a concept? Simply ask AI Tutor, and watch the magic happen! "
+                "Our advanced AI is equipped to provide accurate and detailed answers across a wide range of subjects. "
+            )
+             st.write("🛠️ **Choose Your Learning Style**\n"
                  "AI Tutor isn't just about answers; it's about personalized learning. Tailor your learning experience by choosing the type of assistance you prefer:")
+
         
+        with col2:
+            # Show image on the right side
+            st.image("images/hero6.png", use_column_width=True)
+
+
         def local_css(file_name):
             with open(file_name) as f:
                 st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)

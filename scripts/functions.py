@@ -105,7 +105,7 @@ def palm_conversation(context=""):
         st.markdown("")  # Add more text or elements as needed
     
     with col2:
-        st.image("images/hero3.png", use_column_width=True)
+        st.image("images/hero1.png", use_column_width=True)
     image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])
     submit = st.button("New Chat")
     if submit:

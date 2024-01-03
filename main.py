@@ -272,8 +272,23 @@ try:
         # palm_conversation(txt)
 
     elif selected2 == 'Detect.AI':
+        col1, col2 = st.columns([3, 2])
 
-        st.image("images/search1.png")
+        with col1:
+            # Header and introductory text
+            st.header("Detective.AI: Uncover the Digital Footprints!")
+            st.write(
+                "Searching for someone online? Detective.AI is on the case! Our AI-powered sleuth scours the vast web to uncover hidden profiles and track down the person you're looking for. Whether you're verifying information, conducting background checks, or simply reconnecting with long-lost friends, Detective.AI is your expert digital detective."
+            )
+        
+            # Feature list with explanation
+            st.write("**Key Features:**")
+            st.write("* **Comprehensive Username Search:** Enter any username, and Detective.AI will meticulously scan hundreds of websites, social media platforms, forums, and online communities to find matches.")
+
+        with col2:
+            # Show image on the right side
+            st.image("images/hero11.png", use_column_width=True)
+
         def local_css(file_name):
                 with open(file_name) as f:
                     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)

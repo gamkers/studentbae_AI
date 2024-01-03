@@ -169,20 +169,11 @@ try:
                 "Searcher AI digs deep into the digital world, unearthing relevant PDFs, PPTs, ebooks, question papers, and research papers across various disciplines. "
                 "No more endless searching – let Searcher AI do the heavy lifting for you! "
             )
-            st.write(" **Precision at Your Fingertips:**")
-            st.write(
-                "Fine-tune your search with powerful filters and keywords. Target specific topics, file formats, authors, or even publication dates. "
-                "Searcher AI delivers laser-focused results tailored to your exact needs. "
-            )
-            st.write(" **Build Your Knowledge Arsenal:**")
-            st.write(
-                "Create organized collections of your findings, making it easy to revisit essential resources and track your research progress. "
-                "Searcher AI becomes your personalized library, always at your fingertips. "
-            )
+   
         
         with col2:
             # Show image on the right side
-            st.image("images/hero6.png", use_column_width=True)
+            st.image("images/hero7.png", use_column_width=True)
         
         def local_css(file_name):
             with open(file_name) as f:
@@ -209,7 +200,7 @@ try:
 
         options = form.multiselect(
             'Choose Your File Type',
-            ['PDF', 'PPT', 'Courses', 'Research papers','Hacker Rank',"MCQ's",'Question Papers', 'E-BOOKS']
+            ['PDF', 'PPT', 'Research papers','Question Papers', 'E-BOOKS']
         )
         submit = form.form_submit_button("SEARCH")
         #n = st.slider('File Count', 0, 130, 25)

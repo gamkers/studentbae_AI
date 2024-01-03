@@ -97,9 +97,15 @@ def ai_chat(txt, context=""):
 
 
 def palm_conversation(context=""):
-    st.title("StudentGPT")
-    st.markdown("## Your AI Teacher - You can clear your doubts here")
-    st.markdown("")
+    col1, col2 = st.columns([2, 1])  # Adjust column widths as needed
+
+    with col1:
+        st.title("StudentGPT")
+        st.markdown("## Your AI Teacher - You can clear your doubts here")
+        st.markdown("")  # Add more text or elements as needed
+    
+    with col2:
+        st.image("images/hero3.png", use_column_width=True)
     image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])
     submit = st.button("New Chat")
     if submit:

@@ -287,7 +287,7 @@ try:
 
         with col2:
             # Show image on the right side
-            st.image("images/hero11.png", use_column_width=True)
+            st.image("images/hero12.png", use_column_width=True)
 
         def local_css(file_name):
                 with open(file_name) as f:

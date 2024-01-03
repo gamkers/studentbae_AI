@@ -242,7 +242,6 @@ try:
         
             # Feature list with explanation
             st.write(" **Target Your Preparation:**")
-            st.write("* **Job Role and Company:** Tell us about your dream job and target company, and Interview.AI tailor-makes your preparation journey.")
             st.write("* **Technical & Behavioral Analysis:** Our AI engine scans the job description and identifies relevant technical and behavioral skills they're looking for.")
             st.write("* **Personalized Study Guide:** Get a curated list of learning resources, practice questions, and interview tips specific to your target role.")
         

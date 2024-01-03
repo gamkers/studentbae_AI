@@ -151,9 +151,39 @@ try:
 
 
     elif selected2 == 'Home':
-    
-
-        st.image("images/search1.png")
+        
+    # Create two columns
+        col1, col2 = st.columns([3, 2])
+        
+        with col1:
+            # Header and introductory text
+            st.header("Meet Searcher AI – Your Ultimate Research Companion!")
+            st.write(
+                "Tired of spending hours scouring the web for the perfect study materials? Say hello to Searcher AI, your personal research assistant! "
+                "Searcher AI effortlessly sifts through a vast ocean of resources, bringing you exactly what you need to fuel your learning journey."
+            )
+        
+            # Feature list with explanation
+            st.write(" **Uncover Hidden Knowledge:**")
+            st.write(
+                "Searcher AI digs deep into the digital world, unearthing relevant PDFs, PPTs, ebooks, question papers, and research papers across various disciplines. "
+                "No more endless searching – let Searcher AI do the heavy lifting for you! "
+            )
+            st.write(" **Precision at Your Fingertips:**")
+            st.write(
+                "Fine-tune your search with powerful filters and keywords. Target specific topics, file formats, authors, or even publication dates. "
+                "Searcher AI delivers laser-focused results tailored to your exact needs. "
+            )
+            st.write(" **Build Your Knowledge Arsenal:**")
+            st.write(
+                "Create organized collections of your findings, making it easy to revisit essential resources and track your research progress. "
+                "Searcher AI becomes your personalized library, always at your fingertips. "
+            )
+        
+        with col2:
+            # Show image on the right side
+            st.image("images/hero6.png", use_column_width=True)
+        
         def local_css(file_name):
             with open(file_name) as f:
                 st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -170,8 +200,7 @@ try:
         local_css("style.css")
         remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
         
-        st.write('''Explore seamlessly with our advanced search! Find PDFs, PPTs, question papers, research papers, and ebooks effortlessly. 
-        Simplify your learning journey with precise searches – discover, learn, excel!!''')
+
 
         form = st.form(key='my-form')
 

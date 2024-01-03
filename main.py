@@ -272,8 +272,7 @@ try:
                 "Have a burning question or struggling with a concept? Simply ask AI Tutor, and watch the magic happen! "
                 "Our advanced AI is equipped to provide accurate and detailed answers across a wide range of subjects. "
             )
-             st.write("🛠️ **Choose Your Learning Style**\n"
-                 "AI Tutor isn't just about answers; it's about personalized learning. Tailor your learning experience by choosing the type of assistance you prefer:")
+            st.write("🛠️ **Choose Your Learning Style**\n""AI Tutor isn't just about answers; it's about personalized learning. Tailor your learning experience by choosing the type of assistance you prefer:")
 
         
         with col2:

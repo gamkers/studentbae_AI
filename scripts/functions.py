@@ -112,7 +112,7 @@ def palm_conversation(context=""):
     
     if image is not None:
         # Check file size
-        if image.size <= 5 * 1024 * 1024:  # 1MB limit
+        if image.size <= 3 * 1024 * 1024:  # 1MB limit
             # Process the uploaded image
             st.image(image, caption="Uploaded Image", use_column_width=True)
         else:
@@ -251,10 +251,7 @@ def extract_text_from_image(image):
     return result_text
 
 def imgtotxt():
-    # Title and subtitle
-    # st.title("Easy OCR - Extract Text from Images")
-    # st.markdown("## Optical Character Recognition - Using `easyocr`, `streamlit`")
-    # st.markdown("")
+
 
     # Image uploader
     image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])

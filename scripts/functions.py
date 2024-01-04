@@ -112,7 +112,7 @@ def palm_conversation(context=""):
     
     if image is not None:
         # Check file size
-        if image.size <= 1 * 1024 * 1024:  # 1MB limit
+        if image.size <= 3 * 1024 * 1024:  # 1MB limit
             # Process the uploaded image
             st.image(image, caption="Uploaded Image", use_column_width=True)
         else:

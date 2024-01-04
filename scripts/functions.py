@@ -124,7 +124,7 @@ def palm_conversation(context=""):
         st.session_state.messages = []
     if image is not None and st.session_state["data"] == " ":
         input_image = Image.open(image)
-        st.image(input_image)
+        # st.image(input_image)
         with st.spinner("🤖 AI is at Work! "):
             result_text = extract_text_from_image(input_image)
             st.write(result_text)

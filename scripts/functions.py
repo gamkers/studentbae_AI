@@ -106,8 +106,18 @@ def palm_conversation(context=""):
     
     with col2:
         st.image("images/hero1.png", use_column_width=True)
+        
     image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])
     submit = st.button("New Chat")
+    
+    if image is not None:
+        # Check file size
+        if image.size <= 1 * 1024 * 1024:  # 1MB limit
+            # Process the uploaded image
+            st.image(image, caption="Uploaded Image", use_column_width=True)
+        else:
+            st.error("File size should be less than 1MB. Please upload a smaller file.")
+
     if submit:
         st.session_state["data"] = " "
         st.session_state["pal_context"] = ""

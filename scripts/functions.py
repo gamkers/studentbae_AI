@@ -164,13 +164,24 @@ def palm_conversation(context=""):
         with st.spinner('Processing...'):
             with st.chat_message("user"):
                 st.markdown(prompt)
-        # Generate response from PaLM using ai_palm function
-        full_response = ai_chat(prompt, str(st.session_state["data"] +" "+ st.session_state["pal_context"]))
-        # Update context and show assistant message
-        st.session_state["pal_context"] += "\n" + prompt + "\n" + full_response
-        with st.chat_message("assistant"):
-            st.markdown(full_response)
-        st.session_state.messages.append({"role": "assistant", "content": full_response})
+    
+        try:
+            # Generate response from PaLM using ai_palm function
+            full_response = ai_chat(prompt, str(st.session_state["data"] +" "+ st.session_state["pal_context"]))
+    
+            # Update context and show assistant message
+            st.session_state["pal_context"] += "\n" + prompt + "\n" + full_response
+            with st.chat_message("assistant"):
+                st.markdown(full_response)
+            st.session_state.messages.append({"role": "assistant", "content": full_response})
+    
+        except Exception as e:
+            # Display a studentGpt message if there's an issue
+            error_message = "I'm a studentGpt and couldn't generate a response. Please ask me anything else."
+            with st.chat_message("assistant"):
+                st.markdown(error_message)
+            st.session_state.messages.append({"role": "assistant", "content": error_message})
+
         
 # Run the conversation function
 

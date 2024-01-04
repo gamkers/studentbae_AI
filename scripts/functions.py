@@ -166,8 +166,15 @@ def palm_conversation(context=""):
                 st.markdown(prompt)
     
         try:
+            # Check if context variables are None and set them to an empty string if needed
+            data_context = str(st.session_state["data"]) if st.session_state["data"] else ""
+            pal_context = str(st.session_state["pal_context"]) if st.session_state["pal_context"] else ""
+    
             # Generate response from PaLM using ai_palm function
-            full_response = ai_chat(prompt, str(st.session_state["data"] +" "+ st.session_state["pal_context"]))
+            full_response = ai_chat(prompt, data_context + " " + pal_context)
+    
+            if not full_response.strip():  # Check if full_response is empty or contains only whitespace
+                raise ValueError("Empty response")
     
             # Update context and show assistant message
             st.session_state["pal_context"] += "\n" + prompt + "\n" + full_response
@@ -176,11 +183,12 @@ def palm_conversation(context=""):
             st.session_state.messages.append({"role": "assistant", "content": full_response})
     
         except Exception as e:
-            # Display a studentGpt message if there's an issue
+            # Display a studentGpt message if there's an issue or an empty response
             error_message = "I'm a studentGpt and couldn't generate a response. Please ask me anything else."
             with st.chat_message("assistant"):
                 st.markdown(error_message)
             st.session_state.messages.append({"role": "assistant", "content": error_message})
+
 
         
 # Run the conversation function

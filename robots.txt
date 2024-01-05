@@ -1,3 +1,4 @@
+Sitemap: https://studentbae.in/sitemap.xml
 User-agent: *
 Disallow: /
 Allow: /index.html

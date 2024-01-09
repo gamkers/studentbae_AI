@@ -23,6 +23,13 @@ from scripts.news import *
 import google.generativeai as palm
 palm.configure(api_key=st.secrets["palm_api"])
 
+def imagedetect(img):
+    import google.generativeai as genai
+    genai.configure(api_key=st.secrets["gemini_api"])
+    model = genai.GenerativeModel('gemini-pro-vision')
+    response = model.generate_content(img)
+    return response.text
+
 def palm_pdf(txt):
     
     models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
@@ -44,6 +51,8 @@ def palm_pdf(txt):
         max_output_tokens=800,
     )
     st.markdown(completion.result,unsafe_allow_html=True)
+
+
 
 def ai_palm(txt):
 

@@ -324,6 +324,7 @@ body {
   visibility: visible;
   transform: translateX(300px);
   transition: 0.5s var(--cubic-out);
+  background-color: aliceblue;
 }
 
 .navbar-top {
@@ -346,7 +347,7 @@ body {
   box-shadow: var(--shadow-1);
 }
 
-.navbar-list { padding: 15px 20px; }
+.navbar-list { padding: 15px 20px;background-color: aliceblue; }
 
 .navbar-item:not(:last-child) { border-block-end: 1px solid var(--cultured-2); }
 

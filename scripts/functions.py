@@ -135,7 +135,10 @@ def palm_conversation(context=""):
         input_image = Image.open(image)
         # st.image(input_image)
         with st.spinner("🤖 AI is at Work! "):
-            imgtxt=imagedetect(input_image)
+            st.session_state["data"] = imagedetect(input_image)
+            st.markdown(st.session_state["data"])
+            audio_bytes = speak(st.session_state["data"])
+            st.audio(audio_bytes, format='audio/ogg')
             # st.markdown(imgtxt)
             # result_text = extract_text_from_image(input_image)
             # st.write(result_text)
@@ -159,10 +162,7 @@ def palm_conversation(context=""):
             #     # The maximum length of the response
             #     max_output_tokens=800,
             # )
-            st.session_state["data"] = imgtxt
-            st.markdown(st.session_state["data"])
-            audio_bytes = speak(st.session_state["data"])
-            st.audio(audio_bytes, format='audio/ogg')
+
     else:
         st.write("Upload an Image")
     # Initialize session state if needed

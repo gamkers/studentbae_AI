@@ -347,7 +347,7 @@ body {
   box-shadow: var(--shadow-1);
 }
 
-.navbar-list { padding: 15px 20px;background-color: aliceblue; }
+.navbar-list { padding: 15px 20px; }
 
 .navbar-item:not(:last-child) { border-block-end: 1px solid var(--cultured-2); }
 

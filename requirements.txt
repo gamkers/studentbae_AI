@@ -18,4 +18,3 @@ google-generativeai
 easyocr
 numpy
 Pillow
-chromadb

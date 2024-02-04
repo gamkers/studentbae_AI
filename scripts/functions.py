@@ -508,7 +508,7 @@ def pdf(s):
                         # Assuming palm_pdf is a function you have defined elsewhere
                         #palm_pdf(j)
                 # Assuming you want to display a download link using Streamlit
-                # palm_pdf(j)
+                palm_pdf(j)
                 st.markdown(f'<a href="{j}" download>DOWNLOAD</a>', unsafe_allow_html=True)
     except Exception as e:
         st.error(f"Error: {e}")

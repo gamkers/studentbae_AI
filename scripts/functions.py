@@ -647,7 +647,7 @@ def get_conversation_chain():
     Answer:
     """
 
-    model = ChatGoogleGenerativeAI(model = "gemini-pro", temperatue = 0.3) # create object of gemini-pro
+    model = ChatGoogleGenerativeAI(model = "gemini-pro", temperatue = 0.3,google_api_key=st.secrets["gemini_api"]) # create object of gemini-pro
 
     prompt = PromptTemplate(template = prompt_template, input_variables= ["context","question"])
 

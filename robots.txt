@@ -3,3 +3,5 @@ User-agent: *
 Disallow: /main.py
 Allow: /index.html
 Allow: /ai.html
+Allow: /hackergpt.html
+

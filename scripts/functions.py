@@ -677,11 +677,15 @@ def talkpdf():
     import google.generativeai as genai
     genai.configure(api_key=st.secrets["gemini_api"])
     st.header("Chat with PDF")
-
+    
     user_question = st.text_input("Ask a Question:")
-
+    interaction_type = st.radio("Select Interaction Type:", ("Short Q&A", "Long Q&A", "Multiple Choice"))
+    if interaction_type:
+        with st.spinner("Processing..."):
+            user_input("Give me the most important, top 15 question and answers, in form of "+interaction_type)
     if user_question:
-        user_input(user_question)
+        with st.spinner("Processing..."):
+            user_input(user_question)
 
   
     pdf_docs = st.file_uploader("Upload your PDF Files and Click on the Submit & Process Button", accept_multiple_files=True)

@@ -685,10 +685,11 @@ def talkpdf():
     options = st.multiselect(
             'Select Interaction Type:',
             ["Short Q&A - 2 to 4 lines", "Long Q&A - 10 to 20 lines", "Multiple Choice - with answers"])
+    n = st.slider('Number of Questions?', 0, 40, 1)
     if options:
         for i in options:
             with st.spinner("Processing..."):
-                user_input("Give me the most important, top 15 question and answers, in form of "+i)
+                user_input(f"Give me the most important, top {n} question and answers, in form of "+i)
   
     pdf_docs = st.file_uploader("Upload your PDF Files and Click on the Submit & Process Button", accept_multiple_files=True)
     if st.button("Submit & Process"):

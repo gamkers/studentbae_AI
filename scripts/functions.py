@@ -693,7 +693,7 @@ def talkpdf():
             text_chunks = get_text_chunks(raw_text)
             get_vector_store(text_chunks)
             st.success("Done")
-             if interaction_type:
+            if interaction_type:
                 with st.spinner("Processing..."):
                     user_input("Give me the most important, top 15 question and answers, in form of "+interaction_type)
 

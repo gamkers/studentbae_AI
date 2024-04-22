@@ -685,7 +685,7 @@ def talkpdf():
     if options:
         for i in options:
             with st.spinner("Processing..."):
-            user_input("Give me the most important, top 15 question and answers, in form of "+i)
+                user_input("Give me the most important, top 15 question and answers, in form of "+i)
     if user_question:
         with st.spinner("Processing..."):
             user_input(user_question)

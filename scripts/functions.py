@@ -686,7 +686,8 @@ def talkpdf():
             'Select Interaction Type:',
             ["Short Q&A - 2 to 4 lines", "Long Q&A - 10 to 20 lines", "Multiple Choice - with answers"])
     n = st.slider('Number of Questions?', 0, 40, 1)
-    if st.button("Submit"):
+    submit = st.button("Submit")
+    if submit:
         if options:
             for i in options:
                 with st.spinner("Processing..."):

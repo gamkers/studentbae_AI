@@ -680,8 +680,8 @@ def talkpdf():
     
     user_question = st.text_input("Ask a Question:")
     options = st.multiselect(
-    'What are your favorite colors',
-    ["Short Q&A", "Long Q&A", "Multiple Choice"])
+    'Select Interaction Type:',
+    ["Short Q&A - 2 to 4 lines", "Long Q&A - 10 to 20 lines", "Multiple Choice - with answers"])
     if options:
         for i in options:
             with st.spinner("Processing..."):

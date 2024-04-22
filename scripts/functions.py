@@ -680,7 +680,9 @@ def talkpdf():
     
     user_question = st.text_input("Ask a Question:")
     interaction_type = st.radio("Select Interaction Type:", ("Short Q&A", "Long Q&A", "Multiple Choice"))
-   
+    options = st.multiselect(
+    'What are your favorite colors',
+    ["Short Q&A", "Long Q&A", "Multiple Choice"])
     if user_question:
         with st.spinner("Processing..."):
             user_input(user_question)
@@ -693,9 +695,9 @@ def talkpdf():
             text_chunks = get_text_chunks(raw_text)
             get_vector_store(text_chunks)
             st.success("Done")
-            if interaction_type:
-                with st.spinner("Processing..."):
-                    user_input("Give me the most important, top 15 question and answers, in form of "+interaction_type)
+            # if interaction_type:
+            #     with st.spinner("Processing..."):
+            #         user_input("Give me the most important, top 15 question and answers, in form of "+interaction_type)
 
 
       

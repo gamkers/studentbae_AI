@@ -682,7 +682,13 @@ def talkpdf():
     if user_question:
         with st.spinner("Processing..."):
             user_input(user_question)
-
+    options = st.multiselect(
+            'Select Interaction Type:',
+            ["Short Q&A - 2 to 4 lines", "Long Q&A - 10 to 20 lines", "Multiple Choice - with answers"])
+    if options:
+        for i in options:
+            with st.spinner("Processing..."):
+                user_input("Give me the most important, top 15 question and answers, in form of "+i)
   
     pdf_docs = st.file_uploader("Upload your PDF Files and Click on the Submit & Process Button", accept_multiple_files=True)
     if st.button("Submit & Process"):
@@ -691,12 +697,6 @@ def talkpdf():
             text_chunks = get_text_chunks(raw_text)
             get_vector_store(text_chunks)
             st.success("Done")
-            options = st.multiselect(
-            'Select Interaction Type:',
-            ["Short Q&A - 2 to 4 lines", "Long Q&A - 10 to 20 lines", "Multiple Choice - with answers"])
-            if options:
-                for i in options:
-                    with st.spinner("Processing..."):
-                        user_input("Give me the most important, top 15 question and answers, in form of "+i)
+
 
       

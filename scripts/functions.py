@@ -679,13 +679,6 @@ def talkpdf():
     st.header("Chat with PDF")
     
     user_question = st.text_input("Ask a Question:")
-    options = st.multiselect(
-    'Select Interaction Type:',
-    ["Short Q&A - 2 to 4 lines", "Long Q&A - 10 to 20 lines", "Multiple Choice - with answers"])
-    if options:
-        for i in options:
-            with st.spinner("Processing..."):
-                user_input("Give me the most important, top 15 question and answers, in form of "+i)
     if user_question:
         with st.spinner("Processing..."):
             user_input(user_question)
@@ -698,9 +691,12 @@ def talkpdf():
             text_chunks = get_text_chunks(raw_text)
             get_vector_store(text_chunks)
             st.success("Done")
-            # if interaction_type:
-            #     with st.spinner("Processing..."):
-            #         user_input("Give me the most important, top 15 question and answers, in form of "+interaction_type)
-
+            options = st.multiselect(
+            'Select Interaction Type:',
+            ["Short Q&A - 2 to 4 lines", "Long Q&A - 10 to 20 lines", "Multiple Choice - with answers"])
+            if options:
+                for i in options:
+                    with st.spinner("Processing..."):
+                        user_input("Give me the most important, top 15 question and answers, in form of "+i)
 
       

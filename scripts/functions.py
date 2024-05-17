@@ -658,7 +658,7 @@ def user_input(user_question):
     # user_question is the input question
     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001",google_api_key=st.secrets["gemini_api"])
     # load the local faiss db
-    new_db = FAISS.load_local("faiss_index", embeddings)
+    new_db = FAISS.load_local("faiss_index",  embeddings,allow_dangerous_deserialization=True)
 
     # using similarity search, get the answer based on the input
     docs = new_db.similarity_search(user_question)

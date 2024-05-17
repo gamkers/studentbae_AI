@@ -701,5 +701,5 @@ def talkpdf():
             get_vector_store(text_chunks)
             st.success("Done")
 
-
+new_db = ''
       

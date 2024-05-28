@@ -705,9 +705,7 @@ def talkpdf():
 
 new_db = ''
 
-def advancesearch(s):
-    urls=pdfs(s)
-    pdftotxt(urls)
+def advancesearch():
     import google.generativeai as genai
     
     genai.configure(api_key=st.secrets["gemini_api"])

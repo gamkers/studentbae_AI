@@ -639,7 +639,8 @@ def get_vector_store(text_chunks):
 
     # use the embedding object on the splitted text of pdf docs
     vector_store.save_local("faiss_index") # save the embeddings in local
-    st.success('Done!')
+    st.success('Data loaded')
+    return 1
 
 def get_conversation_chain():
 
@@ -714,12 +715,11 @@ new_db = ''
 def advancesearch():
     s = st.text_input("Topic")
     if st.button("Search & Process"):
-        with st.spinner("Processing..."):
-            urls=pdfs(s)
-            raw_text = pdftotxt(urls)
-            text_chunks = get_text_chunks(raw_text)
-            get_vector_store(text_chunks)
-            st.success("Done")
+        urls=pdfs(s)
+        raw_text = pdftotxt(urls)
+        text_chunks = get_text_chunks(raw_text)
+        t = get_vector_store(text_chunks)
+        st.success("Done")
     import google.generativeai as genai
     
     genai.configure(api_key=st.secrets["gemini_api"])

@@ -706,6 +706,14 @@ def talkpdf():
 new_db = ''
 
 def advancesearch():
+    s = st.text_input("Topic")
+    if st.button("Search & Process"):
+        with st.spinner("Processing..."):
+            urls=pdfs(s)
+            raw_text = pdftotxt(urls)
+            text_chunks = get_text_chunks(raw_text)
+            get_vector_store(text_chunks)
+            st.success("Done")
     import google.generativeai as genai
     
     genai.configure(api_key=st.secrets["gemini_api"])
@@ -726,13 +734,6 @@ def advancesearch():
             for i in options:
                 with st.spinner("Processing..."):
                     user_input(f"Give me the most important, top {n} question and answers, in form of "+i)
-    s = st.text_input("Topic")
-    if st.button("Search & Process"):
-        with st.spinner("Processing..."):
-            urls=pdfs(s)
-            raw_text = pdftotxt(urls)
-            text_chunks = get_text_chunks(raw_text)
-            get_vector_store(text_chunks)
-            st.success("Done")
+    
     
       

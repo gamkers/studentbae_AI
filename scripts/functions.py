@@ -322,7 +322,7 @@ def db(link,vectors):
 
 
 
-def pdfs(s,n):
+def pdfs(s):
     try:
       links=[]
       try:
@@ -704,4 +704,37 @@ def talkpdf():
 
 
 new_db = ''
+
+def advancesearch(s):
+    urls=pdfs(s)
+    pdftotxt(urls)
+    import google.generativeai as genai
+    
+    genai.configure(api_key=st.secrets["gemini_api"])
+    st.header("Chat with PDF")
+    
+    user_question = st.text_input("Ask a Question:")
+    if user_question:
+        with st.spinner("Processing..."):
+            user_input(user_question)
+    options = st.multiselect(
+            'Select Interaction Type:',
+            ["Short Q&A - 2 to 4 lines", "Long Q&A - 10 to 20 lines", "Multiple Choice - with answers"])
+    n = st.slider('Number of Questions?', 0, 40, 1)
+    
+    submit = st.button("Submit")
+    if submit:
+        if options:
+            for i in options:
+                with st.spinner("Processing..."):
+                    user_input(f"Give me the most important, top {n} question and answers, in form of "+i)
+    s = st.text_input("Topic")
+    if st.button("Search & Process"):
+        with st.spinner("Processing..."):
+            urls=pdfs(s)
+            raw_text = pdftotxt(urls)
+            text_chunks = get_text_chunks(raw_text)
+            get_vector_store(text_chunks)
+            st.success("Done")
+    
       

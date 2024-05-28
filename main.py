@@ -394,45 +394,45 @@ try:
                 st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")
             
     elif selected2 == 'Expert.AI':
-        try:
-            st.image("images/colab.png")
-            if st.session_state.log == True:
-                def local_css(file_name):
-                    with open(file_name) as f:
-                        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+        # try:
+        #     st.image("images/colab.png")
+        #     if st.session_state.log == True:
+        #         def local_css(file_name):
+        #             with open(file_name) as f:
+        #                 st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
     
     
-                def remote_css(url):
-                    st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
+        #         def remote_css(url):
+        #             st.markdown(f'<link href="{url}" rel="stylesheet">', unsafe_allow_html=True)
         
         
-                def icon(icon_name):
-                    st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
+        #         def icon(icon_name):
+        #             st.markdown(f'<i class="material-icons">{icon_name}</i>', unsafe_allow_html=True)
         
         
-                local_css("style.css")
-                remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
+        #         local_css("style.css")
+        #         remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
         
-                selected = st.text_input("Document Searcher", "")
-                selected1 = st.text_input("question", key="widget2")
-                submit = st.button("SEARCH")
+        #         selected = st.text_input("Document Searcher", "")
+        #         selected1 = st.text_input("question", key="widget2")
+        #         submit = st.button("SEARCH")
         
-                n = st.slider('number of documents', 1, 1, 10, 1)
+        #         n = st.slider('number of documents', 1, 1, 10, 1)
         
-                if submit:
-                    urls = pdfs(selected, 1)
-                    texts = pdftotxt(urls)
-                    chunks(texts,selected1)
-            else:
-                st.header("🔒 Login Required")
-                st.write("""🔒 To access AdvanceGPT, please log in to your account. 
-                Logging in allows you to unlock additional benefits and personalized experiences. 
-                If you don't have an account yet, you can easily create one by tapping [Sign Up] below.""")
-        except Exception as e:
-            st.header("🔒 Login Required")
-            st.write("""To access DOCGPT, please log in to your account. 
-                Logging in allows you to unlock additional benefits and personalized experiences. 
-                If you don't have an account yet, you can easily create one by tapping Register.""")
+        #         if submit:
+        #             urls = pdfs(selected, 1)
+        #             texts = pdftotxt(urls)
+        #             chunks(texts,selected1)
+        #     else:
+        #         st.header("🔒 Login Required")
+        #         st.write("""🔒 To access AdvanceGPT, please log in to your account. 
+        #         Logging in allows you to unlock additional benefits and personalized experiences. 
+        #         If you don't have an account yet, you can easily create one by tapping [Sign Up] below.""")
+        # except Exception as e:
+        #     st.header("🔒 Login Required")
+        #     st.write("""To access DOCGPT, please log in to your account. 
+        #         Logging in allows you to unlock additional benefits and personalized experiences. 
+        #         If you don't have an account yet, you can easily create one by tapping Register.""")
 
     
     elif selected2 == "Docu Search":

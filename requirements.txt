@@ -18,4 +18,3 @@ easyocr
 numpy
 Pillow
 langchain_google_genai
-googlesearch-python

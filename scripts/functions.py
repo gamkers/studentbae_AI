@@ -1,4 +1,3 @@
-
 from streamlit_option_menu import option_menu
 import requests
 from bs4 import BeautifulSoup
@@ -26,17 +25,13 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter#library to sp
 from langchain_google_genai import GoogleGenerativeAIEmbeddings #to embed the text
 from langchain_google_genai import ChatGoogleGenerativeAI #
 from langchain.prompts import PromptTemplate #to create prompt templates
-
-
 palm.configure(api_key=st.secrets["palm_api"])
-
 def imagedetect(img):
     import google.generativeai as genai
     genai.configure(api_key=st.secrets["gemini_api"])
     model = genai.GenerativeModel('gemini-pro-vision')
     response = model.generate_content(img)
     return response.text
-
 def palm_pdf(txt):
     
     models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
@@ -44,12 +39,9 @@ def palm_pdf(txt):
     print(model)
     prompt = f"""
     You are an expert at Reading PDF from Links as summarize it.
-
     Summarize the PDF and give some Keypoints.
-
     This is the link :{txt}
     """
-
     completion = palm.generate_text(
         model=model,
         prompt=prompt,
@@ -58,25 +50,17 @@ def palm_pdf(txt):
         max_output_tokens=800,
     )
     st.markdown(completion.result,unsafe_allow_html=True)
-
-
-
 def ai_palm(txt):
-
     models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
     model = models[0].name
     prompt = f"""
     You are an expert at Teaching.
-
     explain me about: {txt}
-
     Explain with examples, as im a school student.
     Give Points to note down.
     also give some reference
-
     Think about it step by step, and show your work.
     """
-
     completion = palm.generate_text(
         model=model,
         prompt=prompt,
@@ -86,9 +70,7 @@ def ai_palm(txt):
     )
     st.markdown(completion.result,unsafe_allow_html=True)
     return(completion.result)
-
 def ai_chat(txt, context=""):
-
     models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
     model = models[0].name
     prompt = f"""
@@ -96,12 +78,9 @@ def ai_chat(txt, context=""):
     {context}
     Act as a Professor 
     **User:** {txt}
-
     **as Professor Reply to user:**
-
     (Provide explanation here...)
     """
-
     completion = palm.generate_text(
         model=model,
         prompt=prompt,
@@ -110,11 +89,8 @@ def ai_chat(txt, context=""):
         max_output_tokens=800,
     )
     return(completion.result)
-
-
 def palm_conversation(context=""):
     col1, col2 = st.columns([2, 1])  # Adjust column widths as needed
-
     with col1:
         st.title("StudentGPT")
         st.markdown("## Your AI Teacher - You can clear your doubts here")
@@ -133,7 +109,6 @@ def palm_conversation(context=""):
             st.image(image, caption="Uploaded Image", use_column_width=True)
         else:
             st.error("File size should be less than 1MB. Please upload a smaller file.")
-
     if submit:
         st.session_state["data"] = " "
         st.session_state["pal_context"] = ""
@@ -169,7 +144,6 @@ def palm_conversation(context=""):
             #     # The maximum length of the response
             #     max_output_tokens=800,
             # )
-
     else:
         st.write("Upload an Image")
     # Initialize session state if needed
@@ -216,13 +190,8 @@ def palm_conversation(context=""):
             with st.chat_message("assistant"):
                 st.markdown(error_message)
             st.session_state.messages.append({"role": "assistant", "content": error_message})
-
-
         
 # Run the conversation function
-
-
-
 def ai_HR(role):
     import google.generativeai as palm
     palm.configure(api_key='AIzaSyBjHDPK5eh-AJzsHRxT3xicaCm1-I7Vujo')
@@ -235,11 +204,8 @@ def ai_HR(role):
     # """
     prompt = f"""
     Develop an HR system for {role} interviews. Create 7 technical questions with short answers, 3 behavioral questions with answers, and 3 coding questions with solutions.
-
     Also, suggest 5 key resume points for {role} and propose 3 project ideas showcasing a candidate's suitability: 
 """
-
-
     completion = palm.generate_text(
         model=model,
         prompt=prompt,
@@ -249,35 +215,25 @@ def ai_HR(role):
     )
     st.markdown(completion.result,unsafe_allow_html=True)
     return(completion.result)
-
-
-
 import easyocr as ocr
 import streamlit as st
 from PIL import Image
 import numpy as np
-
 @st.cache
 def load_model():
     reader = ocr.Reader(['en'], model_storage_directory='.')
     return reader
-
 def extract_text_from_image(image):
     reader = load_model()
     result = reader.readtext(np.array(image))
     result_text = [text[1] for text in result]
     return result_text
-
 def imgtotxt():
-
-
     # Image uploader
     image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])
-
     if image is not None:
         input_image = Image.open(image)
         st.image(input_image)
-
         with st.spinner("🤖 AI is at Work! "):
             result_text = extract_text_from_image(input_image)
             st.write(result_text)
@@ -305,13 +261,7 @@ def imgtotxt():
             return(completion.result)
     else:
         st.write("Upload an Image")
-
-
-
-
-
 from deta import Deta
-
 def db(link,vectors):
     try:
       deta = Deta(st.secrets["data_key"])
@@ -319,17 +269,13 @@ def db(link,vectors):
       db.put({"link": link, "texts": vectors})
     except:
        st.error("Access Denied")
-
-
-
-def pdfs(s):
+def pdfs(s,n):
     try:
       links=[]
       try:
           from googlesearch import search
       except ImportError:
           print("No module named 'google' found")
-
       query = f"{s} filetype:pdf"
       for j in search(query, tld="co.in", num=1, stop=1, pause=2):
           if ".pdf" in j:
@@ -342,8 +288,6 @@ def pdfs(s):
       return links
     except:
        st.error("PDF NOT FOUND")
-
-
 def pdftotxt(urls):
     try:
         
@@ -356,20 +300,15 @@ def pdftotxt(urls):
               time.sleep(5)
           st.success('Done!')
           response = requests.get(url)
-
           # Create a file-like object from the response content
           pdf_file = io.BytesIO(response.content)
-
           # Use PyPDF2 to load and work with the PDF document
           pdf_reader = PyPDF2.PdfReader(pdf_file)
-
           # Access the document information
           num_pages = len(pdf_reader.pages)
     
-
           # Perform further operations with the PDF document as needed
           # For example, extract text from each page
-
           for page in pdf_reader.pages:
               txt=page.extract_text()
               texts += txt
@@ -379,14 +318,12 @@ def pdftotxt(urls):
       return texts
     except:
        st.error("Converstion Failed")
-
         # Print the extracted text
     
 def chunks(texts,q):
     try:
         
       st.info("DATA TRANFORMATION STARTED")
-
       st.info("TRANFORMING DATA INTO CHUNKS")
       text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
       length_function = len,)
@@ -410,9 +347,7 @@ def chunks(texts,q):
       st.audio(audio_bytes, format='audio/ogg')
     except:
        st.error("Error processing Text") 
-
   
-
 def ai(prompt,n):
   try:
     updated_prompt = f"act as a well experienced professor and explain {prompt} as explainig to your student think step by step and give real time examples and key points but it should be below 150 words",
@@ -431,11 +366,9 @@ def ai(prompt,n):
     return data
   except:
      st.error("Unable Connect To The Server")  
-
 openai.api_key = st.secrets["api"]
 start_sequence = "\nAI:"
 restart_sequence = "\nHuman: "
-
 def sql(t,q):
   try:
     response = openai.Completion.create(
@@ -453,7 +386,6 @@ def sql(t,q):
     return data
   except:
      st.error("Error connecting the server")
-
 def pearson(my_string):
   try:  
     try:
@@ -482,15 +414,11 @@ def yt(vd):
           st.video(customSearch.result()['result'][i]['link'])
     except:
        st.error("Video Not Found")
-
 def speak(text):
     mp3_fp = BytesIO()
     tts = gTTS(text, lang='en')
     tts.write_to_fp(mp3_fp)
     return mp3_fp
-
-
-
 def pdf(s):
     try:
         try:
@@ -513,14 +441,11 @@ def pdf(s):
     except Exception as e:
         st.error(f"Error: {e}")
         st.error("PDF NOT Found")
-
-
 def ppt(s):
     try:
         from googlesearch import search
     except ImportError:
         print("No module named 'google' found")
-
     query = f"filetype:ppt {s}"
    
     for j in search(query, tld="co.in", num=10, stop=5, pause=2):
@@ -531,15 +456,12 @@ def ppt(s):
                     st.write(i)
 #             st.components.v1.iframe(j)
             st.markdown(f'<a href="{j}">DOWNLOAD</a>', unsafe_allow_html=True)
-
-
 def torrent_download(search):
     try:
       url = f"https://1377x.xyz/fullsearch?q={search}"
       r = requests.get(url)
       data = BeautifulSoup(r.text, "html.parser")
       links = data.find_all('a', style="font-family:tahoma;font-weight:bold;")
-
       torrent = []
       ogtorrent = []
       for link in links:
@@ -557,7 +479,6 @@ def torrent_download(search):
                   ogtorrent.append(str(link))
     except:
        st.error("Course Not Found")
-
 def display(data):
   try:
   
@@ -572,10 +493,7 @@ def display(data):
         
     local_css("style.css")
     remote_css('https://fonts.googleapis.com/icon?family=Material+Icons')
-
-
     form = st.form(key='my-form')
-
     selected = form.text_input("", "")
     submit = form.form_submit_button("SEARCH")
     if submit:
@@ -595,7 +513,6 @@ def display(data):
         torrent_download(selected)
         
                     
-
       elif "Research papers" in data:
         selected = f"{selected} research papers"
         pdf(selected)
@@ -609,9 +526,6 @@ def display(data):
         st.write(f"[OPEN >](https://www.hackerrank.com/domains/{selected})")
   except:
      st.error("Service Unavailable")
-
-
-
 def get_pdf_text(pdf_docs):
     text = ""
     # iterate over all pdf files uploaded
@@ -621,65 +535,42 @@ def get_pdf_text(pdf_docs):
         for page in pdf_reader.pages:
             text += page.extract_text()
     return text
-
 def get_text_chunks(text):
-    #create an object of RecursiveCharacterTextSplitter with specific chunk size and overlap size
-    # text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
-    #   length_function = len,)
+    # create an object of RecursiveCharacterTextSplitter with specific chunk size and overlap size
     text_splitter = RecursiveCharacterTextSplitter(chunk_size = 10000, chunk_overlap = 1000)
     # now split the text we have using object created
     chunks = text_splitter.split_text(text)
-    st.success('Done!')
     return chunks
-
 def get_vector_store(text_chunks):
     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001",google_api_key=st.secrets["gemini_api"] ) # google embeddings
-
-    vector_store = FAISS.from_texts(text_chunks,embeddings)
-
-    # use the embedding object on the splitted text of pdf docs
+    vector_store = FAISS.from_texts(text_chunks,embeddings) # use the embedding object on the splitted text of pdf docs
     vector_store.save_local("faiss_index") # save the embeddings in local
-    st.success('Data loaded')
-    return 1
-
 def get_conversation_chain():
-
     # define the prompt
     prompt_template = """
     Answer the question as detailed as possible from the provided context, make sure to provide all the details\n\n
     Context:\n {context}?\n
     Question: \n{question}\n
-
     Answer:
     """
-
     model = ChatGoogleGenerativeAI(model = "gemini-pro", temperatue = 0.6,google_api_key=st.secrets["gemini_api"]) # create object of gemini-pro
-
     prompt = PromptTemplate(template = prompt_template, input_variables= ["context","question"])
-
     chain = load_qa_chain(model,chain_type="stuff",prompt = prompt)
-
     return chain
-
 def user_input(user_question):
     # user_question is the input question
     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001",google_api_key=st.secrets["gemini_api"])
     # load the local faiss db
     new_db = FAISS.load_local("faiss_index",  embeddings,allow_dangerous_deserialization=True)
-
     # using similarity search, get the answer based on the input
     docs = new_db.similarity_search(user_question)
-
     chain = get_conversation_chain()
-
     
     response = chain(
         {"input_documents":docs, "question": user_question}
         , return_only_outputs=True)
-
     print(response)
     st.write("Reply: ", response["output_text"])
-
 def talkpdf():
     import google.generativeai as genai
     genai.configure(api_key=st.secrets["gemini_api"])
@@ -708,38 +599,5 @@ def talkpdf():
             text_chunks = get_text_chunks(raw_text)
             get_vector_store(text_chunks)
             st.success("Done")
-
-
 new_db = ''
-
-def advancesearch():
-    s = st.text_input("Topic")
-    if st.button("Search & Process"):
-        urls=pdfs(s)
-        raw_text = pdftotxt(urls)
-        text_chunks = get_text_chunks(raw_text)
-        t = get_vector_store(text_chunks)
-        st.success("Done")
-    import google.generativeai as genai
-    
-    genai.configure(api_key=st.secrets["gemini_api"])
-    st.header("Chat with PDF")
-    
-    user_question = st.text_input("Ask a Question:")
-    if user_question:
-        with st.spinner("Processing..."):
-            user_input(user_question)
-    options = st.multiselect(
-            'Select Interaction Type:',
-            ["Short Q&A - 2 to 4 lines", "Long Q&A - 10 to 20 lines", "Multiple Choice - with answers"])
-    n = st.slider('Number of Questions?', 0, 40, 1)
-    
-    submit = st.button("Submit")
-    if submit:
-        if options:
-            for i in options:
-                with st.spinner("Processing..."):
-                    user_input(f"Give me the most important, top {n} question and answers, in form of "+i)
-    
-    
       

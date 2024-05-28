@@ -18,3 +18,4 @@ easyocr
 numpy
 Pillow
 langchain_google_genai
+langchain-community

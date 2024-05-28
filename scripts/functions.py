@@ -545,20 +545,27 @@ def get_text_chunks(text):
     chunks = text_splitter.split_text(text)
     st.success('Done!')
     return chunks
-def get_vector_store(text_chunks):
-    embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001",google_api_key=st.secrets["gemini_api"] ) # google embeddings
-    vector_store = FAISS.from_texts(text_chunks, embeddings)
-    
-    # Incrementally build the index and save periodically
-    for chunk in text_chunks:
-        vector_store.add(embeddings.encode(chunk))
-        vector_store.save_local("faiss_index_partial")
-    
-    # Final save
-    vector_store.save_local("faiss_index")
-    st.success('Data loaded')
 
-    return 1
+def get_vector_store(chunks):
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model="models/embedding-001",,google_api_key=st.secrets["gemini_api"])  # type: ignore
+    vector_store = FAISS.from_texts(chunks, embedding=embeddings)
+    vector_store.save_local("faiss_index")
+    
+# def get_vector_store(text_chunks):
+#     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001",google_api_key=st.secrets["gemini_api"] ) # google embeddings
+#     vector_store = FAISS.from_texts(text_chunks, embeddings)
+    
+#     # Incrementally build the index and save periodically
+#     for chunk in text_chunks:
+#         vector_store.add(embeddings.encode(chunk))
+#         vector_store.save_local("faiss_index_partial")
+    
+#     # Final save
+#     vector_store.save_local("faiss_index")
+#     st.success('Data loaded')
+
+#     return 1
 def get_conversation_chain():
     # define the prompt
     prompt_template = """

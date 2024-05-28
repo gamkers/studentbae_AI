@@ -547,9 +547,13 @@ def get_text_chunks(text):
     return chunks
 
 def get_vector_store(chunks):
+    index = faiss.read_index("faiss_index")
+    index.reset()
     embeddings = GoogleGenerativeAIEmbeddings(
         model="models/embedding-001",google_api_key=st.secrets["gemini_api"])  # type: ignore
     vector_store = FAISS.from_texts(chunks, embedding=embeddings)
+    st.write("processing..")
+    
     vector_store.save_local("faiss_index")
     
 # def get_vector_store(text_chunks):

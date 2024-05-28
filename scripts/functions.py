@@ -499,7 +499,7 @@ def pdf(s):
             print("No module named 'google' found")
 
         query = f"filetype:pdf {s}"
-        for j in search(query, tld="co.in", num=10, stop=5, pause=2):
+        for j in search(query, num=10, stop=5, pause=2):
             if ".pdf" in j:
                 k = j.split("/")
                 for i in k:

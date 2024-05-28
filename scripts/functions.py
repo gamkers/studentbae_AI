@@ -711,6 +711,7 @@ def advancesearch():
         with st.spinner("Processing..."):
             urls=pdfs(s)
             raw_text = pdftotxt(urls)
+            st.write(raw_text)
             text_chunks = get_text_chunks(raw_text)
             get_vector_store(text_chunks)
             st.success("Done")

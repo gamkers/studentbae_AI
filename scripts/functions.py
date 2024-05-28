@@ -537,7 +537,6 @@ def get_pdf_text(pdf_docs):
 
 def get_text_chunks(text):
     #create an object of RecursiveCharacterTextSplitter with specific chunk size and overlap size
-    #create an object of RecursiveCharacterTextSplitter with specific chunk size and overlap size
     # text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
     #   length_function = len,)
     text_splitter = RecursiveCharacterTextSplitter(chunk_size = 10000, chunk_overlap = 1000)
@@ -547,14 +546,12 @@ def get_text_chunks(text):
     return chunks
 
 def get_vector_store(chunks):
-    index = FAISS.read_index("faiss_index")
-    index.reset()
     embeddings = GoogleGenerativeAIEmbeddings(
         model="models/embedding-001",google_api_key=st.secrets["gemini_api"])  # type: ignore
-    vector_store = FAISS.from_texts(chunks, embedding=embeddings)
+    vector_stores = FAISS.from_texts(chunks, embedding=embeddings)
     st.write("processing..")
     
-    vector_store.save_local("faiss_index")
+    vector_stores.save_local("faiss_index")
     
 # def get_vector_store(text_chunks):
 #     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001",google_api_key=st.secrets["gemini_api"] ) # google embeddings

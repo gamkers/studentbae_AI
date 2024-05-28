@@ -629,7 +629,7 @@ def get_text_chunks(text):
     #text_splitter = RecursiveCharacterTextSplitter(chunk_size = 10000, chunk_overlap = 1000)
     # now split the text we have using object created
     chunks = text_splitter.split_text(text)
-
+    st.success('Done!')
     return chunks
 
 def get_vector_store(text_chunks):

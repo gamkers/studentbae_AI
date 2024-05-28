@@ -624,7 +624,9 @@ def get_pdf_text(pdf_docs):
 
 def get_text_chunks(text):
     # create an object of RecursiveCharacterTextSplitter with specific chunk size and overlap size
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size = 10000, chunk_overlap = 1000)
+    text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
+      length_function = len,)
+    #text_splitter = RecursiveCharacterTextSplitter(chunk_size = 10000, chunk_overlap = 1000)
     # now split the text we have using object created
     chunks = text_splitter.split_text(text)
 

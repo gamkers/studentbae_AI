@@ -269,7 +269,7 @@ def db(link,vectors):
       db.put({"link": link, "texts": vectors})
     except:
        st.error("Access Denied")
-def pdfs(s,n):
+def pdfs(s):
     try:
       links=[]
       try:
@@ -534,16 +534,38 @@ def get_pdf_text(pdf_docs):
         for page in pdf_reader.pages:
             text += page.extract_text()
     return text
+
 def get_text_chunks(text):
-    # create an object of RecursiveCharacterTextSplitter with specific chunk size and overlap size
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size = 10000, chunk_overlap = 1000)
+    #create an object of RecursiveCharacterTextSplitter with specific chunk size and overlap size
+    text_splitter = CharacterTextSplitter(separator = "\n",chunk_size = 1000,chunk_overlap  = 200,
+      length_function = len,)
+    # text_splitter = RecursiveCharacterTextSplitter(chunk_size = 10000, chunk_overlap = 1000)
     # now split the text we have using object created
     chunks = text_splitter.split_text(text)
     return chunks
-def get_vector_store(text_chunks):
-    embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001",google_api_key=st.secrets["gemini_api"] ) # google embeddings
-    vector_store = FAISS.from_texts(text_chunks,embeddings) # use the embedding object on the splitted text of pdf docs
-    vector_store.save_local("faiss_index") # save the embeddings in local
+
+def get_vector_store(chunks):
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model="models/embedding-001",google_api_key=st.secrets["gemini_api"])  # type: ignore
+    vector_stores = FAISS.from_texts(chunks, embedding=embeddings)
+    st.write("processing..")
+    
+    vector_stores.save_local("faiss_index")
+    
+# def get_vector_store(text_chunks):
+#     embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001",google_api_key=st.secrets["gemini_api"] ) # google embeddings
+#     vector_store = FAISS.from_texts(text_chunks, embeddings)
+    
+#     # Incrementally build the index and save periodically
+#     for chunk in text_chunks:
+#         vector_store.add(embeddings.encode(chunk))
+#         vector_store.save_local("faiss_index_partial")
+    
+#     # Final save
+#     vector_store.save_local("faiss_index")
+#     st.success('Data loaded')
+
+#     return 1
 def get_conversation_chain():
     # define the prompt
     prompt_template = """
@@ -583,29 +605,46 @@ def talkpdf():
             'Select Interaction Type:',
             ["Short Q&A - 2 to 4 lines", "Long Q&A - 10 to 20 lines", "Multiple Choice - with answers"])
     n = st.slider('Number of Questions?', 0, 40, 1)
-
-    pdf_docs = st.file_uploader("Upload your PDF Files and Click on the Submit & Process Button", accept_multiple_files=True)
+    
     submit = st.button("Submit")
-    if submit & pdf_docs:
-         with st.spinner("Processing..."):
-            raw_text = get_pdf_text(pdf_docs)
-            text_chunks = get_text_chunks(raw_text)
-            get_vector_store(text_chunks)
-            st.success("Done")
     if submit:
         if options:
             for i in options:
                 with st.spinner("Processing..."):
                     user_input(f"Give me the most important, top {n} question and answers, in form of "+i)
-
-
-    # pdf_docs = st.file_uploader("Upload your PDF Files and Click on the Submit & Process Button", accept_multiple_files=True)
+  
+    pdf_docs = st.file_uploader("Upload your PDF Files and Click on the Submit & Process Button", accept_multiple_files=True)
     if st.button("Submit & Process"):
-        with st.spinner("Processing..."):
-            raw_text = get_pdf_text(pdf_docs)
-            text_chunks = get_text_chunks(raw_text)
-            get_vector_store(text_chunks)
-            st.success("Done")
-
-
+        raw_text = get_pdf_text(pdf_docs)
+        text_chunks = get_text_chunks(raw_text)
+        get_vector_store(text_chunks)
+        st.success("Done")
 new_db = ''
+def advancesearch():
+    s = st.text_input("Topic")
+    if st.button("Search & Process"):
+        urls=pdfs(s)
+        raw_text = pdftotxt(urls)
+        text_chunks = get_text_chunks(raw_text)
+        t = get_vector_store(text_chunks)
+        st.success("Done")
+    import google.generativeai as genai
+    
+    genai.configure(api_key=st.secrets["gemini_api"])
+    st.header("Chat with PDF")
+    
+    user_question = st.text_input("Ask a Question:")
+    if user_question:
+        with st.spinner("Processing..."):
+            user_input(user_question)
+    options = st.multiselect(
+            'Select Interaction Type:',
+            ["Short Q&A - 2 to 4 lines", "Long Q&A - 10 to 20 lines", "Multiple Choice - with answers"])
+    n = st.slider('Number of Questions?', 0, 40, 1)
+    
+    submit = st.button("Submit")
+    if submit:
+        if options:
+            for i in options:
+                with st.spinner("Processing..."):
+                    user_input(f"Give me the most important, top {n} question and answers, in form of "+i)

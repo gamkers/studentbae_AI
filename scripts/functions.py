@@ -25,6 +25,11 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter#library to sp
 from langchain_google_genai import GoogleGenerativeAIEmbeddings #to embed the text
 from langchain_google_genai import ChatGoogleGenerativeAI #
 from langchain.prompts import PromptTemplate #to create prompt templates
+from langchain_google_genai import (
+    ChatGoogleGenerativeAI,
+    HarmBlockThreshold,
+    HarmCategory,
+)
 palm.configure(api_key=st.secrets["palm_api"])
 def imagedetect(img):
     import google.generativeai as genai
@@ -193,10 +198,8 @@ def palm_conversation(context=""):
         
 # Run the conversation function
 def ai_HR(role):
-    import google.generativeai as palm
-    palm.configure(api_key='AIzaSyBjHDPK5eh-AJzsHRxT3xicaCm1-I7Vujo')
-    models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
-    model = models[0].name
+    
+     
     # prompt = f"""
     # act as AI system that serves as an HR interviewer for the role of {role}. 
     # You should be capable of generating 10 relevant interview questions with Short model answers Related to {role}. Additionally,
@@ -205,14 +208,24 @@ def ai_HR(role):
     prompt = f"""
     Develop an HR system for {role} interviews. Create 7 technical questions with short answers, 3 behavioral questions with answers, and 3 coding questions with solutions.
     Also, suggest 5 key resume points for {role} and propose 3 project ideas showcasing a candidate's suitability: 
-"""
-    completion = palm.generate_text(
-        model=model,
-        prompt=prompt,
-        # The maximum length of the response
-    )
-    st.markdown(completion.result,unsafe_allow_html=True)
-    return(completion.result)
+    """
+    model = ChatGoogleGenerativeAI(model="gemini-pro", convert_system_message_to_human=True,temperature=1, google_api_key="AIzaSyCaapt_IAXszu6yvHfr8H1dkhzGTXvL0KI",safety_settings={
+        HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
+      })
+  
+    data = model(
+      [
+          HumanMessage(content=prompt),
+      ]
+      )
+    # completion = palm.generate_text(
+    #     model=model,
+    #     prompt=prompt,
+    #     # The maximum length of the response
+    # )
+    
+    st.markdown(data.content,unsafe_allow_html=True)
+    return(data.content)
 import easyocr as ocr
 import streamlit as st
 from PIL import Image

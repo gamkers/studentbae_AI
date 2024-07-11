@@ -209,9 +209,7 @@ def ai_HR(role):
     completion = palm.generate_text(
         model=model,
         prompt=prompt,
-        temperature=0.5,
         # The maximum length of the response
-        max_output_tokens=3000,
     )
     st.markdown(completion.result,unsafe_allow_html=True)
     return(completion.result)

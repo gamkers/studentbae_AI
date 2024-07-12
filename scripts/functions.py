@@ -609,7 +609,7 @@ def advancesearch():
     import google.generativeai as genai
     
     genai.configure(api_key=st.secrets["gemini_api"])
-    st.header("Chat with PDF")
+    st.header("Advance Search")
     
     user_question = st.text_input("Ask a Question:")
     if user_question:

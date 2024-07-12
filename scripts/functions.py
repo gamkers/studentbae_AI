@@ -19,7 +19,7 @@ from langchain.llms import OpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
 import time
 from scripts.news import *
-import google.generativeai as palm
+import google.generativeai as genai
 from PyPDF2 import PdfReader #library to read pdf files
 from langchain.text_splitter import RecursiveCharacterTextSplitter#library to split pdf files
 from langchain_google_genai import GoogleGenerativeAIEmbeddings #to embed the text
@@ -30,7 +30,8 @@ from langchain_google_genai import (
     HarmBlockThreshold,
     HarmCategory,
 )
-palm.configure(api_key=st.secrets["palm_api"])
+genai.configure(api_key="AIzaSyCaapt_IAXszu6yvHfr8H1dkhzGTXvL0KI")
+
 def imagedetect(img):
     import google.generativeai as genai
     genai.configure(api_key=st.secrets["gemini_api"])
@@ -199,7 +200,7 @@ def palm_conversation(context=""):
 # Run the conversation function
 
 def ai_HR1(role):
-    model = genai.GenerativeModel('gemini-1.5-flash', google_api_key="AIzaSyCaapt_IAXszu6yvHfr8H1dkhzGTXvL0KI")
+    model = genai.GenerativeModel('gemini-1.5-flash')
     prompt = f"""
     Develop an HR system for {role} interviews. Create 7 technical questions with short answers, 3 behavioral questions with answers, and 3 coding questions with solutions.
     Also, suggest 5 key resume points for {role} and propose 3 project ideas showcasing a candidate's suitability: 

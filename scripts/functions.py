@@ -197,6 +197,18 @@ def palm_conversation(context=""):
             st.session_state.messages.append({"role": "assistant", "content": error_message})
         
 # Run the conversation function
+
+def ai_HR1(role):
+    model = genai.GenerativeModel('gemini-1.5-flash', google_api_key="AIzaSyCaapt_IAXszu6yvHfr8H1dkhzGTXvL0KI")
+    prompt = f"""
+    Develop an HR system for {role} interviews. Create 7 technical questions with short answers, 3 behavioral questions with answers, and 3 coding questions with solutions.
+    Also, suggest 5 key resume points for {role} and propose 3 project ideas showcasing a candidate's suitability: 
+    """
+    response = model.generate_content(prompt)
+    
+    st.markdown(response.text,unsafe_allow_html=True)
+    return(response.text)
+
 def ai_HR(role):
     
      

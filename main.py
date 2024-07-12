@@ -263,7 +263,7 @@ try:
         t = st.text_input("")
         submit = st.button("SEARCH")
         if submit:
-            ai_HR(t)
+            ai_HR1(t)
     elif selected2 == 'StudentGPT':
         # Run the conversation function
         palm_conversation()

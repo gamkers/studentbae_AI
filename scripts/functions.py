@@ -78,7 +78,7 @@ def ai_chat(txt, context=""):
     model = genai.GenerativeModel('gemini-1.5-flash')
     response = model.generate_content(prompt)
     
-    st.markdown(response.text,unsafe_allow_html=True)
+    //st.markdown(response.text,unsafe_allow_html=True)
     return(response.text)
 def palm_conversation(context=""):
     col1, col2 = st.columns([2, 1])  # Adjust column widths as needed

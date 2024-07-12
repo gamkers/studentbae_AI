@@ -1,3 +1,4 @@
 [theme]
-#primaryColor="#6528F7" 
-#secondaryBackgroundColor="black"
+theme = "dark"
+primaryColor="#6528F7" 
+secondaryBackgroundColor="black"

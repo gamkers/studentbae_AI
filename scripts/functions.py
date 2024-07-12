@@ -39,26 +39,19 @@ def imagedetect(img):
     response = model.generate_content(img)
     return response.text
 def palm_pdf(txt):
-    
-    models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
-    model = models[0].name
-    print(model)
+
     prompt = f"""
     You are an expert at Reading PDF from Links as summarize it.
     Summarize the PDF and give some Keypoints.
     This is the link :{txt}
     """
-    completion = palm.generate_text(
-        model=model,
-        prompt=prompt,
-        temperature=0,
-        # The maximum length of the response
-        max_output_tokens=800,
-    )
-    st.markdown(completion.result,unsafe_allow_html=True)
+    model = genai.GenerativeModel('gemini-1.5-flash')
+    response = model.generate_content(prompt)
+    
+    st.markdown(response.text,unsafe_allow_html=True)
+    return(response.text)
 def ai_palm(txt):
-    models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
-    model = models[0].name
+
     prompt = f"""
     You are an expert at Teaching.
     explain me about: {txt}
@@ -67,18 +60,13 @@ def ai_palm(txt):
     also give some reference
     Think about it step by step, and show your work.
     """
-    completion = palm.generate_text(
-        model=model,
-        prompt=prompt,
-        temperature=0,
-        # The maximum length of the response
-        max_output_tokens=2000,
-    )
-    st.markdown(completion.result,unsafe_allow_html=True)
-    return(completion.result)
+    model = genai.GenerativeModel('gemini-1.5-flash')
+    response = model.generate_content(prompt)
+    
+    st.markdown(response.text,unsafe_allow_html=True)
+    return(response.text)
 def ai_chat(txt, context=""):
-    models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
-    model = models[0].name
+    
     prompt = f"""
     **Previous Conversation:**
     {context}
@@ -87,14 +75,11 @@ def ai_chat(txt, context=""):
     **as Professor Reply to user:**
     (Provide explanation here...)
     """
-    completion = palm.generate_text(
-        model=model,
-        prompt=prompt,
-        temperature=0,
-        # The maximum length of the response
-        max_output_tokens=800,
-    )
-    return(completion.result)
+    model = genai.GenerativeModel('gemini-1.5-flash')
+    response = model.generate_content(prompt)
+    
+    st.markdown(response.text,unsafe_allow_html=True)
+    return(response.text)
 def palm_conversation(context=""):
     col1, col2 = st.columns([2, 1])  # Adjust column widths as needed
     with col1:
@@ -200,45 +185,18 @@ def palm_conversation(context=""):
 # Run the conversation function
 
 def ai_HR1(role):
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    
     prompt = f"""
     Develop an HR system for {role} interviews. Create 7 technical questions with short answers, 3 behavioral questions with answers, and 3 coding questions with solutions.
     Also, suggest 5 key resume points for {role} and propose 3 project ideas showcasing a candidate's suitability: 
     """
+    model = genai.GenerativeModel('gemini-1.5-flash')
     response = model.generate_content(prompt)
     
     st.markdown(response.text,unsafe_allow_html=True)
     return(response.text)
 
-def ai_HR(role):
-    
-     
-    # prompt = f"""
-    # act as AI system that serves as an HR interviewer for the role of {role}. 
-    # You should be capable of generating 10 relevant interview questions with Short model answers Related to {role}. Additionally,
-    # it should be able to suggest key points to include in a candidate's resume for this specific job role and some projects ideas for a collage students.
-    # """
-    prompt = f"""
-    Develop an HR system for {role} interviews. Create 7 technical questions with short answers, 3 behavioral questions with answers, and 3 coding questions with solutions.
-    Also, suggest 5 key resume points for {role} and propose 3 project ideas showcasing a candidate's suitability: 
-    """
-    model = ChatGoogleGenerativeAI(model="gemini-pro", convert_system_message_to_human=True,temperature=1, google_api_key="AIzaSyCaapt_IAXszu6yvHfr8H1dkhzGTXvL0KI",safety_settings={
-        HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
-      })
-  
-    data = model(
-      [
-          HumanMessage(content=prompt),
-      ]
-      )
-    # completion = palm.generate_text(
-    #     model=model,
-    #     prompt=prompt,
-    #     # The maximum length of the response
-    # )
-    
-    st.markdown(data.content,unsafe_allow_html=True)
-    return(data.content)
+
 import easyocr as ocr
 import streamlit as st
 from PIL import Image
@@ -263,8 +221,7 @@ def imgtotxt():
             st.write(result_text)
             st.balloons()
             text = (" ".join(result_text))
-            models = [m for m in palm.list_models() if 'generateText' in m.supported_generation_methods]
-            model = models[0].name
+           
             prompt = f"""
             **Questions:**
             {text}
@@ -274,15 +231,11 @@ def imgtotxt():
             (Provide explanation here...)
             """
         
-            completion = palm.generate_text(
-                model=model,
-                prompt=prompt,
-                temperature=0,
-                # The maximum length of the response
-                max_output_tokens=800,
-            )
-            st.markdown(completion.result)
-            return(completion.result)
+            model = genai.GenerativeModel('gemini-1.5-flash')
+            response = model.generate_content(prompt)
+            
+            st.markdown(response.text,unsafe_allow_html=True)
+            return(response.text)
     else:
         st.write("Upload an Image")
 from deta import Deta

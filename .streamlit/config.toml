@@ -1,4 +1,6 @@
 [theme]
-theme = "dark"
-primaryColor="#6528F7" 
-secondaryBackgroundColor="black"
+primaryColor=#4CAF50
+backgroundColor=#121212
+secondaryBackgroundColor=#1E1E1E
+textColor=#E0E0E0
+font=Roboto

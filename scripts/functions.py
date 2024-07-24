@@ -197,47 +197,7 @@ def ai_HR1(role):
     return(response.text)
 
 
-import easyocr as ocr
-import streamlit as st
-from PIL import Image
-import numpy as np
-@st.cache
-def load_model():
-    reader = ocr.Reader(['en'], model_storage_directory='.')
-    return reader
-def extract_text_from_image(image):
-    reader = load_model()
-    result = reader.readtext(np.array(image))
-    result_text = [text[1] for text in result]
-    return result_text
-def imgtotxt():
-    # Image uploader
-    image = st.file_uploader(label="Upload your image here", type=['png', 'jpg', 'jpeg'])
-    if image is not None:
-        input_image = Image.open(image)
-        st.image(input_image)
-        with st.spinner("🤖 AI is at Work! "):
-            result_text = extract_text_from_image(input_image)
-            st.write(result_text)
-            st.balloons()
-            text = (" ".join(result_text))
-           
-            prompt = f"""
-            **Questions:**
-            {text}
-            Act as a Professor 
-            **as Professor Answer to the Questions:**
-        
-            (Provide explanation here...)
-            """
-        
-            model = genai.GenerativeModel('gemini-1.5-flash')
-            response = model.generate_content(prompt)
-            
-            st.markdown(response.text,unsafe_allow_html=True)
-            return(response.text)
-    else:
-        st.write("Upload an Image")
+
 from deta import Deta
 def db(link,vectors):
     try:

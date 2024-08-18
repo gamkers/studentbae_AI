@@ -30,7 +30,7 @@ from langchain_google_genai import (
     HarmBlockThreshold,
     HarmCategory,
 )
-genai.configure(api_key="AIzaSyCaapt_IAXszu6yvHfr8H1dkhzGTXvL0KI")
+genai.configure(api_key="AIzaSyDLorkWwdH018SkuDl3ROqYENBJT582a00")
 
 def imagedetect(img):
     import google.generativeai as genai

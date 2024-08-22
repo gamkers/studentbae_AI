@@ -1,0 +1,226 @@
+/* Container for the entire chat interface */
+.App {
+    display: flex;
+    height: 100vh;
+    background-color: #ffffff; /* Dark background for the app */
+    color: rgb(0, 0, 0);
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-100%); /* Initially hidden */
+    transition: transform 0.3s ease;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.sidebar.open {
+    transform: translateX(0); /* Slide in when open */
+}
+
+.sidebar.closed {
+    transform: translateX(-100%); /* Slide out when closed */
+}
+
+/* Main Content */
+
+
+.sidebar.open + .main-content {
+    margin-left: 260px; /* Adjust content when sidebar is open */
+}
+
+/* Other existing styles remain unchanged */
+
+
+/* Main content container */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top bar styling */
+.top-bar {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); Subtle shadow for the top bar */
+    z-index: 1100
+}
+
+/* Chat container */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px); /* Full height minus top bar */
+    width: 100%;
+    max-width: 900px; /* Increased maximum width */
+    margin: auto;
+    background-color: #ffffff; /* Slightly darker background for chat container */
+    border-radius: 10px; /* Rounded corners for the chat container */
+    overflow: hidden; /* Ensure no overflow beyond the container */
+    /* box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);  */
+    
+    /* Subtle shadow for chat container */
+}
+
+/* Chat box where messages are displayed */
+.chat-box {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #ffffff; /* Darker background for chat messages */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* border-top: 1px solid #444;  */
+    /* Border to separate the chat box */
+}
+
+/* Hide scroll bars for Webkit browsers */
+.chat-box::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scroll bars for Firefox */
+.chat-box {
+    scrollbar-width: none;
+}
+
+/* Style for individual messages */
+.message {
+    max-width: 75%;
+    padding: 15px;
+    border-radius: 15px;
+    display: inline-block;
+    word-wrap: break-word;
+    line-height: 1.5;
+    font-size: 16px;
+    position: relative;
+}
+
+/* User message styling */
+.user {
+    background-color: #dfe1e2; /* Blue background for user messages */
+    color: rgb(0, 0, 0); /* White text color */
+    align-self: flex-end;
+    text-align: right;
+    border-radius: 15px 15px 0 15px;
+}
+
+/* Bot message styling */
+.bot {
+    background-color: #ffffff; /* Light grey background for bot messages */
+    color: #333; /* Dark text color */
+    align-self: flex-start;
+    text-align: left;
+    border-radius: 15px 15px 15px 0;
+}
+
+/* Input area styling */
+.chat-input {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #f9f7f7;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(196, 194, 194, 0.3);
+    margin: 15px;
+}
+
+/* Input field styling */
+.chat-input input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #555; /* Darker border for input field */
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.984); /* Slightly opaque background */
+    color: rgb(0, 0, 0); /* White text color */
+}
+
+/* Button styling with circular shape */
+.chat-input button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: #000000; /* Blue button color */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 10px;
+    transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+/* Button hover effect */
+.chat-input button:hover {
+    background-color: #000000; /* Darker blue on hover */
+}
+
+/* Style for code blocks */
+pre {
+    background-color: #272822; /* Dark background for code blocks */
+    border: 1px solid #333; /* Darker border */
+    border-radius: 10px;
+    padding: 15px;
+    overflow: auto;
+    margin: 0;
+    font-size: 15px;
+    color: #F8F8F2; /* Light text color for code */
+    position: relative;
+}
+
+/* Style for code block copy button */
+.copy-button {
+    background-color: #000000; /* Blue button color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+/* Button hover effect */
+.copy-button:hover {
+    background-color: #357ABD; /* Darker blue on hover */
+}
+
+/* Style for inline code */
+code {
+    background-color: #272822; /* Dark background for inline code */
+    color: #F8F8F2; /* Light text color */
+    border-radius: 5px;
+    padding: 2px 6px;
+    font-family: monospace;
+}
+
+/* Syntax highlighting (example for JavaScript) */
+.language-js {
+    color: #F8F8F2; /* Light text color for JavaScript */
+}
+
+/* Syntax highlighting (example for Python) */
+.language-python {
+    color: #F8F8F2; /* Light text color for Python */
+}

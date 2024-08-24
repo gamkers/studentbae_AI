@@ -26,7 +26,7 @@ def get_model():
             max_tokens=None,
             timeout=None,
             max_retries=2,
-            groq_api_key="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"
+            groq_api_key="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"
         )
         session['model'] = True
     return llm
@@ -67,7 +67,12 @@ def login():
         return jsonify({"error": "Invalid email or password"}), 400
 
     # Set session
-    session['user'] = True
+    if 'user' not in session:
+            session['user'] = []
+
+        # Append the new message to the history
+    session['user'].append("True")
+    
     return jsonify({"success": True, "message": "Login successful"})
 
 @app.route('/logout', methods=['POST'])
@@ -83,8 +88,8 @@ def check_auth():
 
 @app.route('/chat', methods=['POST'])
 def chat():
-    if 'user' not in session:
-        return jsonify({"error": "Unauthorized"}), 401
+    # if 'True' not in session['user']:
+    #     return jsonify({"error": "Unauthorized"}), 401
 
     try:
         input_message = request.json.get('message')
@@ -121,6 +126,7 @@ def chat():
         session['history'].append(("ai", result_content))
 
         if len(session['history']) > 4:
+            
             session['history'] = session['history'][-4:]
 
         # Log the result for debugging

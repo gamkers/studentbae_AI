@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -11,12 +11,13 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/login', { email, password });
+            const response = await axios.post('http://localhost:5000/login', { email, password }, { withCredentials: true });
             alert(response.data.message);
-            // Redirect to home or another page on successful login
+            // Set authentication status and redirect to chat
+            setIsAuthenticated(true);
             navigate('/chat');
         } catch (error) {
-            setError(error.response.data.error); // Set error message for display
+            setError(error.response?.data?.error || 'An error occurred'); // Set error message for display
         }
     };
 

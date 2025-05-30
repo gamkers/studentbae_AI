@@ -105,7 +105,7 @@ opacity: 0.8;
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-openai.api_key = st.secrets["api"]
+# openai.api_key = st.secrets["api"]
 start_sequence = "\nAI:"
 restart_sequence = "\nHuman: "
 

@@ -1,3 +1,6 @@
+# Improved initialization message for better Termux debugging
+
+print("[INFO] StudentBae AI starting in Termux environment...")
 from streamlit_option_menu import option_menu
 import requests
 import streamlit as st
